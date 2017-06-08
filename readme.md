@@ -30,10 +30,10 @@ what are basicCharacterics?
   - basicCharacterics are an array of characteristics given to a character which are inherited from birth.
     - for example: if a character is moody from birth, this will be recorded in the basicCharacteristics.
 
-  basicChars layout:
+  basicCharacteristics layout:
   ```
     {
-      charId: '',
+      characteristicId: '',
       level: 0,
     }
   ```
@@ -48,8 +48,8 @@ what are basicCharacterics?
     description: '',
     attributeId: '',
     attributeNumber: 0,
-    charId: '',
-    charNumber: 0,
+    characteristicId: '',
+    characteristicNumber: 0,
   }
 ```
 What are events?
