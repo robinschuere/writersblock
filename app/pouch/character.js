@@ -11,12 +11,11 @@ export function insertCharacter() {
 
   return db.put(JSON.parse(JSON.stringify(toAdd)))
     .then((result) => {
-      createNotification('info', 'The character was created.');
       toAdd._rev = result.rev;
       return toAdd;
     })
     .catch((err) => {
-      createNotification('error', 'An error occurred while creating the character.');
+      console.log('error: ', err);
       return toAdd;
     });
 };
@@ -26,12 +25,11 @@ export function updateCharacter(character) {
 
   return db.put(JSON.parse(JSON.stringify(character)))
     .then((result) => {
-      createNotification('info', 'The character was updated.');
       character._rev = result.rev;
       return character;
     })
     .catch((err) => {
-      createNotification('error', 'An error occurred while updating the character.');
+      console.log('error: ', err);
       return character;
     });
 };
@@ -40,11 +38,10 @@ export function removeCharacter(character) {
   character._deleted = true;
   return db.put(JSON.parse(JSON.stringify(character)))
     .then((result) => {
-      createNotification('info', 'The character was removed.');
       return character._id;
     })
     .catch((err) => {
-      createNotification('error', 'An error occurred while removing the character.');
+      console.log('error: ', err);
       return character._id;
     });
 };

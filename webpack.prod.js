@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var copyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -7,7 +8,7 @@ module.exports = {
     './app/app.js'
   ],
   output: {
-    path: path.join(__dirname, '/dist/assets'),
+    path: path.join(__dirname, './bundled'),
     filename: 'bundle.js',
     publicPath: ASSET_PATH,
   },
@@ -23,7 +24,11 @@ module.exports = {
         screw_ie8: true
       },
       comments: false
-    })
+    }),
+    copyWebpackPlugin([
+      {from: path.join(__dirname, './index.html'), to: path.join(__dirname, './bundled/index.html')},
+      {from: path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.css'), to: path.join(__dirname, './bundled/node_modules/bootstrap/dist/css/bootstrap.css')}
+    ])
   ],
   module: {
     loaders: [
