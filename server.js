@@ -6,11 +6,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const ASSET_PATH = process.env.ASSET_PATH || '/';
+const ENV = process.env.ENVIRONMENT || 'dev';
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(__dirname));
 
-app.use(webpackDevMiddleware(webpack(config(process.env.ENVIRONMENT)), {
+app.use(webpackDevMiddleware(webpack(config(ENV)), {
   hot: process.env.ENVIRONMENT === 'dev' ? true : false,
   filename: 'bundle.js',
   publicPath: ASSET_PATH,

@@ -1,5 +1,9 @@
 # Writersblock app
 
+To run the app:
+  -`npm i`
+  -`npm start`
+
 ## Step 1: get the data right
 ### character layout
 ```
@@ -96,3 +100,4 @@ some ideas:
   - create authentication or something like that => Heroku db for that ...
   - create copy sheet of character with events
   - create copy sheet of story with chapters
+  - create a labelAndField readOnly component
