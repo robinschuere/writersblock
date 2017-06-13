@@ -15,6 +15,7 @@ To run the app:
     birthYear: 0,
     basicAttributes: [],
     basicCharacteristics: [],
+    description: '',
   }
 ```
 
@@ -47,6 +48,7 @@ what are basicCharacterics?
 ```
   {
    _id: '',
+    characterId: '',
     year: 0,
     yearCounter: 0,
     description: '',
@@ -57,7 +59,7 @@ what are basicCharacterics?
   }
 ```
 What are events?
-  - events are an array of occurrances in the character history
+  - events are an array of occurrances in the character history -> link to character _id
   - an event holds a description
   - an event can create / remove attributes => this means it is possible, by event to add or substract values from the basicAttributes. if no value is given, the value 0 is recorded.
   - an event can create / remove characteristics => this means it is possible, by event to add or substract values from the basicCharacteristic. if no value is given, the value 0 is recorded.
@@ -96,8 +98,16 @@ some ideas:
   - stories
   - link characters to a story
   - add chapters to a story
+  - add a cover to a story
   - create offline / online sync process (with pouchDb / own JSON storage / I DONT KNOW ;-) )
   - create authentication or something like that => Heroku db for that ...
-  - create copy sheet of character with events
-  - create copy sheet of story with chapters
-  - create a labelAndField readOnly component
+  - create export to pdf / ebook
+    - for a character with it's attributes, characteristics and events
+    - for a complete story
+      - cover
+      - foreword (optional)
+      - table of contents
+      - the story
+      - afterword (optional)
+      - list of characters and their description.
+  - create a detail page whereas the user can see the values and different pages for the update of this values.

@@ -24,7 +24,7 @@ class CharacterList extends React.Component {
   render() {
     return (
       <div key={`characterlist.${this.state.mobile}`}>
-        <Button buttonType="isAdd" onClick={() => { this.props.onAdd(); }}>{"Add"}</Button>
+        <Button isAdd onClick={() => { this.props.onAdd(); }}>{"Add"}</Button>
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
@@ -40,12 +40,12 @@ class CharacterList extends React.Component {
             {this.props.characters && this.props.characters.map((character, index) => {
               return (
                 <tr key={`characterList.item.${index}`}>
-                  <td><Button isLink linkTo={`/character/${character._id}`} buttonType="isEdit">{"Edit"}</Button></td>
+                  <td><Button isLink linkTo={`/character/${character._id}`} isEdit>{"Edit"}</Button></td>
                   <td>{character.firstName}</td>
                   <td>{character.lastName}</td>
                   {!this.state.mobile && <td>{character.birthYear}</td>}
                   {!this.state.mobile && <td>{character.lastUpdated.format('DD/MM/YYYY HH:mm')}</td>}
-                  <td><Button buttonType='isRemove' onClick={() => { this.props.onRemove(character); }}>{"Remove"}</Button></td>
+                  <td><Button isRemove onClick={() => { this.props.onRemove(character); }}>{"Remove"}</Button></td>
                 </tr>
               );
             })}

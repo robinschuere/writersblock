@@ -9,7 +9,7 @@ import CharacterAttributeList from '../characterComponents/characterAttributeLis
 import CharacterDetail from '../characterComponents/characterDetail';
 import { newCharacterBasicAttribute } from '../../constants';
 
-class CharacterDetailContainer extends React.Component {
+class CharacterAttributesContainer extends React.Component {
   componentDidMount() {
     if (!this.props.charactersLoaded) {
       this.props.getCharacters();
@@ -18,9 +18,16 @@ class CharacterDetailContainer extends React.Component {
 
   render() {
     return (
-      <CharacterDetail
-        character={this.props.character} />
+      <CharacterAttributeList
+        key={`characterattributelist.${this.props.character ? this.props.character._id + '.' + this.props.character.lastUpdated.toISOString() : 0}`}
+        character={this.props.character || {}}
+        onSave={this.props.updateCharacter}
+        onAttributeChange={this.handleAttributeChange.bind(this)} />
     );
+  }
+
+  handleAttributeChange(id, level) {
+    this.props.updateOrAddAttributeProp(this.props.character, id, level);
   }
 }
 
@@ -33,16 +40,34 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    updateCharacter: (character) => {
+      updateCharacter(character)
+        .then((result) => {
+          dispatch(saveCharacter(result));
+        })
+    },
     getCharacters: () => {
       getCharacters()
         .then((result) => {
           dispatch(pushCharacters(result));
         });
     },
+    updateOrAddAttributeProp: (character, attId, value) => {
+      if (character.basicAttributes.find((att) => { return att.attributeId === attId; })) {
+        character.basicAttributes.forEach((att) => {
+          if (att.attributeId === attId) {
+            att.level = value;
+          }
+        })
+      } else {
+        character.basicAttributes.push(newCharacterBasicAttribute(attId, value));
+      }
+      dispatch(saveCharacter(character));
+    }
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CharacterDetailContainer);
+)(CharacterAttributesContainer);

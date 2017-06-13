@@ -8,7 +8,7 @@ export const UPDATE_CHARACTER = 'UPDATE_CHARACTER';
 export const SAVE_CHARACTER = 'SAVE_CHARACTER';
 export const GET_CHARACTERS = 'GET_CHARACTERS';
 
-export const dataModel = '1.0.2';
+export const dataModel = '1.0.3';
 
 export const newCharacterBasicAttribute = (attributeId, value) => {
   return {
@@ -28,17 +28,22 @@ export const newCharacter = () => {
     basicAttributes: [],
     basicCharacteristics: [],
     lastUpdated: moment(),
+    description: '',
+    dataModel: dataModel,
   }
 }
 
-export const newEvent = () => {
+export const newEvent = (characterId) => {
   return {
     _id: moment().toISOString(),
+    characterId: characterId,
     year: 0,
-    yearCounter: 0,
+    eventCounter: 0,
     description: '',
     attributes: [],
-    chars: [],
+    characteristics: [],
+    lastUpdated: moment(),
+    dataModel: dataModel,
   }
 }
 
@@ -121,3 +126,16 @@ export const characteristicList = [
   { id: 48, name: 'Virtue', description: 'The moral excellen ce evident in my life as I consistently do what is right.'},
   { id: 49, name: 'Wisdom', description: 'Seeing and responding to life situations from a perspective that transcends my current circumstances.'},
 ];
+
+export function getGenderById(id){
+  return genderList.find((r) => {return r.id === id});
+}
+export function getAttributeById(id){
+  return attributeList.find((r) => {return r.id === id});
+}
+export function getCharacteristicById(id){
+  return characteristicList.find((r) => {return r.id === id});
+}
+export function getRaceById(id){
+  return raceList.find((r) => {return r.id === id});
+}

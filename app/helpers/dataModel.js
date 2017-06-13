@@ -7,6 +7,7 @@ export function updateCharacterAccordingToModel(character) {
     character.raceId = 0;
     character.dataModel = '1.0.0';
   }
+
   if(character.dataModel === '1.0.0'){
     character.basicStats = undefined;
     character.basicChars = undefined;
@@ -14,9 +15,15 @@ export function updateCharacterAccordingToModel(character) {
     character.basicCharacteristics = [];
     character.dataModel = '1.0.1';
   }
+
   if(character.dataModel === '1.0.1'){
     character.events = undefined;
     character.dataModel = '1.0.2';
+  }
+
+  if(character.dataModel === '1.0.2'){
+    character.description = '';
+    character.dataModel = '1.0.3';
   }
 
   //map moment and other values into correct value

@@ -8,7 +8,8 @@ class Button extends React.Component {
       return (
         <Link
           className={this._getClasses()}
-          to={this.props.linkTo}>
+          to={this.props.linkTo}
+          onClick={this.props.onClick}>
           {this.props.children}
         </Link>
       )
@@ -24,20 +25,27 @@ class Button extends React.Component {
 
   _getClasses() {
     var s = 'btn ';
-    s += this.props.buttonType === 'isEdit' ? 'btn-success' : '';
-    s += this.props.buttonType === 'isAdd' ? 'btn-default' : '';
-    s += this.props.buttonType === 'isRemove' ? "btn-danger" : '';
-    s += this.props.buttonType === 'isSave' ? "btn-primary" : '';
+    s += this.props.isNavBar ? ' navbar-brand' : '',
+    s += this.props.isEdit ? ' btn-success' : '';
+    s += this.props.isAdd ? ' btn-default' : '';
+    s += this.props.isRemove ? ' btn-danger' : '';
+    s += this.props.isSave ? ' btn-primary' : '';
+    s += this.props.icon ? ` glyphicon glyphicon-${this.props.icon}` : '';
     return s;
   }
 }
 
 Button.propTypes = {
-  buttonType: PropTypes.oneOf('isAdd', 'isRemove', 'isEdit', 'isSave'),
+  isNavBar: PropTypes.bool,
+  isAdd: PropTypes.bool,
+  isRemove: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  isSave: PropTypes.bool,
   chilren: PropTypes.node,
   onClick: PropTypes.func,
   isLink: PropTypes.bool,
   linkTo: PropTypes.string,
+  icon: React.PropTypes.string,
 }
 
 export default Button;

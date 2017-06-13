@@ -8,9 +8,10 @@ import { genderList, raceList } from '../../constants';
 class CharacterBasic extends React.Component {
   render() {
     return (
-      <Form
+      <Form isSave
         title="Basic information"
-        onSave={() => {this.props.onSave(this.props.character)}}>
+        onSave={() => { this.props.onSave(this.props.character) }}
+        linkTo={`/character/${this.props.character._id}`}>
         <LabelAndField
           label="Firstname"
           value={this.props.character.firstName}
@@ -40,6 +41,12 @@ class CharacterBasic extends React.Component {
           onChange={this.props.onRaceChange}
           type="select"
           options={buildOptionList(raceList)} />
+        <LabelAndField
+          label="Description"
+          value={this.props.character.description}
+          placeholder="Give the character description"
+          onChange={this.props.onDescriptionChange}
+          type="textarea" />
       </Form>
     );
   }
@@ -52,6 +59,7 @@ CharacterBasic.propTypes = {
   onBirthYearChange: PropTypes.func,
   onGenderChange: PropTypes.func,
   onRaceChange: PropTypes.func,
+  onDescriptionChange: PropTypes.func,
   onSave: PropTypes.func,
 }
 
