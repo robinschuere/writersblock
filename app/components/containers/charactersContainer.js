@@ -6,15 +6,17 @@ import { insertCharacter, removeCharacter, getCharacters } from '../../pouch/cha
 
 class CharactersContainer extends React.Component {
   componentDidMount() {
-    if(!this.props.charactersLoaded){
+    if (!this.props.charactersLoaded) {
       this.props.getCharacters();
     }
   }
-  render(){
-    return <CharactersList
-      characters={this.props.characters}
-      onAdd={this.props.addCharacter}
-      onRemove={this.props.removeCharacter}/>;
+  render() {
+    return (
+      <CharactersList
+        characters={this.props.characters}
+        onAdd={this.props.addCharacter}
+        onRemove={this.props.removeCharacter} />
+    );
   }
 }
 

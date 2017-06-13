@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../standardComponents/button';
 
-class NotFoundContainer extends React.Component {
+class ContactContainer extends React.Component {
   render() {
     return (
       <div className="row">
         <div className="col-md-12">
           <div className="error-template">
-            <h1>{"Oops!"}</h1>
-            <h2>{"404 Not Found"}</h2>
+            <h1>{"Contact!"}</h1>
+            <h2>{"Who are we"}</h2>
             <div className="error-details">
-              <p>Sorry, an error has occured, Requested page not found!</p>
+              {"This app is created and being maintained by Robin Schuerewegen."}
             </div>
             <div className="error-actions">
               <Button isLink linkTo={"/"} isSave icon="home">{" Home"}</Button>
@@ -23,4 +23,4 @@ class NotFoundContainer extends React.Component {
   }
 };
 
-export default NotFoundContainer;
+export default ContactContainer;

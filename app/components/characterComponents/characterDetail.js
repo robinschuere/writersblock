@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LabelAndReadOnly from '../standardComponents/labelAndReadOnly';
 import Button from '../standardComponents/button';
 import Form from '../standardComponents/form';
+import Text from '../standardComponents/text';
 import { getGenderById, getRaceById, getAttributeById } from '../../constants';
 
 class CharacterDetail extends React.Component {
@@ -27,6 +28,9 @@ class CharacterDetail extends React.Component {
           {this.props.character.basicAttributes.map((att) => {
             return (<LabelAndReadOnly label={getAttributeById(att.attributeId).name} value={att.level} />)
           })}
+          {this.props.character.basicAttributes.length === 0 && (
+            <Text text="There are no attributes yet..."/>
+          )}
         </Form>
       </div>
     );

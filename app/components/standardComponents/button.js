@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
+import Icon from './icon';
 
 class Button extends React.Component {
   render() {
@@ -18,19 +19,18 @@ class Button extends React.Component {
       <button
         className={this._getClasses()}
         onClick={this.props.onClick}>
+        {this.props.icon && (<Icon name={this.props.icon}/>)}
         {this.props.children}
       </button>
     )
   }
 
   _getClasses() {
-    var s = 'btn ';
-    s += this.props.isNavBar ? ' navbar-brand' : '',
-    s += this.props.isEdit ? ' btn-success' : '';
-    s += this.props.isAdd ? ' btn-default' : '';
-    s += this.props.isRemove ? ' btn-danger' : '';
-    s += this.props.isSave ? ' btn-primary' : '';
-    s += this.props.icon ? ` glyphicon glyphicon-${this.props.icon}` : '';
+    var s = 'btn btn-lg ';
+    s += this.props.isEdit ? 'btn-success ' : '';
+    s += this.props.isAdd ? 'btn-default ' : '';
+    s += this.props.isRemove ? 'btn-danger ' : '';
+    s += this.props.isSave ? 'btn-primary ' : '';
     return s;
   }
 }
@@ -45,7 +45,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   isLink: PropTypes.bool,
   linkTo: PropTypes.string,
-  icon: React.PropTypes.string,
+  icon: PropTypes.string,
 }
 
 export default Button;

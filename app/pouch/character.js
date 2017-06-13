@@ -47,10 +47,18 @@ export function removeCharacter(character) {
 };
 
 export function getCharacters() {
-  return db.allDocs({ include_docs: true})
+  return db.allDocs({ include_docs: true })
     .then((result) => {
       return result.rows.map((character) => {
         return updateCharacterAccordingToModel(character.doc);
       })
     });
 };
+
+export function destroyDb() {
+  new PouchDB('my_characters').destroy().then(function () {
+    // database destroyed
+  }).catch(function (err) {
+    // error occurred
+  })
+}

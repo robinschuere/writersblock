@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '../standardComponents/button';
 
 class NavBarContainer extends React.Component {
@@ -12,8 +13,8 @@ class NavBarContainer extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" onClick={this.handleToggle}>
               <span className="sr-only">Toggle navigation</span>
@@ -21,11 +22,12 @@ class NavBarContainer extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Button isLink linkTo="/" isNavBar>WrItErS~~BlOcK</Button>
+            <Link className="navbar-brand" to="/">Writers~~Block</Link>
           </div>
           <div className={this.state.collapsed ? "collapse navbar-collapse" : "collapse-in navbar-collapse" }>
             <ul className="nav navbar-nav">
-              <li>{"this is a test"}</li>
+              <li><Link onClick={this.handleToggle} to="/character">Characters</Link></li>
+              <li><Link onClick={this.handleToggle} to="/erase">Erase</Link></li>
             </ul>
           </div>
         </div>
