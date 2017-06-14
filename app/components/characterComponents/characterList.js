@@ -24,7 +24,9 @@ class CharacterList extends React.Component {
   render() {
     return (
       <div key={`characterlist.${this.state.mobile}`}>
-        <Button isAdd onClick={() => { this.props.onAdd(); }}>{"Add"}</Button>
+        <h4>Your Characters</h4>
+        <p>Here you can add and </p>
+        <Button isAdd toRight onClick={() => { this.props.onAdd(); }}>{"Add"}</Button>
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
@@ -49,6 +51,9 @@ class CharacterList extends React.Component {
                 </tr>
               );
             })}
+            {this.props.characters.length === 0 && (
+              <h4>Press the <Button isAdd onClick={() => { this.props.onAdd(); }}>{"Add"}</Button> button to create a first character </h4>
+            )}
           </tbody>
         </table>
       </div>

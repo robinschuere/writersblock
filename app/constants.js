@@ -141,6 +141,7 @@ export function getRaceById(id) {
 }
 
 export const getInfo = [
-  { date: moment('20170613'), description: 'Navigation and footer rework. Going to the default of Bootstrap :-)' },
-  { date: moment('20170612'), description: 'Added the home page and did some code cleaning. Gotta keep it going.' }
+  { date: moment('20170613'), description: 'Added Contact page, changed some bundler values.' },
+  { date: moment('20170612'), description: 'Navigation and footer rework. Going to the default of Bootstrap :-)' },
+  { date: moment('20170611'), description: 'Added the home page and did some code cleaning. Gotta keep it going.' }
 ]

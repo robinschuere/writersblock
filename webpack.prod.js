@@ -28,8 +28,8 @@ module.exports = {
     copyWebpackPlugin([
       {from: path.join(__dirname, './index.html'), to: path.join(__dirname, './bundled/index.html')},
       {from: path.join(__dirname, './styles/footer.css'), to: path.join(__dirname, './bundled/styles/footer.css')},
-      {from: path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'), to: path.join(__dirname, './bundled/node_modules/bootstrap/dist/css/bootstrap.min.css')},
-      {from: path.join(__dirname, './node_modules/bootstrap/dist/js/bootstrap.min.js'), to: path.join(__dirname, './bundled/node_modules/bootstrap/dist/js/bootstrap.min.js')}
+      {from: path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'), to: path.join(__dirname, './bundled/styles/bootstrap.min.css')},
+      {from: path.join(__dirname, './node_modules/bootstrap/dist/fonts'), to: path.join(__dirname, './bundled/fonts')},
     ])
   ],
   module: {

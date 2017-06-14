@@ -8,9 +8,6 @@ class AppContainer extends React.Component {
   render() {
     return (
       <div>
-        <div className="page-header">
-          <h1>Writers Block <small>~ The app for building better stories ~</small></h1>
-        </div>
         <h4>What it is?</h4>
         <p>You probably already tried to write a story. But perhaps you started missing something important.</p>
         <h4>Thats Right</h4>

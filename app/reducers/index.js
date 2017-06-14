@@ -1,4 +1,3 @@
-import guid from 'guid';
 import characterReducer from './characterReducer';
 import pouchReducer from './pouchReducer';
 

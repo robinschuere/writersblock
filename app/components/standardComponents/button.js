@@ -31,6 +31,7 @@ class Button extends React.Component {
     s += this.props.isAdd ? 'btn-default ' : '';
     s += this.props.isRemove ? 'btn-danger ' : '';
     s += this.props.isSave ? 'btn-primary ' : '';
+    s += this.props.isRight ? 'pull-right ' : '';
     return s;
   }
 }
@@ -41,6 +42,7 @@ Button.propTypes = {
   isRemove: PropTypes.bool,
   isEdit: PropTypes.bool,
   isSave: PropTypes.bool,
+  toRight: PropTypes.bool,
   chilren: PropTypes.node,
   onClick: PropTypes.func,
   isLink: PropTypes.bool,

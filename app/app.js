@@ -28,6 +28,9 @@ ReactDom.render(
     <HashRouter>
       <div>
         <NavBarContainer />
+        <div className="page-header">
+          <h1>Writers Block <small>~ The app for building better stories ~</small></h1>
+        </div>
         <Switch>
             <Route exact path="/" component={AppContainer} />
             <Route path="/erase" component={DestroyContainer} />
