@@ -3,7 +3,7 @@ import PouchDB from 'pouchdb';
 import moment from 'moment';
 import { updateCharacterAccordingToModel } from '../helpers/dataModel';
 import { createNotification } from '../helpers/formHelper';
-const db = new PouchDB('my_characters');
+const db = new PouchDB('writersblock_my_characters');
 
 export function insertCharacter() {
 

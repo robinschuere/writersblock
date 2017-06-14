@@ -8,6 +8,8 @@ export const UPDATE_CHARACTER = 'UPDATE_CHARACTER';
 export const SAVE_CHARACTER = 'SAVE_CHARACTER';
 export const GET_CHARACTERS = 'GET_CHARACTERS';
 
+export const LOGIN_USER = 'LOGIN_USER';
+
 export const dataModel = '1.0.3';
 
 export const newCharacterBasicAttribute = (attributeId, value) => {
@@ -29,6 +31,18 @@ export const newCharacter = () => {
     basicCharacteristics: [],
     lastUpdated: moment(),
     description: '',
+    dataModel: dataModel,
+    userId: '',
+  }
+}
+
+export const newUser = () => {
+  return {
+    _id: moment().toISOString(),
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
     dataModel: dataModel,
   }
 }
