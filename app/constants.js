@@ -1,15 +1,13 @@
 import first from 'random-firstname';
 import last from 'random-lastname';
 import uuid from 'uuid';
+import moment from 'moment';
 
 export const ADD_CHARACTER = 'ADD_CHARACTER';
 export const DELETE_CHARACTER = 'DELETE_CHARACTER';
 export const UPDATE_CHARACTER = 'UPDATE_CHARACTER';
 export const SAVE_CHARACTER = 'SAVE_CHARACTER';
 export const GET_CHARACTERS = 'GET_CHARACTERS';
-
-export const LOGIN_USER = 'LOGIN_USER';
-export const REGISTER_USER = 'REGISTER_USER';
 
 export const dataModel = '1.0.4';
 
@@ -32,18 +30,6 @@ export const newCharacter = () => {
     basicCharacteristics: [],
     lastUpdated: moment(),
     description: '',
-    dataModel: dataModel,
-    userId: '',
-  }
-}
-
-export const newUser = () => {
-  return {
-    _id: uuid(),
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
     dataModel: dataModel,
   }
 }

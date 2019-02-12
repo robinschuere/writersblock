@@ -7,8 +7,7 @@ function BuildCatalog() {
     pouchState: {
       charactersLoaded: false,
     },
-    user: {},
-  }
+  };
 }
 
 export default function reducers(state, action) {

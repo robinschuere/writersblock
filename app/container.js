@@ -44,7 +44,6 @@ class Container extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    loggedin: state.pouchState.userLoggedIn
   };
 }
 
