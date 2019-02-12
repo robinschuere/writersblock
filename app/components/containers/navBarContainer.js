@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Button from '../standardComponents/button';
 
 class NavBarContainer extends React.Component {
   constructor() {
@@ -26,9 +25,8 @@ class NavBarContainer extends React.Component {
           </div>
           <div className={this.state.collapsed ? "collapse navbar-collapse" : "collapse-in navbar-collapse" }>
             <ul className="nav navbar-nav">
-              {this.props.loggedin && <li><Link onClick={this.handleToggle} to="/character">Characters</Link></li>}
-              {this.props.loggedin && <li><Link onClick={this.handleToggle} to="/erase">Erase</Link></li>}
-              {!this.props.loggedin && <li><Link onClick={this.handleToggle} to="/register">Register</Link></li>}
+              <li><Link onClick={this.handleToggle} to="/character">Characters</Link></li>
+              <li><Link onClick={this.handleToggle} to="/erase">Erase</Link></li>
             </ul>
           </div>
         </div>
@@ -39,7 +37,6 @@ class NavBarContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    loggedin: state.pouchState.userLoggedIn
   }
 }
 

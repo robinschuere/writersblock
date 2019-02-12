@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import AppContainer from './components/containers/appContainer';
 import NavBarContainer from './components/containers/navBarContainer';
 import CharactersContainer from './components/containers/charactersContainer';
-import RegisterContainer from './components/containers/registerContainer';
 import CharacterDetailContainer from './components/containers/characterDetailContainer';
 import CharacterBasicContainer from './components/containers/characterBasicContainer';
 import CharacterAttributesContainer from './components/containers/characterAttributesContainer';
@@ -28,13 +27,12 @@ class Container extends React.Component {
           </div>
           <Switch>
             <Route exact path="/" component={AppContainer} />
-            {this.props.loggedin && <Route path="/erase" component={DestroyContainer} />}
-            {this.props.loggedin && <Route path="/character/:id/attributes" component={CharacterAttributesContainer} />}
-            {this.props.loggedin && <Route path="/character/:id/basic" component={CharacterBasicContainer} />}
-            {this.props.loggedin && <Route path="/character/:id" component={CharacterDetailContainer} />}
-            {this.props.loggedin && <Route path="/character" component={CharactersContainer} />}
-            {this.props.loggedin && <Route path="/contact" component={ContactContainer} />}
-            {!this.props.loggedin && <Route path="/register" component={RegisterContainer} />}
+            <Route path="/erase" component={DestroyContainer} />
+            <Route path="/character/:id/attributes" component={CharacterAttributesContainer} />
+            <Route path="/character/:id/basic" component={CharacterBasicContainer} />
+            <Route path="/character/:id" component={CharacterDetailContainer} />
+            <Route path="/character" component={CharactersContainer} />
+            <Route path="/contact" component={ContactContainer} />
             <Route path="*" component={NotFoundContainer} />
           </Switch>
           <FooterContainer />

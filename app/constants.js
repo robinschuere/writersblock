@@ -1,6 +1,6 @@
-import moment from 'moment';
 import first from 'random-firstname';
 import last from 'random-lastname';
+import uuid from 'uuid';
 
 export const ADD_CHARACTER = 'ADD_CHARACTER';
 export const DELETE_CHARACTER = 'DELETE_CHARACTER';
@@ -9,8 +9,9 @@ export const SAVE_CHARACTER = 'SAVE_CHARACTER';
 export const GET_CHARACTERS = 'GET_CHARACTERS';
 
 export const LOGIN_USER = 'LOGIN_USER';
+export const REGISTER_USER = 'REGISTER_USER';
 
-export const dataModel = '1.0.3';
+export const dataModel = '1.0.4';
 
 export const newCharacterBasicAttribute = (attributeId, value) => {
   return {
@@ -21,7 +22,7 @@ export const newCharacterBasicAttribute = (attributeId, value) => {
 
 export const newCharacter = () => {
   return {
-    _id: moment().toISOString(),
+    _id: uuid(),
     firstName: first(),
     lastName: last(),
     genderId: 0,
@@ -38,7 +39,7 @@ export const newCharacter = () => {
 
 export const newUser = () => {
   return {
-    _id: moment().toISOString(),
+    _id: uuid(),
     firstName: '',
     lastName: '',
     email: '',
@@ -49,7 +50,7 @@ export const newUser = () => {
 
 export const newEvent = (characterId) => {
   return {
-    _id: moment().toISOString(),
+    _id: uuid(),
     characterId: characterId,
     year: 0,
     eventCounter: 0,
@@ -60,6 +61,13 @@ export const newEvent = (characterId) => {
     dataModel: dataModel,
   }
 }
+
+export const subItems = {
+  attribute: 'attribute',
+  characteristic: 'characteristic',
+  status: 'status',
+  item: 'item',
+};
 
 export const genderList = [
   { id: 0, name: 'Unknown' },
@@ -141,6 +149,28 @@ export const characteristicList = [
   { id: 49, name: 'Wisdom', description: 'Seeing and responding to life situations from a perspective that transcends my current circumstances.' },
 ];
 
+export const statusList = [
+  { id: 1, name: 'Cursed' },
+  { id: 2, name: 'Blessed' },
+];
+
+export const itemList = [
+  { id: 1, name: 'Sword' },
+  { id: 2, name: 'Staff' },
+  { id: 3, name: 'Bow' },
+  { id: 4, name: 'Cloak' },
+  { id: 4, name: 'Gloves' },
+  { id: 6, name: 'Boots' },
+  { id: 7, name: 'Tunic' },
+  { id: 8, name: 'Pants' },
+  { id: 9, name: 'Helmet' },
+  { id: 10, name: 'Shield' },
+  { id: 11, name: 'Crossbow' },
+  { id: 12, name: 'Wand' },
+  { id: 13, name: 'Hat' },
+  { id: 14, name: 'Horse' },
+];
+
 export function getGenderById(id) {
   return genderList.find((r) => { return r.id === id });
 }
@@ -153,9 +183,29 @@ export function getCharacteristicById(id) {
 export function getRaceById(id) {
   return raceList.find((r) => { return r.id === id });
 }
+export function getStatusById(id) {
+  return statusList.find((r) => { return r.id === id });
+}
+export function getItemById(id) {
+  return itemList.find((r) => { return r.id === id });
+}
+
+export function getSubItemListByType(type) {
+  switch(type) {
+    case subItems.attribute:
+      return attributeList;
+    case subItems.characteristic:
+      return characteristicList;
+    case subItems.status:
+      return statusList;
+    case subItems.item:
+      return itemList;
+  }
+}
 
 export const getInfo = [
   { date: moment('20170613'), description: 'Added Contact page, changed some bundler values.' },
   { date: moment('20170612'), description: 'Navigation and footer rework. Going to the default of Bootstrap :-)' },
-  { date: moment('20170611'), description: 'Added the home page and did some code cleaning. Gotta keep it going.' }
-]
+  { date: moment('20170611'), description: 'Added the home page and did some code cleaning. Gotta keep it going.' },
+  { date: moment('20190212'), description: 'Added item and status lists. Updated the readme and added some more content' },
+];

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import LabelAndField from '../standardComponents/labelAndField';
 import Form from '../standardComponents/form';
 import { attributeList } from '../../constants';
-import { getBasicAttribute } from '../../reducers/characterReducer';
 
 class CharacterAttributeList extends React.Component {
   render() {

@@ -2,7 +2,6 @@ import { dataModel } from '../constants';
 import moment from 'moment';
 
 export function updateCharacterAccordingToModel(character) {
-
   if(character.dataModel === undefined){
     character.raceId = 0;
     character.dataModel = '1.0.0';
@@ -26,14 +25,19 @@ export function updateCharacterAccordingToModel(character) {
     character.dataModel = '1.0.3';
   }
 
+  if (character.dataModel === '1.0.3') {
+    character.statusses = [];
+    character.items = [];
+  }
+
   //map moment and other values into correct value
   character.lastUpdated = moment(character.lastUpdated);
 
   if(character.dataModel === dataModel){
     return character;
   }
-  console.error('===============¯\_(ツ)_/¯=====================');
+  console.error('===============¯\_(ツ)_/¯====================');
   console.error('======Incorrect datamodel oncountered.=======');
-  console.error('===============¯\_(ツ)_/¯=====================');
+  console.error('===============¯\_(ツ)_/¯====================');
   return;
 }

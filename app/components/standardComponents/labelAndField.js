@@ -81,7 +81,7 @@ class LabelAndField extends React.Component {
 };
 
 LabelAndField.propTypes = {
-  type: PropTypes.oneOf(['select', 'number', 'text', 'textarea']),
+  type: PropTypes.oneOf(['select', 'number', 'text', 'textarea', 'password']),
   label: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
