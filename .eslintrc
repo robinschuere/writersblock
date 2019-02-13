@@ -6,5 +6,8 @@
   "extends": "airbnb",
   "globals": {
     "document": true
+  },
+  "env": {
+    "jest": true
   }
 }
