@@ -4,7 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import FormContainer from '../containers/form';
+import Router from '../containers/router';
 
-const wrapper = document.getElementById('create-article-form');
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false;
+const wrapper = document.getElementById('blockers');
+wrapper ? ReactDOM.render(<Router />, wrapper) : false;

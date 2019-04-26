@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: path.join(__dirname, '/frontend/app/index.js'),
   output: {
     filename: 'bundle.js',
