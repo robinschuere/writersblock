@@ -5,23 +5,33 @@ import Icon from './icon';
 
 class Button extends React.Component {
   getClasses() {
-    const {
-      isEdit, isAdd, isRemove, isSave, toRight,
-    } = this.props;
+    const { color, toRight } = this.props;
     let s = 'btn btn-lg ';
-    s += isEdit ? 'btn-success ' : '';
-    s += isAdd ? 'btn-default ' : '';
-    s += isRemove ? 'btn-danger ' : '';
-    s += isSave ? 'btn-primary ' : '';
+    switch (color) {
+      case 'green':
+        s += 'btn-success';
+        break;
+      case 'red':
+        s += 'btn-danger';
+        break;
+      case 'orange':
+        s += 'btn-warning';
+        break;
+      default:
+        s += 'btn-primary';
+        break;
+    }
+
     s += toRight ? 'pull-right ' : '';
+
     return s;
   }
 
   render() {
     const {
-      isLink, linkTo, onClick, children, icon,
+      linkTo, onClick, children, icon,
     } = this.props;
-    if (isLink) {
+    if (linkTo) {
       return (
         <Link
           className={this.getClasses()}
@@ -46,30 +56,20 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  isAdd: PropTypes.bool,
-  isRemove: PropTypes.bool,
-  isEdit: PropTypes.bool,
-  isSave: PropTypes.bool,
+  color: PropTypes.oneOf('blue', 'red', 'orange', 'green').isRequired,
   toRight: PropTypes.bool,
   onClick: PropTypes.func,
-  isLink: PropTypes.bool,
   linkTo: PropTypes.string,
   icon: PropTypes.string,
   children: PropTypes.node,
 };
 
 Button.defaultProps = {
-  isAdd: true,
-  isRemove: false,
-  isEdit: false,
-  isSave: false,
   toRight: false,
   onClick: () => { },
-  isLink: false,
   linkTo: '',
   icon: '',
   children: undefined,
 };
-
 
 export default Button;

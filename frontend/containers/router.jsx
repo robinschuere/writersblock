@@ -7,6 +7,11 @@ import NavBar from './navbar';
 import Footer from './footer';
 import Home from './home';
 import NotFound from './notFound';
+import About from './about';
+import Contact from './contact';
+import Login from './login';
+import Register from './register';
+import Stories from './stories';
 
 class Router extends React.Component {
   constructor(props) {
@@ -38,15 +43,15 @@ class Router extends React.Component {
       <HashRouter>
         <div>
           <NavBar mobile={mobile} />
-          <div className="page-header">
-            <h1>
-              Writers Block
-              {' '}
-              <small>~ The app for building better stories ~</small>
-            </h1>
-          </div>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+
+            <Route path="/stories" component={Stories} />
+
             <Route path="*" component={NotFound} />
           </Switch>
           <Footer />

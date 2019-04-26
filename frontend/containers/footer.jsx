@@ -2,12 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <nav className="navbar navbar-default navbar-fixed-bottom">
-    <div className="container">
-      <div className="navbar-header">
-        <Link className="navbar-brand" to="/contact"> Contact</Link>
-      </div>
-    </div>
+  <nav className="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+    <Link className="navbar-brand" to="/contact">Contact</Link>
+    <Link className="navbar-brand" to="/about">About</Link>
   </nav>
 );
 

@@ -15,25 +15,30 @@ class NavBar extends React.Component {
   render() {
     const { collapsed } = this.state;
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" onClick={this.handleToggle}>
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
-            <Link className="navbar-brand" to="/">Writers~~Block</Link>
-          </div>
+      <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.handleToggle} aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <Link className="navbar-brand" to="/">
+            Writersblock
+            <small> ~ Writing your story ~ </small>
+          </Link>
+
           <div className={collapsed ? 'collapse navbar-collapse' : 'collapse-in navbar-collapse'}>
-            <ul className="nav navbar-nav">
-              <li><Link onClick={this.handleToggle} to="/character">Characters</Link></li>
-              <li><Link onClick={this.handleToggle} to="/erase">Erase</Link></li>
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" onClick={this.handleToggle} to="/stories">Stories</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" onClick={this.handleToggle} to="/login">Login</Link>
+              </li>
             </ul>
           </div>
-        </div>
-      </nav>
+
+        </nav>
+      </div>
     );
   }
 }
