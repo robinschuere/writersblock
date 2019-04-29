@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 
 import { isMobile } from '../helpers';
-import userReducer from '../reducers/user';
+import reducers from '../reducers';
 
 import NavBar from './navbar';
 import Footer from './footer';
@@ -16,7 +16,7 @@ import Stories from './stories';
 
 const Router = () => {
   const [mobile, setMobile] = useState(isMobile());
-  const [userStore, dispatch] = useReducer(userReducer, []);
+  const { stores, dispatch } = reducers();
 
   const updateDimensions = () => setMobile(isMobile());
 
@@ -37,7 +37,7 @@ const Router = () => {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/login" component={Login} />
-          <Route path="/register" render={() => <Register userStore={userStore} dispatch={dispatch} />} />
+          <Route path="/register" render={() => <Register userStore={stores.userStore} dispatch={dispatch} />} />
 
           <Route path="/stories" component={Stories} />
 
