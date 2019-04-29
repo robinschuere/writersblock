@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 
 import { isMobile } from '../helpers';
+import userReducer from '../reducers/user';
 
 import NavBar from './navbar';
 import Footer from './footer';
@@ -13,52 +14,40 @@ import Login from './login';
 import Register from './register';
 import Stories from './stories';
 
-class Router extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mobile: true,
+const Router = () => {
+  const [mobile, setMobile] = useState(isMobile());
+  const [userStore, dispatch] = useReducer(userReducer, []);
+
+  const updateDimensions = () => setMobile(isMobile());
+
+  useEffect(() => {
+    window.addEventListener('resize', updateDimensions);
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
     };
-  }
+  });
 
-  componentWillMount() {
-    this.updateDimensions();
-  }
+  return (
+    <HashRouter>
+      <div>
+        <NavBar mobile={mobile} />
+        <div style={{ marginTop: 75 }} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" render={() => <Register userStore={userStore} dispatch={dispatch} />} />
 
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
-  }
+          <Route path="/stories" component={Stories} />
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
-  }
-
-  updateDimensions = () => {
-    this.setState({ mobile: isMobile() });
-  }
-
-  render() {
-    const { mobile } = this.state;
-    return (
-      <HashRouter>
-        <div>
-          <NavBar mobile={mobile} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-
-            <Route path="/stories" component={Stories} />
-
-            <Route path="*" component={NotFound} />
-          </Switch>
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  }
-}
+          <Route path="*" component={NotFound} />
+        </Switch>
+        <div style={{ marginBottom: 150 }} />
+        <Footer />
+      </div>
+    </HashRouter>
+  );
+};
 
 export default Router;

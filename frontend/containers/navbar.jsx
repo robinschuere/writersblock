@@ -1,46 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-class NavBar extends React.Component {
-  constructor() {
-    super();
-    this.state = { collapsed: true };
-  }
+const NavBar = () => {
+  const [collapsed, setCollapsed] = useState(true);
 
-  handleToggle = () => {
-    const { collapsed } = this.state;
-    this.setState({ collapsed: !collapsed });
-  }
+  const toggleOff = () => {
+    setCollapsed(true);
+  };
 
-  render() {
-    const { collapsed } = this.state;
-    return (
-      <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.handleToggle} aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
+  const toggle = () => {
+    setCollapsed(!collapsed);
+  };
 
-          <Link className="navbar-brand" to="/">
-            Writersblock
-            <small> ~ Writing your story ~ </small>
-          </Link>
+  return (
+    <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={toggle} aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
 
-          <div className={collapsed ? 'collapse navbar-collapse' : 'collapse-in navbar-collapse'}>
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" onClick={this.handleToggle} to="/stories">Stories</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" onClick={this.handleToggle} to="/login">Login</Link>
-              </li>
-            </ul>
-          </div>
+        <Link className="navbar-brand" to="/">
+          Writersblock
+          <small> ~ Writing your story ~ </small>
+        </Link>
 
-        </nav>
-      </div>
-    );
-  }
-}
+        <div className={collapsed ? 'collapse navbar-collapse' : 'collapse-in navbar-collapse'}>
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className="nav-link" onClick={toggleOff} to="/stories">Stories</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" onClick={toggleOff} to="/login">Login</Link>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+  );
+};
 
 export default NavBar;

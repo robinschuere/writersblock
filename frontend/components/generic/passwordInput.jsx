@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 
 const PasswordInput = ({
   value, onChange, id, maxLength, placeholder,
-}) => (
-  <input
-    type="password"
-    className="form-control"
-    defaultValue={value}
-    onChange={onChange}
-    id={id}
-    maxLength={maxLength}
-    placeholder={placeholder}
-  />
-);
+}) => {
+  const handleBlurChange = (e) => {
+    if (onChange) {
+      e.preventDefault();
+      onChange(e.target.value);
+    }
+  };
+  return (
+    <input
+      type="password"
+      className="form-control"
+      defaultValue={value}
+      onBlur={handleBlurChange}
+      id={id}
+      maxLength={maxLength}
+      placeholder={placeholder}
+    />
+  );
+};
 
 PasswordInput.propTypes = {
   id: PropTypes.string.isRequired,

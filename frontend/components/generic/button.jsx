@@ -9,20 +9,20 @@ class Button extends React.Component {
     let s = 'btn btn-lg ';
     switch (color) {
       case 'green':
-        s += 'btn-success';
+        s += 'btn-success ';
         break;
       case 'red':
-        s += 'btn-danger';
+        s += 'btn-danger ';
         break;
       case 'orange':
-        s += 'btn-warning';
+        s += 'btn-warning ';
         break;
       default:
-        s += 'btn-primary';
+        s += 'btn-primary ';
         break;
     }
 
-    s += toRight ? 'pull-right ' : '';
+    s += toRight ? 'float-right ' : '';
 
     return s;
   }

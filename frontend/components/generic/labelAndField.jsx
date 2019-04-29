@@ -55,10 +55,14 @@ LabelAndField.propTypes = {
   required: PropTypes.bool,
   label: PropTypes.string.isRequired,
   validatedOnce: PropTypes.bool.isRequired,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 LabelAndField.defaultProps = {
   required: false,
+  onChange: undefined,
+  onBlur: undefined,
 };
 
 export default LabelAndField;

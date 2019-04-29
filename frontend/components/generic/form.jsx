@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import Button from './button';
 
 const Form = ({
-  button, onClick, children,
+  button, onClick, children, secondaryButton,
 }) => (
-  <form className="form-horizontal needs-validation" noValidate style={{ marginBottom: 75 }}>
+  <form className="form-horizontal">
     {children}
+    {secondaryButton}
     <Button
       color={button.color}
       onClick={onClick}
+      toRight
     >
       {button.text}
     </Button>
@@ -23,10 +25,12 @@ Form.propTypes = {
     color: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
   }).isRequired,
+  secondaryButton: PropTypes.node,
 };
 
 Form.defaultProps = {
   children: null,
+  secondaryButton: undefined,
 };
 
 export default Form;

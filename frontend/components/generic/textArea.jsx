@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 
 const TextArea = ({
   id, value, onChange, onBlur, placeholder, amountOfRows,
-}) => (
-  <textarea
-    className="form-control"
-    id={id}
-    defaultValue={value}
-    onChange={onChange}
-    onBlur={onBlur}
-    placeholder={placeholder}
-    rows={amountOfRows}
-  />
-);
+}) => {
+  const handleInputChange = (e) => {
+    if (onChange) {
+      e.preventDefault();
+      onChange(e.target.value);
+    }
+  };
+  return (
+    <textarea
+      className="form-control"
+      id={id}
+      defaultValue={value}
+      onChange={handleInputChange}
+      onBlur={onBlur}
+      placeholder={placeholder}
+      rows={amountOfRows}
+    />
+  );
+};
 
 TextArea.propTypes = {
   id: PropTypes.string.isRequired,

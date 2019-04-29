@@ -3,17 +3,26 @@ import PropTypes from 'prop-types';
 
 const MailInput = ({
   value, onChange, id, placeholder, maxLength,
-}) => (
-  <input
-    type="mail"
-    className="form-control"
-    defaultValue={value}
-    onChange={onChange}
-    id={id}
-    placeholder={placeholder}
-    maxLength={maxLength}
-  />
-);
+}) => {
+  const handleInputChange = (e) => {
+    if (onChange) {
+      e.preventDefault();
+      onChange(e.target.value);
+    }
+  };
+
+  return (
+    <input
+      type="mail"
+      className="form-control"
+      defaultValue={value}
+      onChange={handleInputChange}
+      id={id}
+      placeholder={placeholder}
+      maxLength={maxLength}
+    />
+  );
+};
 
 MailInput.propTypes = {
   id: PropTypes.string.isRequired,

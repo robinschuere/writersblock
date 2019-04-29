@@ -6,11 +6,11 @@ Writersblock stores your data in your browsers database. This means that the dat
 However, Writersblock will place a small security measure around your data so that evil lookers cannot immediately view your stories.
 `;
 
-const Register = () => (
+const Register = props => (
   <div className="container">
     <h4>Register</h4>
     <p>{message}</p>
-    <RegisterForm />
+    <RegisterForm {...props} />
   </div>
 );
 
