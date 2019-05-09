@@ -57,12 +57,14 @@ LabelAndField.propTypes = {
   validatedOnce: PropTypes.bool.isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 LabelAndField.defaultProps = {
   required: false,
   onChange: undefined,
   onBlur: undefined,
+  readOnly: false,
 };
 
 export default LabelAndField;

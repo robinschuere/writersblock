@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Button from '../components/generic/button';
+import WithNavBar from '../components/hoc/withNavBar';
 
 const NotFound = () => (
   <div className="container">
@@ -20,4 +22,4 @@ const NotFound = () => (
   </div>
 );
 
-export default NotFound;
+export default WithNavBar(NotFound);

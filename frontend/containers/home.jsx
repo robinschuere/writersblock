@@ -1,5 +1,7 @@
 import React from 'react';
 
+import withNavBar from '../components/hoc/withNavBar';
+
 const Home = () => (
   <div className="container">
     <h4>WritersBlock</h4>
@@ -7,4 +9,4 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export default withNavBar(Home);

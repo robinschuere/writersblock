@@ -17,6 +17,9 @@ class Button extends React.Component {
       case 'orange':
         s += 'btn-warning ';
         break;
+      case 'black':
+        s += 'btn-secondary ';
+        break;
       default:
         s += 'btn-primary ';
         break;
@@ -56,7 +59,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  color: PropTypes.oneOf('blue', 'red', 'orange', 'green').isRequired,
+  color: PropTypes.oneOf('blue', 'red', 'orange', 'green', 'black'),
   toRight: PropTypes.bool,
   onClick: PropTypes.func,
   linkTo: PropTypes.string,
@@ -65,6 +68,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  color: 'blue',
   toRight: false,
   onClick: () => { },
   linkTo: '',

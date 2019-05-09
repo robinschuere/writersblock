@@ -1,3 +1,5 @@
+const pad = value => ((value < 10) ? `0${value}` : value);
+
 export const isMobile = () => window.innerWidth <= 768;
 
 export const buildOptionList = list => list.map(item => ({
@@ -10,16 +12,15 @@ export const getActiveLocation = (location) => {
   return currentLocation.startsWith(`#/${location}`);
 };
 
-const updateStateField = (setState, field) => (value) => {
-  setState({ fields: { [field]: value } });
+export const formatDate = (date) => {
+  if (date) {
+    const value = new Date(date);
+    const year = value.getFullYear();
+    const month = value.getMonth() + 1;
+    const day = value.getDate();
+    return `${pad(day)}/${pad(month)}/${year}`;
+  }
+  return '';
 };
 
-const getFieldFunctionName = field => `on${field}Change`;
-
-export const getFieldStateFunctionName = (comp, field) => comp[getFieldFunctionName(field)];
-
-export const enrichStateFieldUpdates = (component) => {
-  Object.keys(component.state.fields).forEach((field) => {
-    component[getFieldFunctionName(field)] = updateStateField(component.setState, field); // eslint-disable-line
-  });
-};
+export const formatAmount = (list = []) => list.length;

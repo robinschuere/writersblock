@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch, HashRouter } from 'react-router-dom';
+import React from 'react';
+import { Switch, HashRouter } from 'react-router-dom';
 
-import { isMobile } from '../helpers';
 import reducers from '../reducers';
 
-import NavBar from './navbar';
-import Footer from './footer';
 import Home from './home';
 import NotFound from './notFound';
 import About from './about';
@@ -13,39 +10,39 @@ import Contact from './contact';
 import Login from './login';
 import Register from './register';
 import Stories from './stories';
+import Story from './story';
+import StoryDelete from './storyDelete';
+import StoryGeneral from './storyGeneral';
+import Logout from './logout';
+import User from './user';
+import PasswordChange from './passwordChange';
+
+import PrivateRoute from '../components/privateRoute';
+import PublicRoute from '../components/publicRoute';
 
 const Router = () => {
-  const [mobile, setMobile] = useState(isMobile());
   const { stores, dispatch } = reducers();
-
-  const updateDimensions = () => setMobile(isMobile());
-
-  useEffect(() => {
-    window.addEventListener('resize', updateDimensions);
-    return () => {
-      window.removeEventListener('resize', updateDimensions);
-    };
-  });
 
   return (
     <HashRouter>
-      <div>
-        <NavBar mobile={mobile} />
-        <div style={{ marginTop: 75 }} />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" render={() => <Register userStore={stores.userStore} dispatch={dispatch} />} />
+      <Switch>
+        <PublicRoute exact path="/" component={Home} stores={stores} dispatch={dispatch} />
+        <PublicRoute path="/about" component={About} stores={stores} dispatch={dispatch} />
+        <PublicRoute path="/contact" component={Contact} stores={stores} dispatch={dispatch} />
+        <PublicRoute path="/login" component={Login} stores={stores} dispatch={dispatch} />
+        <PublicRoute path="/register" component={Register} stores={stores} dispatch={dispatch} />
 
-          <Route path="/stories" component={Stories} />
+        <PrivateRoute path="/user/changepassword" component={PasswordChange} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/user" component={User} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories/new" component={StoryGeneral} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories/:storyId/delete" component={StoryDelete} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories/:storyId/edit" component={StoryGeneral} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories/:storyId" component={Story} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories" component={Stories} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/logout" component={Logout} stores={stores} dispatch={dispatch} />
 
-          <Route path="*" component={NotFound} />
-        </Switch>
-        <div style={{ marginBottom: 150 }} />
-        <Footer />
-      </div>
+        <PublicRoute path="*" component={NotFound} stores={stores} dispatch={dispatch} />
+      </Switch>
     </HashRouter>
   );
 };

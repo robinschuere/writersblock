@@ -6,17 +6,20 @@
   "extends": "airbnb",
   "globals": {
     "document": true,
-    "window": true
+    "window": true,
+    "btoa": true,
+    "atob": true
   },
   "env": {
     "jest": true
   },
   "rules": {
-    "react/forbid-prop-types": "warn",
+    "react/forbid-prop-types": "off",
     "jsx-a11y/label-has-for": [ 2, {
       "components": [ "Label" ],
       "required": {
           "some": [ "nesting", "id" ]
+
       },
       "allowChildren": false
     }]

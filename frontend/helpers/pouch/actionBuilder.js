@@ -1,51 +1,61 @@
 import PouchDB from 'pouchdb';
+import uuid from 'uuid';
+import constants from '../../constants';
+import model from './model';
 
 export default (table) => {
   const database = new PouchDB(table);
+  const checkValues = model(table);
 
-  const insert = (row) => {
-    const toInsert = { ...row };
-    toInsert.created = new Date().toISOString();
-    return database.put(toInsert)
-      .catch(() => {
-        console.error(`An error occurred while saving a row for table ${table}`);
-        return row;
-      });
+  const getAll = async () => {
+    const result = await database.allDocs({ include_docs: true });
+    return result.rows.map(r => checkValues(r.doc));
   };
 
-  const update = (row) => {
+  const getById = async (id) => {
+    const rows = await getAll();
+    return rows.find(r => r.id === id);
+  };
+
+  const insert = async (row) => {
+    const id = uuid();
+    const toInsert = { ...row, _id: id, id };
+    toInsert.createdAt = new Date().toISOString();
+    toInsert.dbVersion = constants.dbVersion;
+    const result = await database.put(toInsert);
+    if (result.ok) {
+      const record = await getById(result.id);
+      return record;
+    }
+    return undefined;
+  };
+
+  const update = async (row) => {
     const toUpdate = { ...row };
-    toUpdate.updated = new Date().toISOString();
-    return database.put(toUpdate)
-      .catch(() => {
-        console.error(`An error occurred while updating a row for table ${table}`);
-        return row;
-      });
+    toUpdate.updatedAt = new Date().toISOString();
+    const result = await database.put(toUpdate);
+    if (result.ok) {
+      const record = await getById(result.id);
+      return record;
+    }
+    return undefined;
   };
 
-  const remove = (row) => {
+  const remove = async (row) => {
     const toRemove = { ...row };
     toRemove.updated = new Date().toISOString();
     toRemove._deleted = true; // eslint-disable-line no-underscore-dangle
-    return database.put(toRemove)
-      .catch(() => {
-        console.error(`An error occurred while removing a row for table ${table}`);
-        return row;
-      });
+    const result = await database.put(toRemove);
+    return result;
   };
 
-  const getAll = () => database.allDocs({ include_docs: true })
-    .then(result => result.rows);
-
-  const drop = () => {
+  const drop = async () => {
     new PouchDB(table)
       .destroy()
-      .catch(() => {
-        console.error(`An error occurred while removing a row for table ${table}`);
+      .catch((e) => {
+        console.error(`An error occurred while removing a row for table ${table}`, e); // eslint-disable-line no-console
       });
   };
-
-  const getById = id => getAll().then(rows => rows.find(r => r.id === id));
 
   return {
     insert,

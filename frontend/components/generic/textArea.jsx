@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextArea = ({
-  id, value, onChange, onBlur, placeholder, amountOfRows,
+  id, value, onChange, onBlur, placeholder, amountOfRows, readOnly,
 }) => {
   const handleInputChange = (e) => {
     if (onChange) {
@@ -19,6 +19,7 @@ const TextArea = ({
       onBlur={onBlur}
       placeholder={placeholder}
       rows={amountOfRows}
+      readOnly={readOnly}
     />
   );
 };
@@ -30,12 +31,14 @@ TextArea.propTypes = {
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
   amountOfRows: PropTypes.number,
+  readOnly: PropTypes.bool,
 };
 
 TextArea.defaultProps = {
   onBlur: undefined,
   placeholder: 'Insert some text',
   amountOfRows: 5,
+  readOnly: false,
 };
 
 export default TextArea;

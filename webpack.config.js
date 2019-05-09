@@ -3,7 +3,10 @@ const path = require('path');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: path.join(__dirname, '/frontend/app/index.js'),
+  entry: [
+    path.join(__dirname, '/node_modules/regenerator-runtime/runtime.js'),
+    path.join(__dirname, '/frontend/app/index.js'),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '/dist'),
