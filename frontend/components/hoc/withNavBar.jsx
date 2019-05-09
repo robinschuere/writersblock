@@ -25,6 +25,8 @@ const WithNavBar = (WrappedComponent) => {
       '/user',
       '/user/changepassword',
       '/stories/new',
+      '/stories/:storyId/edit',
+      '/stories/:storyId/delete',
     ];
 
     const routesWithStoryBoard = [
