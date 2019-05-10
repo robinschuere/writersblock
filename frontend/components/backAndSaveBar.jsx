@@ -9,11 +9,11 @@ const BackAndSaveBar = ({
   <Fragment>
     <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
       <nav className="navbar navbar-dark bg-dark">
-        <Button color="black" onClick={onClose}>Back</Button>
-        <Button color="green" toRight onClick={onAccept}>Save</Button>
+        <Button secondary color="black" onClick={onClose}>Back</Button>
+        <Button secondary color="white" toRight onClick={onAccept}>Save</Button>
       </nav>
     </div>
-    <div style={{ marginTop: 75 }} />
+    <div style={{ marginTop: 25 }} />
   </Fragment>
 );
 

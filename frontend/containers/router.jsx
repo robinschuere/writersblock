@@ -15,6 +15,7 @@ import StoryDelete from './storyDelete';
 import StoryGeneral from './storyGeneral';
 import Logout from './logout';
 import User from './user';
+import UserEdit from './userEdit';
 import PasswordChange from './passwordChange';
 
 import PrivateRoute from '../components/privateRoute';
@@ -32,6 +33,7 @@ const Router = () => {
         <PublicRoute path="/login" component={Login} stores={stores} dispatch={dispatch} />
         <PublicRoute path="/register" component={Register} stores={stores} dispatch={dispatch} />
 
+        <PrivateRoute path="/user/edit" component={UserEdit} stores={stores} dispatch={dispatch} />
         <PrivateRoute path="/user/changepassword" component={PasswordChange} stores={stores} dispatch={dispatch} />
         <PrivateRoute path="/user" component={User} stores={stores} dispatch={dispatch} />
         <PrivateRoute path="/stories/new" component={StoryGeneral} stores={stores} dispatch={dispatch} />

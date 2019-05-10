@@ -2,6 +2,8 @@ const pad = value => ((value < 10) ? `0${value}` : value);
 
 export const isMobile = () => window.innerWidth <= 768;
 
+export const getExtraMargins = () => (isMobile() ? '25px' : '75px');
+
 export const buildOptionList = list => list.map(item => ({
   value: item.id,
   label: item.name,

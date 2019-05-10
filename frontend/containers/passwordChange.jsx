@@ -34,7 +34,7 @@ const PasswordChange = ({
   };
 
   if (completed) {
-    return <Redirect to="/" />;
+    return <Redirect to="/user" />;
   }
 
   return (

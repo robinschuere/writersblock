@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+
 const NavBar = (props) => {
   const { userStore } = props;
   const [collapsed, setCollapsed] = useState(true);
@@ -51,7 +52,6 @@ const NavBar = (props) => {
 
         </nav>
       </div>
-      <div style={{ marginTop: 75 }} />
     </Fragment>
   );
 };

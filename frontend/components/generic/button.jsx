@@ -5,23 +5,27 @@ import Icon from './icon';
 
 class Button extends React.Component {
   getClasses() {
-    const { color, toRight } = this.props;
+    const { color, toRight, secondary } = this.props;
     let s = 'btn btn-lg ';
+    const outline = secondary ? 'outline-' : '';
     switch (color) {
       case 'green':
-        s += 'btn-success ';
+        s += `btn-${outline}success `;
         break;
       case 'red':
-        s += 'btn-danger ';
+        s += `btn-${outline}danger `;
         break;
       case 'orange':
-        s += 'btn-warning ';
+        s += `btn-${outline}warning `;
+        break;
+      case 'white':
+        s += `btn-${outline}light `;
         break;
       case 'black':
-        s += 'btn-secondary ';
+        s += `btn-${outline}secondary `;
         break;
       default:
-        s += 'btn-primary ';
+        s += `btn-${outline}primary `;
         break;
     }
 
@@ -65,6 +69,7 @@ Button.propTypes = {
   linkTo: PropTypes.string,
   icon: PropTypes.string,
   children: PropTypes.node,
+  secondary: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -74,6 +79,7 @@ Button.defaultProps = {
   linkTo: '',
   icon: '',
   children: undefined,
+  secondary: false,
 };
 
 export default Button;

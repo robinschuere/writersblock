@@ -22,7 +22,7 @@ const WithNavBar = (WrappedComponent) => {
     });
 
     const routesWithoutNavBarOrFooter = [
-      '/user',
+      '/user/edit',
       '/user/changepassword',
       '/stories/new',
       '/stories/:storyId/edit',
@@ -36,25 +36,30 @@ const WithNavBar = (WrappedComponent) => {
     const showNavBar = !routesWithoutNavBarOrFooter.includes(computedMatch.path);
     const showStoryBoard = routesWithStoryBoard.includes(computedMatch.path);
 
-    const component = (
-      <WrappedComponent
-        {...stores}
-        computedMatch={computedMatch}
-        dispatch={dispatch}
-        mobile={mobile}
-      />
-    );
-
     return (
       <Fragment>
-        {showNavBar && <NavBar mobile={mobile} userStore={stores ? stores.userStore : {}} />}
 
-        {showStoryBoard && (
-          <StoryBoardBar mobile={mobile} computedMatch={computedMatch} component={component} />
+        {showNavBar && (
+          <NavBar
+            mobile={mobile}
+            userStore={stores ? stores.userStore : {}}
+          />
         )}
-        {!showStoryBoard && component}
+
+        {showStoryBoard && (<StoryBoardBar computedMatch={computedMatch} />)}
+
+        {(showNavBar || showStoryBoard) && <div style={{ marginBottom: 25 }} />}
+
+        <WrappedComponent
+          key={computedMatch.path}
+          {...stores}
+          computedMatch={computedMatch}
+          dispatch={dispatch}
+          mobile={mobile}
+        />
 
         {showNavBar && <div style={{ marginBottom: 150 }} />}
+
         {showNavBar && <Footer />}
       </Fragment>
     );

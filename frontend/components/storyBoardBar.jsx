@@ -1,32 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import Button from './generic/button';
-
-const StoryBoardBar = ({ computedMatch, component, mobile }) => {
+const StoryBoardBar = ({ computedMatch }) => {
   const { storyId } = computedMatch.params;
-  if (mobile) {
-    return component;
-  }
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-3 px-1 bg-dark position-fixed" id="sticky-sidebar">
-          <Button linkTo={`/stories/${storyId}/edit`}>General data</Button>
-          <Button linkTo={`/stories/${storyId}/chapters`}>chapters</Button>
-        </div>
-        <div className="col offset-3" id="main">
-          {component}
-        </div>
+    <Fragment>
+      <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to={`/stories/${storyId}/edit`}>General data</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to={`/stories/${storyId}/chapters`}>Chapters</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
 StoryBoardBar.propTypes = {
   computedMatch: PropTypes.object.isRequired,
-  component: PropTypes.node.isRequired,
-  mobile: PropTypes.object.isRequired,
 };
 
 export default StoryBoardBar;
