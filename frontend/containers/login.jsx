@@ -17,6 +17,7 @@ const Login = ({
   const [password, setPassword] = useState('');
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [enter, setEnter] = useState(false);
 
   if (userStore.loggedInUser) {
     return <Redirect to="/" />;
@@ -39,15 +40,21 @@ const Login = ({
 
       setUserName('');
       setPassword('');
+      setEnter(false);
       return;
     }
     setUserName('');
     setPassword('');
     setAlert(true);
+    setEnter(false);
   };
 
   if (completed) {
     return <Redirect to="/" />;
+  }
+
+  if (enter) {
+    handleOnClick();
   }
 
   return (
@@ -59,7 +66,7 @@ const Login = ({
       {showAlert && <Alert message={i18n.t('credentials.error')} level="error" onClose={setAlert(false)} />}
       <Form button={{ color: 'green', text: i18n.t('credentials.login') }} secondaryButton={<Button color="blue" linkTo="/register">{i18n.t('credentials.register')}</Button>} onClick={handleOnClick}>
         <LabelAndField type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
-        <LabelAndField type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} onEnter={handleOnClick} />
+        <LabelAndField type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} onEnter={setEnter} />
       </Form>
     </div>
   );

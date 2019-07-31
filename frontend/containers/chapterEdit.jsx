@@ -24,7 +24,7 @@ const ChapterEdit = ({
   const [completed, setCompleted] = useState(false);
 
   const validateChapter = () => {
-    if ([title, authorDescription, counter].filter(x => x).length !== 3) {
+    if ([title, text].filter(x => x).length !== 2) {
       return false;
     }
     return true;
@@ -63,9 +63,9 @@ const ChapterEdit = ({
         <form className="form-horizontal">
           <h5>{i18n.t('chapter.edit.header')}</h5>
           <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.title')} placeholder={i18n.t('generic.placeholders.title')} onChange={setTitle} value={title} />
-          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
-          <LabelAndField validatedOnce={validatedOnce} required min={1} type="number" label={i18n.t('generic.counter')} onChange={setCounter} value={counter} />
-          <LabelAndField validatedOnce={validatedOnce} amountOfRows={mobile ? 10 : 15} type="textarea" label={i18n.t('chapter.text')} placeholder={i18n.t('chapter.placeholders.text')} onChange={setText} value={text} />
+          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
+          <LabelAndField validatedOnce={validatedOnce} min={1} type="number" label={i18n.t('generic.counter')} onChange={setCounter} value={counter} />
+          <LabelAndField validatedOnce={validatedOnce} required amountOfRows={mobile ? 10 : 15} type="textarea" label={i18n.t('chapter.text')} placeholder={i18n.t('chapter.placeholders.text')} onChange={setText} value={text} />
         </form>
       </div>
     </Fragment>

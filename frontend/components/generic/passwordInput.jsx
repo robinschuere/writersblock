@@ -11,10 +11,11 @@ const PasswordInput = ({
     }
   };
 
-  const handleKeyUp = onEnter ? (e) => {
+  const handleKeyUp = onEnter ? async (e) => {
     if (e.keyCode === 13) {
-      handleBlurChange(e);
-      onEnter();
+      e.preventDefault();
+      onChange(btoa(e.target.value));
+      onEnter(true);
     }
   } : undefined;
 

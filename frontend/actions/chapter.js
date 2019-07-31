@@ -13,9 +13,16 @@ const updateExistingChaptersCounterForStory = async (chapter, amount, dispatch) 
   });
 };
 
+const getCounter = async (storyId) => {
+  const chapters = await chapterDb.getAll(storyId);
+  return Math.max(...chapters.map(c => c.counter));
+};
+
 export const addChapter = async (chapter, dispatch) => {
-  await updateExistingChaptersCounterForStory(chapter, 1, dispatch);
-  const newChapter = await chapterDb.insert(chapter);
+  const latestCounter = await getCounter(chapter.storyId);
+  const chapterWithCounter = { ...chapter, counter: chapter.counter || latestCounter + 1 };
+  await updateExistingChaptersCounterForStory(chapterWithCounter, 1, dispatch);
+  const newChapter = await chapterDb.insert(chapterWithCounter);
   dispatch({
     type: constants.actions.addChapter,
     value: newChapter,
@@ -23,8 +30,10 @@ export const addChapter = async (chapter, dispatch) => {
 };
 
 export const updateChapter = async (chapter, dispatch) => {
-  await updateExistingChaptersCounterForStory(chapter, 1, dispatch);
-  const updatedChapter = await chapterDb.update(chapter);
+  const latestCounter = await getCounter(chapter.storyId);
+  const chapterWithCounter = { ...chapter, counter: chapter.counter || latestCounter + 1 };
+  await updateExistingChaptersCounterForStory(chapterWithCounter, 1, dispatch);
+  const updatedChapter = await chapterDb.update(chapterWithCounter);
   dispatch({
     type: constants.actions.updateChapter,
     value: updatedChapter,
