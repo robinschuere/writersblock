@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, HashRouter } from 'react-router-dom';
 
 import reducers from '../reducers';
@@ -12,38 +12,98 @@ import Register from './register';
 import Stories from './stories';
 import Story from './story';
 import StoryDelete from './storyDelete';
-import StoryGeneral from './storyGeneral';
+import StoryEdit from './storyEdit';
+import Chapters from './chapters';
+import ChapterEdit from './chapterEdit';
+import ChapterDelete from './chapterDelete';
+import Chapter from './chapter';
+import Characters from './characters';
+import CharacterEdit from './characterEdit';
+import CharacterDelete from './characterDelete';
+import Character from './character';
+import Items from './items';
+import ItemEdit from './itemEdit';
+import ItemDelete from './itemDelete';
+import Item from './item';
+import StorySettings from './storySettings';
+import StorySettingEdit from './storySettingEdit';
+import StorySettingDelete from './storySettingDelete';
+import StorySetting from './storySetting';
 import Logout from './logout';
 import User from './user';
 import UserEdit from './userEdit';
 import PasswordChange from './passwordChange';
 
+import i18n from '../i18n';
 import PrivateRoute from '../components/privateRoute';
 import PublicRoute from '../components/publicRoute';
 
 const Router = () => {
+  const [language, setLanguage] = useState(i18n.language);
   const { stores, dispatch } = reducers();
 
+  const handleChangeLanguage = (value) => {
+    setLanguage(value);
+    i18n.changeLanguage(value);
+  };
+
+  if (!!stores.userStore.loggedInUser && stores.userStore.loggedInUser.language !== language) {
+    handleChangeLanguage(stores.userStore.loggedInUser.language);
+  }
+
+  const props = {
+    stores,
+    dispatch,
+    language,
+    i18n,
+    changeLanguage: handleChangeLanguage,
+  };
+
   return (
-    <HashRouter>
+    <HashRouter key={`writersblock_${language}`}>
       <Switch>
-        <PublicRoute exact path="/" component={Home} stores={stores} dispatch={dispatch} />
-        <PublicRoute path="/about" component={About} stores={stores} dispatch={dispatch} />
-        <PublicRoute path="/contact" component={Contact} stores={stores} dispatch={dispatch} />
-        <PublicRoute path="/login" component={Login} stores={stores} dispatch={dispatch} />
-        <PublicRoute path="/register" component={Register} stores={stores} dispatch={dispatch} />
+        <PublicRoute exact path="/" component={Home} {...props} />
+        <PublicRoute path="/about" component={About} {...props} />
+        <PublicRoute path="/contact" component={Contact} {...props} />
+        <PublicRoute path="/login" component={Login} {...props} />
+        <PublicRoute path="/register" component={Register} {...props} />
 
-        <PrivateRoute path="/user/edit" component={UserEdit} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/user/changepassword" component={PasswordChange} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/user" component={User} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/stories/new" component={StoryGeneral} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/stories/:storyId/delete" component={StoryDelete} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/stories/:storyId/edit" component={StoryGeneral} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/stories/:storyId" component={Story} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/stories" component={Stories} stores={stores} dispatch={dispatch} />
-        <PrivateRoute path="/logout" component={Logout} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/user/edit" component={UserEdit} {...props} />
+        <PrivateRoute path="/user/changepassword" component={PasswordChange} {...props} />
+        <PrivateRoute path="/user" component={User} {...props} />
+        <PrivateRoute path="/stories/new" component={StoryEdit} {...props} />
 
-        <PublicRoute path="*" component={NotFound} stores={stores} dispatch={dispatch} />
+        <PrivateRoute path="/stories/:storyId/chapters/new" component={ChapterEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/chapters/:chapterId/edit" component={ChapterEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/chapters/:chapterId/delete" component={ChapterDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/chapters/:chapterId" component={Chapter} {...props} />
+        <PrivateRoute path="/stories/:storyId/chapters" component={Chapters} {...props} />
+
+        <PrivateRoute path="/stories/:storyId/characters/new" component={CharacterEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters/:characterId/edit" component={CharacterEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters/:characterId/delete" component={CharacterDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters/:characterId" component={Character} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters" component={Characters} {...props} />
+
+        <PrivateRoute path="/stories/:storyId/items/new" component={ItemEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/items/:itemId/edit" component={ItemEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/items/:itemId/delete" component={ItemDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/items/:itemId" component={Item} {...props} />
+        <PrivateRoute path="/stories/:storyId/items" component={Items} {...props} />
+
+        <PrivateRoute path="/stories/:storyId/storySettings/new" component={StorySettingEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/storySettings/:storySettingId/edit" component={StorySettingEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/storySettings/:storySettingId/delete" component={StorySettingDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/storySettings/:storySettingId" component={StorySetting} {...props} />
+        <PrivateRoute path="/stories/:storyId/storySettings" component={StorySettings} {...props} />
+
+        <PrivateRoute path="/stories/:storyId/delete" component={StoryDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/edit" component={StoryEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId" component={Story} {...props} />
+        <PrivateRoute path="/stories" component={Stories} {...props} />
+        <PrivateRoute path="/logout" component={Logout} {...props} />
+
+        <PublicRoute path="*" component={NotFound} {...props} />
       </Switch>
     </HashRouter>
   );

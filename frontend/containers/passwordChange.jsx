@@ -8,12 +8,8 @@ import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
-const message = `
-Please provide all the necessary fields to update your password.
-`;
-
 const PasswordChange = ({
-  dispatch, userStore,
+  dispatch, userStore, i18n,
 }) => {
   const user = userStore.loggedInUser;
   const [oldPassword, setOldPassword] = useState('');
@@ -39,16 +35,15 @@ const PasswordChange = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={save} onClose={() => setCompleted(true)} />
+      <BackAndSaveBar onAccept={save} onClose={() => setCompleted(true)} i18n={i18n} />
 
       <div className="container">
-        <h4>{`Hello ${userStore.loggedInUser.userName}`}</h4>
-        <p>{message}</p>
+        <h4>{i18n.t('credentials.passwordEdit.header', { title: userStore.loggedInUser.userName })}</h4>
+        <p>{i18n.t('credentials.passwordEdit.message')}</p>
         <form className="form-horizontal">
-          <LabelAndField required type="password" label="Old password" onChange={setOldPassword} value={oldPassword} />
-          <LabelAndField required type="password" label="New password" onChange={setNewPassword} value={newPassword} />
+          <LabelAndField required type="password" label={i18n.t('credentials.passwordEdit.oldPassword')} placeholder={i18n.t('credentials.passwordEdit.placeholders.oldPassword')} onChange={setOldPassword} value={oldPassword} />
+          <LabelAndField required type="password" label={i18n.t('credentials.passwordEdit.newPassword')} placeholder={i18n.t('credentials.passwordEdit.placeholders.newPassword')} onChange={setNewPassword} value={newPassword} />
         </form>
-
       </div>
 
     </Fragment>
@@ -58,6 +53,7 @@ const PasswordChange = ({
 PasswordChange.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userStore: PropTypes.object.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(PasswordChange);

@@ -1,25 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 
-const NotFound = () => (
+const NotFound = ({ i18n }) => (
   <div className="container">
     <div className="row">
       <div className="col-md-12">
         <div className="error-template">
-          <h1>Oops</h1>
-          <h2>404 Not Found</h2>
+          <h1>{i18n.t('notfound.header')}</h1>
+          <h2>{i18n.t('notfound.notfound')}</h2>
           <div className="error-details">
-            <p>Sorry, an error has occured, Requested page not found!</p>
+            <p>{i18n.t('notfound.message')}</p>
           </div>
           <div className="error-actions">
-            <Button isLink linkTo="/" isSave icon="home"> Home </Button>
+            <Button isLink linkTo="/" isSave icon="home">{i18n.t('notfound.return')}</Button>
           </div>
         </div>
       </div>
     </div>
   </div>
 );
+
+NotFound.propTypes = {
+  i18n: PropTypes.object.isRequired,
+};
+
 
 export default WithNavBar(NotFound);

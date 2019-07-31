@@ -1,7 +1,7 @@
-import actionBuilder from './actionBuilder';
+import modelBuilder from './modelBuilder';
 import constants from '../../constants';
 
-const stories = actionBuilder(constants.storyDb);
+const stories = modelBuilder(constants.storyDb);
 
 const getAllByUserId = userId => stories.getAll()
   .then(rows => rows.filter(r => r.userId === userId));

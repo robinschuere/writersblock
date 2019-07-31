@@ -1,7 +1,7 @@
-import actionBuilder from './actionBuilder';
+import modelBuilder from './modelBuilder';
 import constants from '../../constants';
 
-const users = actionBuilder(constants.userDb);
+const users = modelBuilder(constants.userDb);
 
 const getAll = async (user) => {
   const admin = await users.getById(user.id);

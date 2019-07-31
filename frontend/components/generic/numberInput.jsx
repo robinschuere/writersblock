@@ -12,6 +12,8 @@ const NumberInput = ({
       onChange(min);
     } else if (val > max) {
       onChange(max);
+    } else {
+      onChange(min);
     }
   };
 

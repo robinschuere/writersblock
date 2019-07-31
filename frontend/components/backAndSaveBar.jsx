@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import Button from './generic/button';
 
 const BackAndSaveBar = ({
-  onClose, onAccept,
+  onClose, onAccept, i18n,
 }) => (
   <Fragment>
     <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
       <nav className="navbar navbar-dark bg-dark">
-        <Button secondary color="black" onClick={onClose}>Back</Button>
-        <Button secondary color="white" toRight onClick={onAccept}>Save</Button>
+        <Button secondary color="black" onClick={onClose}>{i18n.t('generic.back')}</Button>
+        <Button secondary color="white" toRight onClick={onAccept}>{i18n.t('generic.save')}</Button>
       </nav>
     </div>
     <div style={{ marginTop: 25 }} />
@@ -20,6 +20,7 @@ const BackAndSaveBar = ({
 BackAndSaveBar.propTypes = {
   onAccept: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default BackAndSaveBar;

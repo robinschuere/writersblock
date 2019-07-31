@@ -12,8 +12,10 @@ const LabelAndText = (props) => {
   const id = `${type}.${label}`;
 
   const formattedTypes = {
-    select: () => props.options.find(o => o.value === value).label,
-    date: () => formatDate(value),
+    select: () => (props.options.find(o => o.value === value) ? props.options.find(o => o.value === value).label : '-'),
+    date: () => (value ? formatDate(value) : '-'),
+    textarea: () => value || '-',
+    text: () => value || '-',
   };
 
   const formattedValue = formattedTypes[type] ? formattedTypes[type]() : value;

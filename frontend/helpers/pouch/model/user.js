@@ -1,3 +1,5 @@
+import constants from '../../../constants';
+
 const updateModelToVersion = (row) => {
   const value = Object.assign(row);
   if (!value.dbVersion) {
@@ -5,7 +7,7 @@ const updateModelToVersion = (row) => {
     value.createdAt = value.created;
     value.updatedAt = new Date().toISOString();
     delete value.created;
-    value.dbVersion = '0.0.1';
+    value.dbVersion = constants.dbVersion;
   }
 
   return value;

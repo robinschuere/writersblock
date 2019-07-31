@@ -3,18 +3,16 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { registerUser } from '../actions/user';
+import { getLanguages } from '../helpers';
 
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndField from '../components/generic/labelAndField';
 import Form from '../components/generic/form';
 import Alert from '../components/generic/alert';
 
-const message = `
-Writersblock stores your data in your browsers database. This means that the data will NEVER be synced to a database.
-However, Writersblock will place a small security measure around your data so that evil lookers cannot immediately view your stories.
-`;
-
-const Register = ({ dispatch }) => {
+const Register = ({
+  dispatch, i18n,
+}) => {
   const [showAlert, setAlert] = useState(false);
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [userName, setUserName] = useState('');
@@ -29,6 +27,7 @@ const Register = ({ dispatch }) => {
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [postbox, setPostBox] = useState('');
+  const [language, setLanguage] = useState(i18n.language);
   const [synopsis, setSynopsis] = useState('');
   const [completed, setCompleted] = useState(false);
 
@@ -70,27 +69,29 @@ const Register = ({ dispatch }) => {
 
   return (
     <div className="container">
-      <h4>Register</h4>
-      <p>{message}</p>
-      {showAlert && <Alert message="You still need to enter some information" level="error" onClose={setAlert(false)} />}
+      <h4>{i18n.t('credentials.register')}</h4>
+      <p>{i18n.t('credentials.messages.one')}</p>
+      <p>{i18n.t('credentials.messages.two')}</p>
+      {showAlert && <Alert message={i18n.t('credentials.edit.alert')} level="error" onClose={setAlert(false)} />}
       <Form button={{ color: 'green', text: 'Register' }} onClick={register}>
-        <h5>Registration information</h5>
-        <LabelAndField validatedOnce={validatedOnce} required type="text" label="Username" onChange={setUserName} value={userName} />
-        <LabelAndField validatedOnce={validatedOnce} required type="password" label="Password" onChange={setPassword} value={password} />
-        <h5>Personal information</h5>
-        <LabelAndField validatedOnce={validatedOnce} required type="mail" label="Email" onChange={setEmail} value={email} />
-        <LabelAndField type="text" label="Firstname" onChange={setFirstName} value={firstName} />
-        <LabelAndField type="text" label="Lastname" onChange={setLastName} value={lastName} />
-        <LabelAndField type="date" label="Date of birth" onBlur={setDateOfBirth} value={dateOfBirth} />
-        <h5>Address</h5>
-        <LabelAndField type="text" label="Country" onChange={setCountry} value={country} />
-        <LabelAndField type="text" label="City" onChange={setCity} value={city} />
-        <LabelAndField type="text" label="Postalcode" onChange={setPostal} value={postal} />
-        <LabelAndField type="text" label="Street" onChange={setStreet} value={street} />
-        <LabelAndField type="text" label="Number" onChange={setHouseNumber} value={houseNumber} />
-        <LabelAndField type="text" label="Box" onChange={setPostBox} value={postbox} />
-        <h5>Personal description</h5>
-        <LabelAndField type="textarea" label="Synopsis" onChange={setSynopsis} value={synopsis} />
+        <h5>{i18n.t('credentials.header')}</h5>
+        <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
+        <LabelAndField validatedOnce={validatedOnce} required type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} />
+        <h5>{i18n.t('user.edit.informationSubHeader')}</h5>
+        <LabelAndField validatedOnce={validatedOnce} type="mail" label={i18n.t('user.email')} placeholder={i18n.t('user.email')} value={email} onChange={setEmail} />
+        <LabelAndField type="text" label={i18n.t('generic.firstname')} placeholder={i18n.t('generic.placeholders.firstname')} onChange={setFirstName} value={firstName} />
+        <LabelAndField type="text" label={i18n.t('generic.lastname')} placeholder={i18n.t('generic.placeholders.lastname')} onChange={setLastName} value={lastName} />
+        <LabelAndField type="date" label={i18n.t('user.dateOfBirth')} onBlur={setDateOfBirth} value={dateOfBirth} />
+        <h5>{i18n.t('user.edit.addressSubHeader')}</h5>
+        <LabelAndField type="text" label={i18n.t('user.country')} placeholder={i18n.t('user.placeholders.country')} onChange={setCountry} value={country} />
+        <LabelAndField type="text" label={i18n.t('user.city')} placeholder={i18n.t('user.placeholders.city')} onChange={setCity} value={city} />
+        <LabelAndField type="text" label={i18n.t('user.postal')} placeholder={i18n.t('user.placeholders.postal')} onChange={setPostal} value={postal} />
+        <LabelAndField type="text" label={i18n.t('user.street')} placeholder={i18n.t('user.placeholders.street')} onChange={setStreet} value={street} />
+        <LabelAndField type="text" label={i18n.t('user.number')} placeholder={i18n.t('user.placeholders.number')} onChange={setHouseNumber} value={houseNumber} />
+        <LabelAndField type="text" label={i18n.t('user.box')} placeholder={i18n.t('user.placeholders.box')} onChange={setPostBox} value={postbox} />
+        <LabelAndField type="select" options={getLanguages()} label={i18n.t('user.language')} onChange={setLanguage} value={language} />
+        <h5>{i18n.t('user.edit.descriptionSubHeader')}</h5>
+        <LabelAndField type="textarea" label={i18n.t('user.synopsis')} placeholder={i18n.t('user.placeholders.synopsis')} onChange={setSynopsis} value={synopsis} />
       </Form>
 
     </div>
@@ -99,6 +100,7 @@ const Register = ({ dispatch }) => {
 
 Register.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(Register);

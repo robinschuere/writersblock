@@ -45,7 +45,7 @@ TextInput.propTypes = {
 
 TextInput.defaultProps = {
   onBlur: undefined,
-  placeholder: 'Insert some text',
+  placeholder: 'Insert text',
   maxLength: 50,
   readOnly: false,
 };

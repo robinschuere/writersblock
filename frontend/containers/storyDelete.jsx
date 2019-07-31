@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -7,12 +7,8 @@ import { removeStory } from '../actions/story';
 import WithNavBar from '../components/hoc/withNavBar';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
-const message = `
-Are you sure to remove this story?
-`;
-
 const Story = ({
-  computedMatch, storyStore, dispatch,
+  computedMatch, storyStore, dispatch, i18n,
 }) => {
   const [completed, setCompleted] = useState(false);
   const { storyId } = computedMatch.params;
@@ -32,11 +28,13 @@ const Story = ({
   }
 
   return (
-    <div className="container">
-      <BackAndSaveBar onAccept={handleDelete} onClose={handleClose} />
-      <h4>{`Remove story ${story.name}`}</h4>
-      <p>{message}</p>
-    </div>
+    <Fragment>
+      <BackAndSaveBar onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
+      <div className="container">
+        <h4>{i18n.t('story.delete.header', { title: story.title })}</h4>
+        <p>{i18n.t('story.delete.message')}</p>
+      </div>
+    </Fragment>
   );
 };
 
@@ -44,6 +42,7 @@ Story.propTypes = {
   dispatch: PropTypes.func.isRequired,
   storyStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(Story);

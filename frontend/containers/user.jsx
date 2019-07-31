@@ -5,13 +5,10 @@ import { withRouter } from 'react-router-dom';
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
-
-const message = `
-The form below is used for setting your user information. Again, Writersblock does nothing wth this data.
-`;
+import { getLanguages } from '../helpers';
 
 const User = ({
-  userStore, history,
+  userStore, history, i18n,
 }) => {
   const user = userStore.loggedInUser;
 
@@ -26,28 +23,29 @@ const User = ({
   return (
     <div>
       <div className="container">
-        <h4>{`Hello ${userStore.loggedInUser.userName}`}</h4>
-        <p>{message}</p>
+        <h4>{i18n.t('credentials.view.header')}</h4>
+        <p>{i18n.t('credentials.view.message')}</p>
+        <Button color="green" toRight onClick={handleChangeUser}>{i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
-          <h5>Registration information</h5>
-          <LabelAndText type="text" label="Username" value={user.userName} />
-          <LabelAndText type="password" label="Password" value="*****************" />
-          <Button color="green" toRight onClick={handleChangePassword}>change Password</Button>
-          <h5>Personal information</h5>
-          <LabelAndText type="text" label="Email" value={user.email} />
-          <LabelAndText type="text" label="Firstname" value={user.firstName} />
-          <LabelAndText type="text" label="Lastname" value={user.lastName} />
-          <LabelAndText type="date" label="Date of birth" value={user.dateOfBirth} />
-          <h5>Address</h5>
-          <LabelAndText type="text" label="Country" value={user.country} />
-          <LabelAndText type="text" label="City" value={user.city} />
-          <LabelAndText type="text" label="Postalcode" value={user.postal} />
-          <LabelAndText type="text" label="Street" value={user.street} />
-          <LabelAndText type="text" label="Number" value={user.houseNumber} />
-          <LabelAndText type="text" label="Box" value={user.postbox} />
-          <h5>Personal description</h5>
-          <LabelAndText type="textarea" label="Synopsis" value={user.synopsis} />
-          <Button color="green" toRight onClick={handleChangeUser}>Change personal information</Button>
+          <h5>{i18n.t('credentials.header')}</h5>
+          <LabelAndText type="text" label={i18n.t('credentials.username')} value={user.userName} />
+          <LabelAndText type="password" label={i18n.t('credentials.password')} value="*****************" />
+          <Button color="green" toRight onClick={handleChangePassword}>{i18n.t('generic.edit')}</Button>
+          <h5>{i18n.t('user.edit.informationSubHeader')}</h5>
+          <LabelAndText type="text" label={i18n.t('user.email')} value={user.email} />
+          <LabelAndText type="text" label={i18n.t('user.firstname')} value={user.firstName} />
+          <LabelAndText type="text" label={i18n.t('user.lastname')} value={user.lastName} />
+          <LabelAndText type="date" label={i18n.t('user.dateOfBirtgh')} value={user.dateOfBirth} />
+          <h5>{i18n.t('user.edit.addressSubHeader')}</h5>
+          <LabelAndText type="text" label={i18n.t('user.country')} value={user.country} />
+          <LabelAndText type="text" label={i18n.t('user.city')} value={user.city} />
+          <LabelAndText type="text" label={i18n.t('user.postal')} value={user.postal} />
+          <LabelAndText type="text" label={i18n.t('user.street')} value={user.street} />
+          <LabelAndText type="text" label={i18n.t('user.number')} value={user.houseNumber} />
+          <LabelAndText type="text" label={i18n.t('user.box')} value={user.postbox} />
+          <LabelAndText type="select" options={getLanguages()} label={i18n.t('user.language')} value={user.language} />
+          <h5>{i18n.t('user.edit.descriptionSubHeader')}</h5>
+          <LabelAndText type="textarea" label={i18n.t('user.synopsis')} value={user.synopsis} />
         </form>
       </div>
     </div>
@@ -57,6 +55,7 @@ const User = ({
 User.propTypes = {
   userStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(withRouter(User));

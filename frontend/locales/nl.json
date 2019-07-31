@@ -1,0 +1,237 @@
+{
+  "generic": {
+    "app": "Writersblock",
+    "underDevelopment": "Zoals u kan zien is deze pagina nog onder constructie. Aarzel daarom niet om de functionaliteiten eens te proberen.",
+    "edit": "Wijzig",
+    "delete": "Verwijder",
+    "view": "Bekijk",
+    "add": "Voeg toe",
+    "back": "Terug",
+    "save": "Opslaan",
+    "title": "Titel",
+    "authorDescription": "Auteursbeschrijving",
+    "description": "Beschrijving",
+    "name": "Naam",
+    "counter": "#",
+    "type": "Type",
+    "subType": "Subtype",
+    "createdAt": "Aangemaakt op",
+    "updatedAt": "laatst geüpdated",
+    "placeholders": {
+      "title": "Geef de titel",
+      "authorDescription": "Geef de auteursbeschrijving",
+      "description": "Geef de beschrijving",
+      "name": "Geef een naam"
+    }
+  },
+  "about": {
+    "dev": "Robin Schuerewegen",
+    "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React"
+  },
+  "contact": {
+    "header": "Contacteer mij",
+    "message": "Dit kan je (nog) niet."
+  },
+  "logout": {
+    "header": "Afmelden",
+    "message": "U wordt na het afmelden doorverwezen naar de home pagina."
+  },
+  "credentials": {
+    "messages": {
+      "one": "Writersblock behoudt uw data in de eigen browser zijn databank. Uw data blijft dus veilig op uw eigen toestel staan.",
+      "two": "Om daarentegen uw data toch min of meer veilig te houden is er wel een klein authenticatie proces."
+    },
+    "header": "Geef uw logingegevens",
+    "register": "Registreer",
+    "username": "Gebruikersnaam",
+    "password": "wachtwoord",
+    "login": "Aanmelden",
+    "error": "Er werd geen gebruiker gevonden die aan deze logingegevens voldoet.",
+    "placeholders": {
+      "username": "Geef de gebruikersnaam",
+      "password": "Geef het wachtwoord"
+    },
+    "passwordEdit": {
+      "header": "Welkom {{user}}",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het registreren kan voltooid worden.",
+      "message": "Geef alle velden in om zo uw bestaand wachtwoord te updaten.",
+      "newPassword": "Nieuw wachtwoord",
+      "oldPassword": "Oud wachtwoord",
+      "placeholders": {
+        "newPassword": "Geef het nieuwe wachtwoord",
+        "oldPassword": "Geef het oude wachtwoord"
+      }
+    }
+  },
+  "user": {
+    "email": "Email",
+    "dateOfBirth": "geboortedatum",
+    "country": "Land",
+    "city": "Stad",
+    "postal": "Postcode",
+    "street": "Straat",
+    "number": "Huisnummer",
+    "box": "Busnummer",
+    "language": "Taal",
+    "synopsis": "Samenvatting",
+    "placeholders": {
+      "email": "Geef een emailadres",
+      "country": "Geef het land",
+      "city": "Geef de stad",
+      "postal": "Geef de postcode",
+      "street": "Geef de straat",
+      "number": "Geef het huisnummer",
+      "box": "Geef het busnummer",
+      "synopsis": "Geef een samenvatting over jezelf"
+    },
+    "view": {
+      "header": "Hallo {{username}}",
+      "message": "Het onderstaande formulier dient om meer data over uzelf weer te geven."
+    },
+    "edit": {
+      "header": "Hallo {{username}}",
+      "message": "Het onderstaande formulier dient om meer data over uzelf weer te geven.",
+      "informationSubHeader": "Persoonlijke gebruikersinformatie",
+      "addressSubHeader": "Adres",
+      "descriptionSubHeader": "Persoonlijke beschrijving"
+    }
+  },
+  "story": {
+    "list": {
+      "header": "Verhalen",
+      "message": "Deze lijst bevat alle verhalen die u tot nog toe geschreven hebt",
+      "columns": {
+        "chapters": "Hoofdstukken"
+      }
+    },
+    "view": {
+      "header": "Verhaal {{title}}",
+      "message": "Deze pagina bevat alle informatie omtrend het verhaal."
+    },
+    "edit": {
+      "header": "Algemene informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het initiële verhaal kan opgeslagen worden.",
+      "subHeader": "Verhaal informatie"
+    },
+    "delete": {
+      "header": "Verwijder verhaal {{title}}",
+      "message": "Ben je zeker dat je dit verhaal wil verwijderen? Alle onderliggende informatie zoals personages, hoofdstukken en verhaal speifieke instellingen worden ook verwijderd."
+    }
+  },
+  "chapter": {
+    "text": "Hoofdstuk",
+    "placeholders": {
+      "text": "Geef de tekst van het hoofdstuk"
+    },
+    "list": {
+      "header": "Hoofdstukken",
+      "message": "Deze lijst bevat alle hoofdstukken die u tot nog toe geschreven hebt",
+      "columns": {
+        "words": "Letters"
+      }
+    },
+    "view": {
+      "header": "Hoofdstuk {{title}}",
+      "message": "Deze pagina bevat alle hoofdstuk informatie"
+    },
+    "delete": {
+      "header": "Verwijder hoofdstuk {{title}}",
+      "message": "Ben je zeker dat je dit hoofdstuk wil verwijderen?"
+    },
+    "edit": {
+      "header": "Hoofdstuk informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het hoofdstuk kan opgeslagen worden."
+    }
+  },
+  "character": {
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "race": "Ras",
+    "placeholders": {
+      "firstname": "Geef de voornaam",
+      "lastname": "Geef de achternaam"
+    },
+    "list": {
+      "header": "Personages",
+      "message": "Deze lijst bevat alle personages die u tot nog toe beschreven hebt"
+    },
+    "view": {
+      "header": "Personage {{title}}",
+      "message": "Deze pagina bevat alle personage informatie"
+    },
+    "delete": {
+      "header": "Verwijder personage {{title}}",
+      "message": "Ben je zeker dat je dit personage wil verwijderen?"
+    },
+    "edit": {
+      "header": "Personage informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het personage kan opgeslagen worden.",
+      "noStorySettingRaces": "U dient eerst verhaal instellingen voor rassen toe te voegen alvorens u een ras kan selecteren."
+    }
+  },
+  "item": {
+    "list": {
+      "header": "Voorwerpen",
+      "message": "Deze lijst bevat alle voorwerpen die u tot nog toe beschreven hebt"
+    },
+    "view": {
+      "header": "Voorwerp {{title}}",
+      "message": "Deze pagina bevat alle voorwerp informatie"
+    },
+    "delete": {
+      "header": "Verwijder voorwerp {{title}}",
+      "message":"Ben je zeker dat je dit voorwerp wil verwijderen?"
+    },
+    "edit": {
+      "header": "Voorwerp informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het voorwepr kan opgeslagen worden.",
+      "noStorySettingItems": "U dient eerst verhaal instellingen voor type voorwerp toe te voegen alvorens u een type voorwerp kan selecteren."
+    }
+  },
+  "storySetting": {
+    "list": {
+      "header": "Verhaal specifieke instellingen",
+      "message": "Deze lijst bevat alle verhaal specifieke instellingen die u tot nog toe beschreven hebt"
+    },
+    "view": {
+      "header": "Verhaal instelling {{title}}",
+      "message": "Deze pagina bevat alle verhaal instelling informatie"
+    },
+    "edit": {
+      "header": "Verhaal instelling informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens de verhaal specifieke instelling kan opgeslagen worden."
+    },
+    "delete": {
+      "header": "Verwijder verhaal specifieke instelling {{title}}",
+      "message": "Ben je zeker dat je deze specieke instelling wil verwijderen? Onderliggende data worden niet geüpdated."
+    }
+  },
+  "navigation": {
+    "stories": "Verhalen",
+    "chapters": "Hoofdstukken",
+    "characters": "Personages",
+    "items": "Voorwerpen",
+    "storySettings": "Verhaal specifieke instellingen",
+    "contact": "Contact",
+    "about": "Over",
+    "logout": "Afmelden",
+    "login": "Aanmelden",
+    "breadCrumbs": {
+      "storyOverview": "Verhalen overzicht",
+      "chapterOverview": "Hoofdstukken overzicht",
+      "characterOverview": "Personages overzicht",
+      "itemOverview": "Voorwerpen overzicht",
+      "storySettingOverview": "Verhaal instellingen overzicht",
+      "chapterView": "Hoofdstuk",
+      "characterView": "Personage",
+      "itemView": "Voorwerp",
+      "storySettingView": "Verhaal instelling"
+    }
+  },
+  "notfound": {
+    "one": "Oooops",
+    "notfound": "404 - That's a not found...",
+    "message": "The requested page was not found. This probably means that somebody (me) forgot to insert said page. Or remove said link.",
+    "return": "Home"
+  }
+}

@@ -9,21 +9,21 @@ import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 import WithNavBar from '../components/hoc/withNavBar';
 
-const StoryGeneral = ({
-  computedMatch, storyStore, dispatch, userStore,
+const StoryEdit = ({
+  computedMatch, storyStore, dispatch, userStore, i18n,
 }) => {
   const { storyId } = computedMatch.params;
   const story = !storyId ? {} : storyStore[storyId];
   const userId = userStore.loggedInUser.id;
 
-  const [name, setName] = useState(story.name);
+  const [title, setTitle] = useState(story.title);
   const [description, setDescription] = useState(story.description);
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
   const validateStory = () => {
-    if ([name].filter(x => x).length !== 1) {
+    if ([title].filter(x => x).length !== 1) {
       return false;
     }
     return true;
@@ -34,7 +34,7 @@ const StoryGeneral = ({
     if (validateStory()) {
       const updatedStory = {
         ...story,
-        name,
+        title,
         description,
       };
       if (updatedStory.id) {
@@ -54,25 +54,26 @@ const StoryGeneral = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} />
+      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
       <div className="container">
-        <h4>Story: General data</h4>
-        {showAlert && <Alert message="You still need to enter some information" level="error" onClose={setAlert(false)} />}
+        <h4>{i18n.t('story.edit.header')}</h4>
+        {showAlert && <Alert message={i18n.t('story.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
-          <h5>Story information</h5>
-          <LabelAndField validatedOnce={validatedOnce} required type="text" label="Name" onChange={setName} value={name} />
-          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label="Description" onChange={setDescription} value={description} />
+          <h5>{i18n.t('story.edit.subHeader')}</h5>
+          <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.title')} placeholder={i18n.t('generic.placeholders.title')} onChange={setTitle} value={title} />
+          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
         </form>
       </div>
     </Fragment>
   );
 };
 
-StoryGeneral.propTypes = {
+StoryEdit.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userStore: PropTypes.object.isRequired,
   storyStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
-export default WithNavBar(StoryGeneral);
+export default WithNavBar(StoryEdit);

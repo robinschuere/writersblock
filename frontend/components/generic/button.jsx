@@ -5,7 +5,9 @@ import Icon from './icon';
 
 class Button extends React.Component {
   getClasses() {
-    const { color, toRight, secondary } = this.props;
+    const {
+      color, toRight, secondary, mobile,
+    } = this.props;
     let s = 'btn btn-lg ';
     const outline = secondary ? 'outline-' : '';
     switch (color) {
@@ -28,6 +30,8 @@ class Button extends React.Component {
         s += `btn-${outline}primary `;
         break;
     }
+
+    s += mobile ? 'btn-sm ' : '';
 
     s += toRight ? 'float-right ' : '';
 
@@ -70,6 +74,7 @@ Button.propTypes = {
   icon: PropTypes.string,
   children: PropTypes.node,
   secondary: PropTypes.bool,
+  mobile: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -80,6 +85,7 @@ Button.defaultProps = {
   icon: '',
   children: undefined,
   secondary: false,
+  mobile: true,
 };
 
 export default Button;

@@ -1,0 +1,237 @@
+{
+  "generic": {
+    "app": "Writersblock",
+    "underDevelopment": "As you might see, this page is still under construction. Do not hesitate to use other functionalities.",
+    "edit": "Edit",
+    "delete": "delete",
+    "view": "View",
+    "add": "Add",
+    "back": "Back",
+    "save": "Save",
+    "title": "Title",
+    "authorDescription": "Author description",
+    "description": "Description",
+    "name": "Name",
+    "counter": "#",
+    "type": "Type",
+    "subType": "Subtype",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "placeholders": {
+      "title": "Enter the title",
+      "authorDescription": "Enter the author description",
+      "description": "Enter the description",
+      "name": "Enter a name"
+    }
+  },
+  "about": {
+    "dev": "Robin Schuerewegen",
+    "synopsis": "A programmer working as a consultant in different fields. This app was created due to an overflowing idea. Written in React."
+  },
+  "contact": {
+  "header": "Contact me",
+    "message": "You can't ... Yet ..."
+  },
+  "logout": {
+    "header": "Logout",
+    "message": "After logging out, you will be redirected to the home page."
+  },
+  "credentials": {
+    "messages": {
+      "one": "Writersblock stores your data in your browsers database. This means that the data will NEVER be synced to a database.",
+      "two": "However, we will place a small security measure around your data so that evil lookers cannot immediately view your stories."
+    },
+    "header": "Enter your credentials",
+    "register": "Register",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "error": "No user matched the given credentials",
+    "placeholders": {
+      "username": "Enter the username",
+      "password": "Enter the password"
+    },
+    "passwordEdit": {
+      "header": "Welcome {{user}}",
+      "alert": "You still need to enter some information to complete your registration.",
+      "message": "Please provide all the necessary fields to update your password.",
+      "newPassword": "New password",
+      "oldPassword": "Old password",
+      "placeholders": {
+        "newPassword": "Enter the new password",
+        "oldPassword": "Enter the old password"
+      }
+    }
+  },
+  "user": {
+    "email": "Email",
+    "dateOfBirth": "Date of birth",
+    "country": "Country",
+    "city": "City",
+    "postal": "Postal code",
+    "street": "Street",
+    "number": "House number",
+    "box": "Box number",
+    "language": "language",
+    "synopsis": "Synopsis",
+    "placeholders": {
+      "email": "Enter an email address",
+      "country": "Enter your country",
+      "city": "Enter your city",
+      "postal": "Enter your postal code",
+      "street": "Enter your street",
+      "number": "Enter your house number",
+      "box": "Enter your box number",
+      "synopsis": "Enter a synopsis about yourself."
+    },
+    "view": {
+      "header": "Hello {{username}}",
+      "message": "The form below is used for setting your user information."
+    },
+    "edit": {
+      "header": "Hello {{username}}",
+      "message": "The form below is used for setting your user information.",
+      "informationSubHeader": "Personal user information",
+      "addressSubHeader": "Address information",
+      "descriptionSubHeader": "Personal description"
+    }
+  },
+  "story": {
+    "list": {
+      "header": "Stories",
+      "message": "This list contains all stories you have written thus far.",
+      "columns": {
+        "chapters": "Chapters"
+      }
+    },
+    "view": {
+      "header": "Story {{title}}",
+      "message": "This page contains all your story information."
+    },
+    "edit": {
+      "header": "General data",
+      "alert": "You still need to enter some information to complete the story.",
+      "subHeader": "Story information"
+    },
+    "delete": {
+      "header": "Remove story {{title}}",
+      "message": "Are you sure to remove this story?"
+    }
+  },
+  "chapter": {
+    "text": "Chapter text",
+    "placeholders": {
+      "text": "Enter the chapter"
+    },
+    "list": {
+      "header": "Chapters",
+      "message": "This list contains all chapters you have written thus far.",
+      "columns": {
+        "words": "words"
+      }
+    },
+    "view": {
+      "header": "Chapter {{title}}",
+      "message": "This page contains all your chapter information."
+    },
+    "delete": {
+      "header": "Remove chapter {{title}}",
+      "message": "Are you sure to remove this chapter?"
+    },
+    "edit": {
+      "header": "Chapter information",
+      "alert": "You still need to enter some information to complete the chapter."
+    }
+  },
+  "character": {
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "race": "Race",
+    "placeholders": {
+      "firstname": "Enter a firstname",
+      "lastname": "Enter a lastname"
+    },
+    "list": {
+      "header": "Characters",
+      "message": "This list contains all characters you have described thus far."
+    },
+    "view": {
+      "header": "Character {{title}}",
+      "message": "This page contains all your character information."
+    },
+    "delete": {
+      "header": "Remove character {{title}}",
+      "message": "Are you sure to remove this character?"
+    },
+    "edit": {
+      "header": "Character information",
+      "alert": "You still need to enter some information to complete the character.",
+      "noStorySettingRaces": "You still need to create races as a storysetting before selecting a value"
+    }
+  },
+  "item": {
+    "list": {
+      "header": "Items",
+      "message": "This list contains all items you have defined thus far."
+    },
+    "view": {
+      "header": "Item {{title}}",
+      "message": "This page contains all your item information."
+    },
+    "delete": {
+      "header": "Remove item {{title}}",
+      "message": "Are you sure to remove this item?"
+    },
+    "edit": {
+      "header": "Item information",
+      "alert": "You still need to enter some information to complete the item.",
+      "noStorySettingItems": "You still need to create items as a storysetting before selecting a value"
+    }
+  },
+  "storySetting": {
+    "list": {
+      "header": "Story settings",
+      "message": "This list contains all story specific settings that you have defined thus far"
+    },
+    "view": {
+      "header": "Story setting {{title}}",
+      "message": "This page contains all your story setting information"
+    },
+    "edit": {
+      "header": "Story setting information",
+      "alert": "You still need to enter some information to complete the story setting."
+    },
+    "delete": {
+      "header": "Remove story setting {{title}}",
+      "message": "Are you sure to remove this story setting? Subsequent data will not be updated!"
+    }
+  },
+  "navigation": {
+    "stories": "Stories",
+    "chapters": "Chapters",
+    "characters": "Characters",
+    "items": "Items",
+    "storySettings": "Story specific settings",
+    "contact": "Contact",
+    "about": "About",
+    "logout": "Logout",
+    "login": "Login",
+    "breadCrumbs": {
+      "storyOverview": "Story overview",
+      "chapterOverview": "Chapter overview",
+      "characterOverview": "Character overview",
+      "itemOverview": "Item overview",
+      "storySettingOverview": "Story setting overview",
+      "chapterView": "Chapter view",
+      "characterView": "Character view",
+      "itemView": "Item",
+      "storySettingView": "Story setting view"
+    }
+  },
+  "notfound": {
+    "one": "Oooops",
+    "notfound": "404 - Deze pagina is verdwenen...",
+    "message": "De opgevraagde pagina bestaat niet, of bestaat niet meer ...",
+    "return": "Home"
+  }
+}

@@ -7,15 +7,15 @@ import constants from '../constants';
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 
-const message = `
-After logging out, you will be redirected to the home page.
-`;
-
-const Logout = ({ dispatch }) => {
+const Logout = ({
+  dispatch, i18n,
+}) => {
   const [completed, setCompleted] = useState(false);
   const handleLogout = () => {
     dispatch({ type: constants.actions.logoutUser });
     dispatch({ type: constants.actions.emptyStories });
+    dispatch({ type: constants.actions.emptyChapters });
+    dispatch({ type: constants.actions.emptyStorySettings });
     setCompleted(true);
   };
 
@@ -25,10 +25,10 @@ const Logout = ({ dispatch }) => {
 
   return (
     <div className="container">
-      <h4>Logout</h4>
-      <p>{message}</p>
+      <h4>{i18n.t('logout.header')}</h4>
+      <p>{i18n.t('logout.message')}</p>
       <Button onClick={handleLogout}>
-        Logout
+        {i18n.t('logout.header')}
       </Button>
     </div>
   );
@@ -36,6 +36,7 @@ const Logout = ({ dispatch }) => {
 
 Logout.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(Logout);

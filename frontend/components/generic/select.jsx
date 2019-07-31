@@ -6,16 +6,17 @@ const Select = ({
 }) => (
   <select
     className="form-control"
-    id={id}
-    defaultValue={value}
-    onChange={(e) => { onChange(parseInt(e.target.value, 10)); }}
+    key={id}
+    defaultValue={value || ''}
+    onChange={e => onChange(e.target.value)}
+    disabled={readOnly}
     readOnly={readOnly}
   >
+    <option value="" key="empty_key">Select an option</option>
     {options.map(option => (
       <option
         value={option.value}
-        key={`select.options.${value}`}
-
+        key={`select.options.${option.value}`}
       >
         {option.label}
       </option>
@@ -25,7 +26,7 @@ const Select = ({
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   readOnly: PropTypes.bool,
