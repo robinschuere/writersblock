@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
+import { getYesNoOptions } from '../helpers';
 
 const Chapter = ({
   computedMatch, chapterStore, history, i18n,
@@ -26,8 +27,9 @@ const Chapter = ({
           <h5>{i18n.t('chapter.edit.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.title')} value={chapter.title} />
           <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={chapter.authorDescription} />
+          <LabelAndText type="select" label={i18n.t('generic.markdown')} value={chapter.markdown} options={getYesNoOptions(i18n)} />
           <LabelAndText type="number" label={i18n.t('generic.counter')} value={chapter.counter} />
-          <LabelAndText type="textarea" label={i18n.t('chapter.text')} value={chapter.text} />
+          <LabelAndText type="textarea" label={i18n.t('chapter.text')} value={chapter.text} isMarkDown={chapter.markdown} />
         </form>
       </div>
     </div>

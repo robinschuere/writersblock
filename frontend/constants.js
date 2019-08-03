@@ -100,40 +100,242 @@ export default {
     en: 'en-US',
   },
 
+  about: {
+    tipsAndTricks: {
+      register: ['title', 'one', 'two'],
+      story: ['title', 'startStory', 'startChapter', 'authorDescription'],
+      markdown: ['title', 'description', 'url'],
+    },
+  },
+
   storySetting: {
     types: {
       item: {
-        value: 'item',
-        label: 'Item',
-        subTypes: [
-          { value: 'clothing', label: 'clothing', description: 'These are items worn by somebody' },
-          { value: 'weapon', label: 'weapon', description: 'These are items used as a weapon' },
-          { value: 'trinket', label: 'trinket', description: 'These are items that are worn as an accessory.' },
-          { value: 'tool', label: 'tool', description: 'These are items for general use.' },
-        ],
+        subTypes: {
+          clothing: 'clothing',
+          armor: 'armor',
+          weapon: 'weapon',
+          trinket: 'trinket',
+          tool: 'tool',
+        },
       },
       trait: {
-        value: 'trait',
-        label: 'Trait',
-        subTypes: [
-          { value: 'personal', label: 'Personal traits', description: 'These are traits that a character holds from birth and change due to character growth.' },
-          { value: 'statistic', label: 'Statistic traits', description: 'These are traits that can be placed on a character and an item' },
-        ],
+        subTypes: {
+          personal: 'personal',
+          statistic: 'statistic',
+        },
       },
       title: {
-        value: 'title',
-        label: 'Title',
-        subTypes: [
-          { value: 'artisan', label: 'Artisan', description: 'A title meant for artisan use. For example: Master blacksmith.' },
-          { value: 'heroic', label: 'Heroic', description: 'A title meant for heroic use. For example: Knight of the round table.' },
-          { value: 'malicious', label: 'Malicious', description: 'A title meant for malicious use. For example: Demon warlord.' },
-          { value: 'tool', label: 'Tool', description: 'A title meant for items. For example: Bane equipment.' },
-        ],
+        subTypes: {
+          artisan: 'artisan',
+          heroic: 'heroic',
+          malicious: 'malicious',
+        },
       },
-      race: {
-        value: 'race',
-        label: 'Race',
+      notes: 'notes',
+      race: 'race',
+      gender: 'gender',
+      status: 'status',
+      power: {
+        subTypes: {
+          innate: 'innate',
+          slumbering: 'slumbering',
+          taught: 'taught',
+        },
       },
     },
+    defaultSettings: [
+      {
+        name: 'human',
+        type: 'race',
+      },
+      {
+        name: 'elf',
+        type: 'race',
+      },
+      {
+        name: 'dwarf',
+        type: 'race',
+      },
+      {
+        name: 'centaur',
+        type: 'race',
+      },
+      {
+        name: 'orc',
+        type: 'race',
+      },
+      {
+        name: 'troll',
+        type: 'race',
+      },
+      {
+        name: 'demon',
+        type: 'race',
+      },
+      {
+        name: 'male',
+        type: 'gender',
+      },
+      {
+        name: 'female',
+        type: 'gender',
+      },
+      {
+        name: 'sword',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'staff',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'bow',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'dagger',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'crossbow',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'wand',
+        type: 'item',
+        subType: 'weapon',
+      },
+      {
+        name: 'cloak',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'hat',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'gloves',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'tunic',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'shirt',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'trousers',
+        type: 'item',
+        subType: 'clothing',
+      },
+      {
+        name: 'helmet',
+        type: 'item',
+        subType: 'armor',
+      },
+      {
+        name: 'platebody',
+        type: 'item',
+        subType: 'armor',
+      },
+      {
+        name: 'platelegs',
+        type: 'item',
+        subType: 'armor',
+      },
+      {
+        name: 'shield',
+        type: 'item',
+        subType: 'armor',
+      },
+      {
+        name: 'knife',
+        type: 'item',
+        subType: 'tool',
+      },
+      {
+        name: 'hammer',
+        type: 'item',
+        subType: 'tool',
+      },
+      {
+        name: 'necklace',
+        type: 'item',
+        subType: 'trinket',
+      },
+      {
+        name: 'amulet',
+        type: 'item',
+        subType: 'trinket',
+      },
+      {
+        name: 'ring',
+        type: 'item',
+        subType: 'trinket',
+      },
+      {
+        name: 'strength',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'constitution',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'defence',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'dexterity',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'intelligence',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'charisma',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'wisdom',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'willpower',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'perception',
+        type: 'trait',
+        subType: 'statistic',
+      },
+      {
+        name: 'luck',
+        type: 'trait',
+        subType: 'statistic',
+      },
+    ],
   },
 };

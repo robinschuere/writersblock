@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-import constants from '../constants';
-import { getOptionsFromStorySetting } from '../helpers';
-
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
+import StorySettingLabel from '../components/storySettingLabel';
+import StorySettingListSelect from '../components/storySettingListSelect';
 
 const Character = ({
   computedMatch, characterStore, storySettingStore, history, i18n,
@@ -18,10 +17,6 @@ const Character = ({
   const handleChangeCharacter = () => {
     history.push(`/stories/${storyId}/characters/${characterId}/edit`);
   };
-
-  const raceOptions = getOptionsFromStorySetting(
-    storySettingStore, storyId, constants.storySetting.types.race,
-  );
 
   return (
     <div>
@@ -34,8 +29,11 @@ const Character = ({
           <LabelAndText type="text" label={i18n.t('character.firstname')} value={character.firstName} />
           <LabelAndText type="text" label={i18n.t('character.lastname')} value={character.lastName} />
           <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={character.authorDescription} />
-          <LabelAndText type="select" label={i18n.t('character.race')} value={character.race} options={raceOptions} />
+          <StorySettingLabel storyId={storyId} parent="character" type="race" i18n={i18n} storySettingStore={storySettingStore} value={character.race} />
+          <StorySettingLabel storyId={storyId} parent="character" type="gender" i18n={i18n} storySettingStore={storySettingStore} value={character.gender} />
           <LabelAndText type="textarea" label={i18n.t('generic.description')} value={character.description} />
+          <StorySettingListSelect readOnly storyId={storyId} parent="character" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} values={character.statisticTraits} />
+          <StorySettingListSelect readOnly storyId={storyId} parent="character" type="trait" subType="personal" i18n={i18n} storySettingStore={storySettingStore} values={character.personalTraits} />
         </form>
       </div>
     </div>

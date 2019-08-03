@@ -59,8 +59,8 @@ const UserEdit = ({
         <form className="form-horizontal">
           <h5>{i18n.t('user.edit.informationSubHeader')}</h5>
           <LabelAndText type="text" label={i18n.t('user.email')} placeholder={i18n.t('user.email')} value={user.email} />
-          <LabelAndField type="text" label={i18n.t('generic.firstname')} placeholder={i18n.t('generic.placeholders.firstname')} onChange={setFirstName} value={firstName} />
-          <LabelAndField type="text" label={i18n.t('generic.lastname')} placeholder={i18n.t('generic.placeholders.lastname')} onChange={setLastName} value={lastName} />
+          <LabelAndField type="text" label={i18n.t('user.firstname')} placeholder={i18n.t('generic.placeholders.firstname')} onChange={setFirstName} value={firstName} />
+          <LabelAndField type="text" label={i18n.t('user.lastname')} placeholder={i18n.t('generic.placeholders.lastname')} onChange={setLastName} value={lastName} />
           <LabelAndField type="date" label={i18n.t('user.dateOfBirth')} onBlur={setDateOfBirth} value={dateOfBirth} />
           <h5>{i18n.t('user.edit.addressSubHeader')}</h5>
           <LabelAndField type="text" label={i18n.t('user.country')} placeholder={i18n.t('user.placeholders.country')} onChange={setCountry} value={country} />

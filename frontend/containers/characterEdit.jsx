@@ -3,16 +3,15 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import constants from '../constants';
-import { getOptionsFromStorySetting } from '../helpers';
 import { addCharacter, updateCharacter } from '../actions/character';
-
+import { updateStorySettingList } from '../helpers';
 
 import Alert from '../components/generic/alert';
 import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 import WithNavBar from '../components/hoc/withNavBar';
-import Label from '../components/generic/label';
+import StorySettingSelect from '../components/storySettingSelect';
+import StorySettingListSelect from '../components/storySettingListSelect';
 
 const CharacterEdit = ({
   computedMatch, characterStore, storySettingStore, dispatch, i18n,
@@ -25,20 +24,29 @@ const CharacterEdit = ({
   const [authorDescription, setAuthorDescription] = useState(character.authorDescription);
   const [description, setDescription] = useState(character.description);
   const [race, setRace] = useState(character.race);
+  const [gender, setGender] = useState(character.race);
+  const [statisticTraits, setStatisticTraits] = useState(character.statisticTraits || []);
+  const [personalTraits, setPersonalTraits] = useState(character.personalTraits || []);
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
   const validateCharacter = () => {
-    if ([firstName, lastName, authorDescription].filter(x => x).length !== 3) {
+    if ([firstName, lastName].filter(x => x).length !== 2) {
       return false;
     }
     return true;
   };
 
-  const raceOptions = getOptionsFromStorySetting(
-    storySettingStore, storyId, constants.storySetting.types.race.value,
-  );
+  const handleSetStatisticTrait = (id, level) => {
+    const newArray = updateStorySettingList(statisticTraits, { id, level });
+    setStatisticTraits(newArray);
+  };
+
+  const handleSetPersonalTrait = (id, level) => {
+    const newArray = updateStorySettingList(personalTraits, { id, level });
+    setPersonalTraits(newArray);
+  };
 
   const addOrUpdate = async () => {
     setValidatedOnce(true);
@@ -49,6 +57,8 @@ const CharacterEdit = ({
         lastName,
         authorDescription,
         race,
+        gender,
+        statisticTraits,
         description,
       };
       if (updatedCharacter.id) {
@@ -75,12 +85,12 @@ const CharacterEdit = ({
           <h5>{i18n.t('character.edit.header')}</h5>
           <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('character.firstname')} placeholder={i18n.t('character.placeholders.firstname')} onChange={setFirstName} value={firstName} />
           <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('character.lastname')} placeholder={i18n.t('character.placeholders.lastname')} onChange={setLastName} value={lastName} />
-          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
-          { raceOptions.length > 0
-            ? <LabelAndField validatedOnce={validatedOnce} required type="select" label={i18n.t('character.race')} options={raceOptions} onChange={setRace} value={race} />
-            : <Label level="warning" fieldLabel={i18n.t('character.edit.noStorySettingRaces')} id="1" />
-          }
-          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
+          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
+          <StorySettingSelect validatedOnce={validatedOnce} storyId={storyId} parent="character" type="race" i18n={i18n} storySettingStore={storySettingStore} onChange={setRace} value={race} />
+          <StorySettingSelect validatedOnce={validatedOnce} storyId={storyId} parent="character" type="gender" i18n={i18n} storySettingStore={storySettingStore} onChange={setGender} value={gender} />
+          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
+          <StorySettingListSelect storyId={storyId} parent="character" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} onChange={handleSetStatisticTrait} values={statisticTraits} />
+          <StorySettingListSelect storyId={storyId} parent="character" type="trait" subType="personal" i18n={i18n} storySettingStore={storySettingStore} onChange={handleSetPersonalTrait} values={personalTraits} />
         </form>
       </div>
     </Fragment>

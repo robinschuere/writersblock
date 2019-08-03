@@ -7,8 +7,8 @@ import { getLanguages } from '../helpers';
 
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndField from '../components/generic/labelAndField';
-import Form from '../components/generic/form';
 import Alert from '../components/generic/alert';
+import Button from '../components/generic/button';
 
 const Register = ({
   dispatch, i18n,
@@ -64,7 +64,7 @@ const Register = ({
   };
 
   if (completed) {
-    return <Redirect to="/" />;
+    return <Redirect to="/stories" />;
   }
 
   return (
@@ -73,26 +73,27 @@ const Register = ({
       <p>{i18n.t('credentials.messages.one')}</p>
       <p>{i18n.t('credentials.messages.two')}</p>
       {showAlert && <Alert message={i18n.t('credentials.edit.alert')} level="error" onClose={setAlert(false)} />}
-      <Form button={{ color: 'green', text: 'Register' }} onClick={register}>
+      <form className="form-horizontal">
         <h5>{i18n.t('credentials.header')}</h5>
         <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
         <LabelAndField validatedOnce={validatedOnce} required type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} />
         <h5>{i18n.t('user.edit.informationSubHeader')}</h5>
-        <LabelAndField validatedOnce={validatedOnce} type="mail" label={i18n.t('user.email')} placeholder={i18n.t('user.email')} value={email} onChange={setEmail} />
-        <LabelAndField type="text" label={i18n.t('generic.firstname')} placeholder={i18n.t('generic.placeholders.firstname')} onChange={setFirstName} value={firstName} />
-        <LabelAndField type="text" label={i18n.t('generic.lastname')} placeholder={i18n.t('generic.placeholders.lastname')} onChange={setLastName} value={lastName} />
-        <LabelAndField type="date" label={i18n.t('user.dateOfBirth')} onBlur={setDateOfBirth} value={dateOfBirth} />
+        <LabelAndField validatedOnce={validatedOnce} required type="mail" label={i18n.t('user.email')} placeholder={i18n.t('user.email')} value={email} onChange={setEmail} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.firstname')} placeholder={i18n.t('user.placeholders.firstname')} onChange={setFirstName} value={firstName} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.lastname')} placeholder={i18n.t('user.placeholders.lastname')} onChange={setLastName} value={lastName} />
+        <LabelAndField validatedOnce={validatedOnce} type="date" label={i18n.t('user.dateOfBirth')} onBlur={setDateOfBirth} value={dateOfBirth} />
         <h5>{i18n.t('user.edit.addressSubHeader')}</h5>
-        <LabelAndField type="text" label={i18n.t('user.country')} placeholder={i18n.t('user.placeholders.country')} onChange={setCountry} value={country} />
-        <LabelAndField type="text" label={i18n.t('user.city')} placeholder={i18n.t('user.placeholders.city')} onChange={setCity} value={city} />
-        <LabelAndField type="text" label={i18n.t('user.postal')} placeholder={i18n.t('user.placeholders.postal')} onChange={setPostal} value={postal} />
-        <LabelAndField type="text" label={i18n.t('user.street')} placeholder={i18n.t('user.placeholders.street')} onChange={setStreet} value={street} />
-        <LabelAndField type="text" label={i18n.t('user.number')} placeholder={i18n.t('user.placeholders.number')} onChange={setHouseNumber} value={houseNumber} />
-        <LabelAndField type="text" label={i18n.t('user.box')} placeholder={i18n.t('user.placeholders.box')} onChange={setPostBox} value={postbox} />
-        <LabelAndField type="select" options={getLanguages()} label={i18n.t('user.language')} onChange={setLanguage} value={language} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.country')} placeholder={i18n.t('user.placeholders.country')} onChange={setCountry} value={country} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.city')} placeholder={i18n.t('user.placeholders.city')} onChange={setCity} value={city} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.postal')} placeholder={i18n.t('user.placeholders.postal')} onChange={setPostal} value={postal} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.street')} placeholder={i18n.t('user.placeholders.street')} onChange={setStreet} value={street} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.number')} placeholder={i18n.t('user.placeholders.number')} onChange={setHouseNumber} value={houseNumber} />
+        <LabelAndField validatedOnce={validatedOnce} type="text" label={i18n.t('user.box')} placeholder={i18n.t('user.placeholders.box')} onChange={setPostBox} value={postbox} />
+        <LabelAndField validatedOnce={validatedOnce} type="select" options={getLanguages()} label={i18n.t('user.language')} onChange={setLanguage} value={language} />
         <h5>{i18n.t('user.edit.descriptionSubHeader')}</h5>
         <LabelAndField type="textarea" label={i18n.t('user.synopsis')} placeholder={i18n.t('user.placeholders.synopsis')} onChange={setSynopsis} value={synopsis} />
-      </Form>
+        <Button color="green" toRight onClick={register}>{i18n.t('credentials.register')}</Button>
+      </form>
 
     </div>
   );

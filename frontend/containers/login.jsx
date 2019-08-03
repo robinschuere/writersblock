@@ -20,7 +20,7 @@ const Login = ({
   const [enter, setEnter] = useState(false);
 
   if (userStore.loggedInUser) {
-    return <Redirect to="/" />;
+    return <Redirect to="/stories" />;
   }
 
   const validate = () => {
@@ -63,10 +63,10 @@ const Login = ({
       <p>{i18n.t('credentials.messages.one')}</p>
       <p>{i18n.t('credentials.messages.two')}</p>
       <h5>{i18n.t('credentials.header')}</h5>
-      {showAlert && <Alert message={i18n.t('credentials.error')} level="error" onClose={setAlert(false)} />}
+      {showAlert && <Alert message={i18n.t('credentials.error')} level="error" onClose={() => setAlert(false)} />}
       <Form button={{ color: 'green', text: i18n.t('credentials.login') }} secondaryButton={<Button color="blue" linkTo="/register">{i18n.t('credentials.register')}</Button>} onClick={handleOnClick}>
-        <LabelAndField type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
-        <LabelAndField type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} onEnter={setEnter} />
+        <LabelAndField validatedOnce type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
+        <LabelAndField validatedOnce type="password" label={i18n.t('credentials.password')} placeholder={i18n.t('credentials.placeholders.password')} onChange={setPassword} value={password} onEnter={setEnter} />
       </Form>
     </div>
   );

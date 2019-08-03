@@ -8,6 +8,7 @@ import Alert from '../components/generic/alert';
 import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 import WithNavBar from '../components/hoc/withNavBar';
+import { getYesNoOptions } from '../helpers';
 
 const ChapterEdit = ({
   computedMatch, chapterStore, dispatch, mobile, i18n,
@@ -19,12 +20,13 @@ const ChapterEdit = ({
   const [authorDescription, setAuthorDescription] = useState(chapter.authorDescription);
   const [text, setText] = useState(chapter.text);
   const [counter, setCounter] = useState(chapter.counter);
+  const [markdown, setMarkdown] = useState(chapter.markdown || false);
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
   const validateChapter = () => {
-    if ([title, text].filter(x => x).length !== 2) {
+    if ([title].filter(x => x).length !== 1) {
       return false;
     }
     return true;
@@ -39,6 +41,7 @@ const ChapterEdit = ({
         authorDescription,
         text,
         counter,
+        markdown,
       };
       if (updatedChapter.id) {
         await updateChapter(updatedChapter, dispatch);
@@ -64,8 +67,9 @@ const ChapterEdit = ({
           <h5>{i18n.t('chapter.edit.header')}</h5>
           <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.title')} placeholder={i18n.t('generic.placeholders.title')} onChange={setTitle} value={title} />
           <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
+          <LabelAndField validatedOnce={validatedOnce} type="select" label={i18n.t('generic.markdown')} onChange={setMarkdown} value={markdown} options={getYesNoOptions(i18n)} />
           <LabelAndField validatedOnce={validatedOnce} min={1} type="number" label={i18n.t('generic.counter')} onChange={setCounter} value={counter} />
-          <LabelAndField validatedOnce={validatedOnce} required amountOfRows={mobile ? 10 : 15} type="textarea" label={i18n.t('chapter.text')} placeholder={i18n.t('chapter.placeholders.text')} onChange={setText} value={text} />
+          <LabelAndField validatedOnce={validatedOnce} amountOfRows={mobile ? 10 : 15} type="textarea" label={i18n.t('chapter.text')} placeholder={i18n.t('chapter.placeholders.text')} onChange={setText} value={text} />
         </form>
       </div>
     </Fragment>

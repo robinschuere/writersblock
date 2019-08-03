@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import WithNavBar from '../components/hoc/withNavBar';
+import AboutGenerator from '../components/about/aboutGenerator';
 
 const About = ({ i18n }) => (
   <div className="container">
     <h4>{i18n.t('about.dev')}</h4>
     <p>{i18n.t('about.synopsis')}</p>
+    <br />
+    <AboutGenerator i18n={i18n} sectionName="tipsAndTricks" />
   </div>
 );
 

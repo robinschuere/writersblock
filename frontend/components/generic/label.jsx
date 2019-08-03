@@ -11,7 +11,7 @@ const Label = ({ fieldLabel, id, level }) => (
 Label.propTypes = {
   fieldLabel: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  level: PropTypes.oneOf(['warning']),
+  level: PropTypes.oneOf(['warning', 'info']),
 };
 
 Label.defaultProps = {

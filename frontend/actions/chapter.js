@@ -15,7 +15,7 @@ const updateExistingChaptersCounterForStory = async (chapter, amount, dispatch) 
 
 const getCounter = async (storyId) => {
   const chapters = await chapterDb.getAll(storyId);
-  return Math.max(...chapters.map(c => c.counter));
+  return chapters.length > 0 ? Math.max(...chapters.map(c => c.counter)) : 0;
 };
 
 export const addChapter = async (chapter, dispatch) => {

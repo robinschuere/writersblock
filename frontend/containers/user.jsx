@@ -25,12 +25,12 @@ const User = ({
       <div className="container">
         <h4>{i18n.t('credentials.view.header')}</h4>
         <p>{i18n.t('credentials.view.message')}</p>
-        <Button color="green" toRight onClick={handleChangeUser}>{i18n.t('generic.edit')}</Button>
+        <Button color="green" toRight onClick={handleChangePassword}>{i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
           <h5>{i18n.t('credentials.header')}</h5>
           <LabelAndText type="text" label={i18n.t('credentials.username')} value={user.userName} />
           <LabelAndText type="password" label={i18n.t('credentials.password')} value="*****************" />
-          <Button color="green" toRight onClick={handleChangePassword}>{i18n.t('generic.edit')}</Button>
+          <Button color="green" toRight onClick={handleChangeUser}>{i18n.t('generic.edit')}</Button>
           <h5>{i18n.t('user.edit.informationSubHeader')}</h5>
           <LabelAndText type="text" label={i18n.t('user.email')} value={user.email} />
           <LabelAndText type="text" label={i18n.t('user.firstname')} value={user.firstName} />

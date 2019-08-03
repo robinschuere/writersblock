@@ -25,6 +25,8 @@ const StorySettingEdit = ({
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
+  const subTypes = type ? getStorySettingSubTypeOptions(type, i18n) : undefined;
+
   const validate = () => {
     if ([name, type].filter(x => x).length !== 2) {
       return false;
@@ -57,7 +59,7 @@ const StorySettingEdit = ({
   if (completed) {
     return <Redirect to={storySettingId ? `/stories/${storyId}/storySettings/${storySettingId}` : `/stories/${storyId}/storySettings`} />;
   }
-  const subTypes = type ? getStorySettingSubTypeOptions(type) : undefined;
+
   return (
     <Fragment>
       <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
@@ -66,7 +68,7 @@ const StorySettingEdit = ({
         <form className="form-horizontal">
           <h5>{i18n.t('storySetting.edit.header')}</h5>
           <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.name')} placeholder={i18n.t('generic.placeholders.name')} onChange={setName} value={name} />
-          <LabelAndField validatedOnce={validatedOnce} required type="select" options={getStorySettingOptions()} label={i18n.t('generic.type')} onChange={setType} value={type} />
+          <LabelAndField validatedOnce={validatedOnce} required type="select" options={getStorySettingOptions(i18n)} label={i18n.t('generic.type')} onChange={setType} value={type} />
           {subTypes && <LabelAndField type="select" options={subTypes} label={i18n.t('generic.subType')} onChange={setSubType} value={subType} />}
           <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
           <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />

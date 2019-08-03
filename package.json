@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
-    "test": "jest"
+    "prod": "webpack --progress --color --config webpack.prod.js -p",
+    "test": "jest",
+    "surge": "surge"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "prop-types": "^15.7.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-markdown": "^4.1.0",
     "react-router-dom": "^5.0.0",
     "regenerator": "^0.14.1",
     "uuid": "^3.3.2"
@@ -40,6 +42,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^5.0.4",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.2",
@@ -50,6 +53,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.1.0",
     "react-test-renderer": "^16.8.1",
+    "surge": "^0.21.3",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"

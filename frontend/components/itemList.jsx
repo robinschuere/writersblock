@@ -32,7 +32,7 @@ const ItemList = ({
       mobile={mobile}
       linkToPath="items"
       columns={[
-        { columnName: i18n.t('generic.name'), fieldName: 'firstName' },
+        { columnName: i18n.t('generic.name'), fieldName: 'name' },
         { columnName: i18n.t('generic.authorDescription'), fieldName: 'authorDescription' },
         { columnName: i18n.t('generic.createdAt'), fieldName: 'createdAt', format: formatDate },
         { columnName: i18n.t('generic.updatedAt'), fieldName: 'updatedAt', format: formatDate },

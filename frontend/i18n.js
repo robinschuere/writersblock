@@ -7,7 +7,7 @@ import {
 i18next
   .init({
     lng: 'en',
-    debug: true,
+    debug: false,
     resources: {
       en: {
         translation: en,

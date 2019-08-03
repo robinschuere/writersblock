@@ -34,6 +34,7 @@ const LabelAndField = (props) => {
 
   return (
     <div className="form-group">
+
       <label htmlFor={id}>
         {label}
         {alert && (

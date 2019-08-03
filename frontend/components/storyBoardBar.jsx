@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -10,21 +10,17 @@ const StoryBoardBar = ({
   const breadCrumbs = getBreadCrumbPaths(computedMatch);
   if (breadCrumbs && breadCrumbs.length > 0) {
     return (
-      <Fragment>
-        <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
-          <nav>
-            <ol className="breadcrumb">
-              {breadCrumbs.map(b => (
-                <li className="breadcrumb-item">
-                  <Link to={b.path}>
-                    {i18n.t(`navigation.breadCrumbs.${b.name}`)}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        </div>
-      </Fragment>
+      <nav>
+        <ol className="breadcrumb">
+          {breadCrumbs.map(b => (
+            <li className="breadcrumb-item">
+              <Link to={b.path}>
+                {i18n.t(`navigation.breadCrumbs.${b.name}`)}
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </nav>
     );
   }
   return null;

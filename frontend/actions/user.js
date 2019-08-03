@@ -20,12 +20,15 @@ export const updateUser = async (user, dispatch) => {
 
 export const loginUser = async (username, password, dispatch) => {
   const user = await userDb.login(username, password);
-  dispatch({
-    type: constants.actions.loginUser,
-    value: user,
-  });
-  getStories(user.id, dispatch);
-  return user;
+  if (user) {
+    dispatch({
+      type: constants.actions.loginUser,
+      value: user,
+    });
+    getStories(user.id, dispatch);
+    return user;
+  }
+  return undefined;
 };
 
 export const getUsers = async (user) => {

@@ -17,7 +17,7 @@ const StorySetting = ({
     history.push(`/stories/${storyId}/storySettings/${storySettingId}/edit`);
   };
 
-  const subTypes = getStorySettingSubTypeOptions(storySetting.type);
+  const subTypes = getStorySettingSubTypeOptions(storySetting.type, i18n);
 
   return (
     <div>
@@ -28,10 +28,10 @@ const StorySetting = ({
         <form className="form-horizontal">
           <h5>{i18n.t('storySetting.edit.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.name')} value={storySetting.name} />
-          <LabelAndText type="select" options={getStorySettingOptions()} label={i18n.t('generic.type')} value={storySetting.type} />
+          <LabelAndText type="select" options={getStorySettingOptions(i18n)} label={i18n.t('generic.type')} value={storySetting.type} />
           {subTypes && <LabelAndText type="select" options={subTypes} label={i18n.t('generic.subType')} value={storySetting.subType} />}
-          <LabelAndText type="textArea" label={i18n.t('generic.authorDescription')} value={storySetting.authorDescription} />
-          <LabelAndText type="textArea" label={i18n.t('generic.description')} value={storySetting.description} />
+          <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={storySetting.authorDescription} />
+          <LabelAndText type="textarea" label={i18n.t('generic.description')} value={storySetting.description} />
         </form>
       </div>
     </div>

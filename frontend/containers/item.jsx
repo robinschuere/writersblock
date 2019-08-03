@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-import constants from '../constants';
-import { getOptionsFromStorySetting } from '../helpers';
-
 import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
+import StorySettingLabel from '../components/storySettingLabel';
+import StorySettingListSelect from '../components/storySettingListSelect';
 
 const Item = ({
   computedMatch, itemStore, storySettingStore, history, i18n,
@@ -19,10 +18,6 @@ const Item = ({
     history.push(`/stories/${storyId}/items/${itemId}/edit`);
   };
 
-  const itemOptions = getOptionsFromStorySetting(
-    storySettingStore, storyId, constants.storySetting.types.item,
-  );
-
   return (
     <div>
       <div className="container">
@@ -31,10 +26,11 @@ const Item = ({
         <Button color="green" toRight onClick={handleChangeCharacter}>{i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
           <h5>Character information</h5>
-          <LabelAndText type="text" label={i18n.t('generic.name')} value={item.firstName} />
+          <LabelAndText type="text" label={i18n.t('generic.name')} value={item.name} />
           <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={item.authorDescription} />
-          <LabelAndText type="select" label={i18n.t('generic.type')} value={item.type} options={itemOptions} />
+          <StorySettingLabel storyId={storyId} parent="item" type="item" i18n={i18n} storySettingStore={storySettingStore} value={item.type} />
           <LabelAndText type="textarea" label={i18n.t('generic.description')} value={item.description} />
+          <StorySettingListSelect readOnly storyId={storyId} parent="item" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} values={item.statisticTraits} />
         </form>
       </div>
     </div>

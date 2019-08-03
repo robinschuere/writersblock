@@ -11,6 +11,10 @@ export const addStory = async (story, dispatch) => {
     type: constants.actions.addStory,
     value: newStory,
   });
+  await getChaptersByStories([newStory], dispatch);
+  await getCharactersByStories([newStory], dispatch);
+  await getStorySettingsByStories([newStory], dispatch);
+  await getItemsByStories([newStory], dispatch);
 };
 
 export const updateStory = async (story, dispatch) => {

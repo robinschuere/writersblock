@@ -10,9 +10,9 @@ const List = ({
   const showValue = (column, item) => {
     if (column.format) {
       if (column.formatFields) {
-        return column.format(...column.formatFields.map(f => item[f]));
+        return column.format(...column.formatFields.map(f => item[f]), i18n);
       }
-      return column.format(item[column.fieldName]);
+      return column.format(item[column.fieldName], i18n);
     }
     return item[column.fieldName];
   };
@@ -26,7 +26,7 @@ const List = ({
     : <td><h5>{showValue(column, item)}</h5></td>);
 
   return (
-    <table className="table table-hover table-condensed">
+    <table className="table table-sm table-hover table-condensed">
       <thead>
         <tr key="list.head">
           { onAdd && (

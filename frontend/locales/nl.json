@@ -22,11 +22,35 @@
       "authorDescription": "Geef de auteursbeschrijving",
       "description": "Geef de beschrijving",
       "name": "Geef een naam"
-    }
+    },
+    "markdown": "Markdown",
+    "yes": "Ja",
+    "no": "Neen",
+    "true": "Waar",
+    "false": "Onwaar"
   },
   "about": {
     "dev": "Robin Schuerewegen",
-    "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React"
+    "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React.",
+    "tipsAndTricks": {
+      "title": "Tips and hints",
+      "register": {
+        "title": "Hoe registreer ik?",
+        "one": "Om te registreren volstaat het om op de menuknop Aanmelden in te drukken. Hierop is een registratie knop terug te vinden.",
+        "two": "Vul hierna jouw profiel informatie aan en je bent klaar om aan de slag te gaan."
+      },
+      "story": {
+        "title": "Hoe maak ik verhalen?",
+        "startStory": "Na het registreren kan je een verhaal aanmaken door op de menuknop Verhalen te drukken. Hierna navigeer je naar het overzicht van jou verhalen.",
+        "startChapter": "De eerste stap om een verhaal te starten is een titel te bedenken. Dit kan eenvoudig door er [DRAFT] te zetten zodat je nog rustig kan nadenken over hoe de titel van het verhaal moet zijn. Je kan het veld auteursbeschrijving al invullen om voor jezelf een beknopte uitleg van je verhaal neer te pennen.",
+        "authorDescription": "Het veld auteursbeschrijving is een veld dat specifiek gericht is naar de auteur om extra informatie neer te pennen die enkel voor de auteur dient. In de toekomst is het de bedoeling om een export van je verhaal te voorzien met de optie op een bibliografie zodat alle gegevens waaraan je gewerkt hebt ook zochtbaar worden."
+      },
+      "markdown": {
+        "title": "Hoe gebruik ik MarkDown",
+        "description": "Markdown is een markup-taal die eenvoudig te gebruiken is om documenten viruteel te formateren.",
+        "url": "https://www.markdownguide.org/"
+      }
+    }
   },
   "contact": {
     "header": "Contacteer mij",
@@ -51,6 +75,10 @@
       "username": "Geef de gebruikersnaam",
       "password": "Geef het wachtwoord"
     },
+    "view": {
+      "header": "Welkom {{user}}",
+      "message": "Onderstaand vind u alle gegevens terug met betrekking tot uw profiel in Writersblock."
+    },
     "passwordEdit": {
       "header": "Welkom {{user}}",
       "alert": "Er dient nog informatie ingegeven te worden alvorens het registreren kan voltooid worden.",
@@ -64,6 +92,8 @@
     }
   },
   "user": {
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
     "email": "Email",
     "dateOfBirth": "geboortedatum",
     "country": "Land",
@@ -75,6 +105,8 @@
     "language": "Taal",
     "synopsis": "Samenvatting",
     "placeholders": {
+      "firstname": "Geen je voornaam",
+      "lastname": "geef je achternaam",
       "email": "Geef een emailadres",
       "country": "Geef het land",
       "city": "Geef de stad",
@@ -147,6 +179,8 @@
     "firstname": "Voornaam",
     "lastname": "Achternaam",
     "race": "Ras",
+    "gender": "Geslacht",
+    "traits": "Karaktertrekken",
     "placeholders": {
       "firstname": "Geef de voornaam",
       "lastname": "Geef de achternaam"
@@ -166,10 +200,13 @@
     "edit": {
       "header": "Personage informatie",
       "alert": "Er dient nog informatie ingegeven te worden alvorens het personage kan opgeslagen worden.",
-      "noStorySettingRaces": "U dient eerst verhaal instellingen voor rassen toe te voegen alvorens u een ras kan selecteren."
+      "race": "Er werden nog geen rassen gedefinieerd.",
+      "gender": "Er werden nog geen geslachten gedefinieerd.",
+      "trait": "Er werden nog geen karaktertrekken gedefinieerd"
     }
   },
   "item": {
+    "item": "Type voorwerp",
     "list": {
       "header": "Voorwerpen",
       "message": "Deze lijst bevat alle voorwerpen die u tot nog toe beschreven hebt"
@@ -191,7 +228,8 @@
   "storySetting": {
     "list": {
       "header": "Verhaal specifieke instellingen",
-      "message": "Deze lijst bevat alle verhaal specifieke instellingen die u tot nog toe beschreven hebt"
+      "message": "Deze lijst bevat alle verhaal specifieke instellingen die u tot nog toe beschreven hebt",
+      "default": "Voeg een standaard lijst toe gegenereerd door de applicatie."
     },
     "view": {
       "header": "Verhaal instelling {{title}}",
@@ -204,6 +242,263 @@
     "delete": {
       "header": "Verwijder verhaal specifieke instelling {{title}}",
       "message": "Ben je zeker dat je deze specieke instelling wil verwijderen? Onderliggende data worden niet geüpdated."
+    },
+    "types": {
+      "item": {
+        "title": "Voorwerp",
+        "description": "Een voorwerp beschrijft een object dat kan gedragen of opgenomen worden.",
+        "subTypes": {
+          "clothing": {
+            "title": "Kledij",
+            "description": "Dit zijn objecten om te dragen"
+          },
+          "armor": {
+            "title": "Uitrusting",
+            "description": "Dit zijn objecten die gebruikt worden om een persoon te bepantseren."
+          },
+          "weapon": {
+            "title": "Wapen",
+            "description": "Dit zijn objecten die gebruikt worden om oorlog te voeren"
+          },
+          "trinket": {
+            "title": "Sieraad",
+            "description": "Dit zijn objecten die gedragen kunnen worden als accessoire."
+          },
+          "tool": {
+            "title": "Gebruiksvoorwerp",
+            "description": "Dit zijn objecten die gebruikt worden in het dagdagelijkse leven"
+          }
+        }
+      },
+      "trait": {
+        "title": "Karaktertrek",
+        "description": "Een karaktertrek is iets dat aan een personage wordt gegeven om het personage 'zichzelf' te laten zijn.",
+        "subTypes": {
+          "personal": {
+            "title": "Persoonlijke karaktertrekken",
+            "description": "Dit zijn de karaktertrekken die een persoon zich eigen maakt vanaf de geboorte."
+          },
+          "statistic": {
+            "title": "Statistische kenmerken",
+            "description": "Dit zijn karaktertrekken die dienen om een personage te laten groeien."
+          }
+        }
+      },
+      "title": {
+        "title": "Titel",
+        "description": "Een aanduiding van waardigheid, eer, onderscheiding of voorrang.",
+        "subTypes": {
+          "artisan": {
+            "title": "Vakman",
+            "description": "Een aanduiding die aan een persoon of familie wordt toegekend op grond van functie of prestatie."
+          },
+          "heroic": {
+            "title": "Heroisch",
+            "description": "Een aanduiding die aan een persoon wordt toegekend op grond van een heroische prestatie."
+          },
+          "malicious": {
+            "title": "Kwaadwillig",
+            "description": "Een aanduiding die aan een persoon of familie of voorwerp wordt toegekend op grond van een kwaadwillige prestatie of functie."
+          }
+        }
+      },
+      "race": {
+        "title": "Ras & ethniciteit",
+        "description": "Beschrijft de ethnische origine van een individueel"
+      },
+      "gender": {
+        "title": "Geslacht",
+        "description": "Beschrijft de sexe van een individueel."
+      },
+      "status": {
+        "title": "Status",
+        "description": "Beschrijft een abnormale status die een voorwerp of persoon met zich meedraagt (omwille van een evenement of beperkt in tijd)"
+      },
+      "notes": {
+        "title": "Notitie",
+        "description": "Een notitie dient ervoor om bepaalde verhaal specifieke benodigdheden te omschrijven."
+      },
+      "power": {
+        "title": "Kracht",
+        "description": "Beschijft mogelijke krachten die een personage of voorwerp draagt.",
+        "subTypes": {
+          "innate": {
+            "title": "Aangeboren",
+            "description": "Een aangeboren kracht is steeds aanwezig vanaf de geboorte van het voorwerp of personage."
+          },
+          "slumbering": {
+            "title": "Sluimerend",
+            "description": "Een aangeboren kracht die vanaf een bepaald moment pas actief wordt."
+          },
+          "taught": {
+            "title": "Aangeleerd",
+            "description": "Een aangeleerde kracht wordt pas actief vanaf het moment dat een personage dit leert van een instructeur."
+          }
+        }
+      }
+    },
+    "defaultSettings": {
+      "creation": "Aangemaakt door WritersBlock",
+      "human": {
+        "name": "Mens",
+        "description": "Een op machts beluste onderdaan van de wereld."
+      },
+      "elf": {
+        "name": "Elf",
+        "description": "Een mystiek onderdaan van de wereld."
+      },
+      "dwarf": {
+        "name": "Dwarf",
+        "description": "Een klein, doch gekend om zijn vakmanschap onderdaan van de wereld."
+      },
+      "centaur": {
+        "name": "Centaur",
+        "description": "Een mythisch onderdaan van de wereld."
+      },
+      "orc": {
+        "name": "Ork",
+        "description": "Een kwaadwillig wezen van de onderwereld."
+      },
+      "troll": {
+        "name": "Trol",
+        "description": "Een groot en kwaadwillig wezen van de onderwereld."
+      },
+      "demon": {
+        "name": "Demoon",
+        "description": "Een mystiek en kwaadwillig wezen van de onderwereld."
+      },
+      "male": {
+        "name": "Man",
+        "description": "Het mannelijke geslacht."
+      },
+      "female": {
+        "name": "Vrouw",
+        "description": "Het vrouwelijke geslacht."
+      },
+      "sword": {
+        "name": "Zwaard",
+        "description": "Een wapen met een lang metalen blad en een handvat met een handbescherming, gebruikt om te duwen of te slaan.."
+      },
+      "staff": {
+        "name": "Staf",
+        "description": "Een wapen dat zich het meest onderscheidt door zijn lange vorm. Meestal gebruikt door tovenaars."
+      },
+      "bow": {
+        "name": "Boog",
+        "description": "Een wapen voor het schieten van pijlen, meestal gemaakt van een gebogen stuk hout, aan beide uiteinden verbonden door een strak touwtje."
+      },
+      "dagger": {
+        "name": "Dolk",
+        "description": "Een kort mes met een puntig en scherp lemmet, gebruikt als wapen."
+      },
+      "wand": {
+        "name": "Toverstok",
+        "description": "Een slanke staaf die gebruikt wordt door goochelaars en tovenaars."
+      },
+      "crossbow": {
+        "name": "Kruisboog",
+        "description": "Een boog van een soort die over een houten steun is bevestigd en een groef heeft voor de bout en een mechanisme voor het trekken en losmaken van de snaar."
+      },
+      "cloak": {
+        "name": "Mantel",
+        "description": "Een mouwloos overjasje dat losjes aan de schouders hangt."
+      },
+      "hat": {
+        "name": "Hoed",
+        "description": "Een gevormde bekleding voor het hoofd gedragen voor de warmte, als mode-item of als onderdeel van een uniform."
+      },
+      "gloves": {
+        "name": "Handschoenen",
+        "description": "Een bekleding voor de hand die gedragen wordt ter bescherming tegen kou of vuil en die meestal bestaat uit afzonderlijke delen voor elke vinger en duim."
+      },
+      "tunic": {
+        "name": "Tuniek",
+        "description": "Een los kledingstuk, typisch mouwloos en tot op de knieën reikend."
+      },
+      "shirt": {
+        "name": "Overhemd",
+        "description": "Een los kledingstuk, meestal met mouwen voor elke arm en tot aan de knieën."
+      },
+      "trousers": {
+        "name": "Broek",
+        "description": "Een kledingstuk die het lichaam van de taille tot aan de enkels bedekt, met een apart deel voor elk been."
+      },
+      "helmet": {
+        "name": "Helm",
+        "description": "Een harde of gewatteerde beschermhoed."
+      },
+      "platebody": {
+        "name": "Borstplaat",
+        "description": "Een stalen plaat dat dient ter bescherming van de drager zijn borst."
+      },
+      "platelegs": {
+        "name": "Beenplaat",
+        "description": "Een stalen plaat dat dient ter bescherming van de drager zijn benen."
+      },
+      "shield": {
+        "name": "Schild",
+        "description": "Een breed stuk metaal of een ander geschikt materiaal, vastgehouden door riemen of een handvat aan één zijde, gebruikt als bescherming tegen slagen of projectielen."
+      },
+      "knife": {
+        "name": "Mes",
+        "description": "Een instrument bestaande uit een mes dat in een handvat is bevestigd, gebruikt voor het snijden of als wapen."
+      },
+      "hammer": {
+        "name": "Hamer",
+        "description": "Een hamer is een gereedschap dat bestaat uit een zwaar stuk metaal aan het uiteinde van een handvat. Het wordt bijvoorbeeld gebruikt om spijkers in een stuk hout of een muur te slaan, of om dingen in stukken te breken."
+      },
+      "necklace": {
+        "name": "Halsketting",
+        "description": "Een sierketting of koord van kralen, juwelen of schakels die om de hals worden gedragen."
+      },
+      "amulet": {
+        "name": "Amulet",
+        "description": "Een bedeltje (zoals een ornament) vaak gegraveerd met een magische bezwering of symbool om de drager te helpen of te beschermen tegen het kwaad."
+      },
+      "ring": {
+        "name": "Ring",
+        "description": "Een typische cirkelvormige band van metaal of ander duurzaam materiaal, met name een band van goud of ander edelmetaal, vaak bezet met edelstenen, voor het dragen van de vinger als sieraad."
+      },
+      "strength": {
+        "name": "Kracht",
+        "description": "Een maatstaf voor hoe fysiek sterk een karakter is. Kracht beheerst vaak het maximale gewicht dat het personage kan dragen, fysieke attack en/of schade, en soms ook trefzekerheid. Uitrusting en wapens kunnen ook een sterkte-eis hebben."
+      },
+      "constitution": {
+        "name": "Gezondheidstoestand",
+        "description": "Een maatstaf voor hoe stevig een karakter is. De gezondheidstoestand heeft vaak invloed op het aantal trefpunten, weerstanden voor speciale soorten schade (gif, ziekte, hitte etc.) en vermoeidheid."
+      },
+      "defence": {
+        "name": "Defensie",
+        "description": "Een maatstaf voor de veerkracht van een personage. Defensie verlaagt de opgelopen schade meestal met een percentage of een vast bedrag per treffer. Wordt soms gecombineerd met de gezondheidstoestand."
+      },
+      "dexterity": {
+        "name": "Behendigheid",
+        "description": "Een maatstaf voor hoe wendbaar een personage is. Behendigheid bepaalt de aanvals- en bewegingssnelheid en nauwkeurigheid alsook het ontwijken van de aanval van een tegenstander."
+      },
+      "intelligence": {
+        "name": "Intelligentie",
+        "description": "Een maatstaf voor het probleemoplossend vermogen van een personage. Intelligentie bepaalt vaak het vermogen van een personage om vreemde talen en magie te begrijpen. Intelligentie kan ook bepalen hoe snel een personage kan groeien."
+      },
+      "charisma": {
+        "name": "Charisma",
+        "description": "Een maatstaf voor de sociale vaardigheden van een personage, en soms ook voor zijn of haar fysieke verschijning."
+      },
+      "wisdom": {
+        "name": "Wijsheid",
+        "description": "Een maatstaf voor het gezonde verstand en/of de spiritualiteit van een personage. Wijsheid bepaalt vaak het vermogen van een personage om bepaalde spreuken uit te spreken, te communiceren met mystieke entiteiten, of de motieven of gevoelens van een ander personage te onderscheiden."
+      },
+      "willpower": {
+        "name": "Wilskracht",
+        "description": "Een maatstaf voor de mentale weerstand van het personage (tegen pijn, angst, enz.) bij het slachtoffer worden van geestverruimende magie, marteling of krankzinnigheid."
+      },
+      "perception": {
+        "name": "Perception",
+        "description": "Een maat voor de openheid van een personage voor zijn omgeving. Waarneming bepaalt de kans om vitale aanwijzingen op te sporen, vijanden te vangen of te verbergen, en kan de gevechtsvolgorde of de nauwkeurigheid van de verschillende aanvallen beïnvloeden."
+      },
+      "luck": {
+        "name": "Geluk",
+        "description": "Een maatstaf voor het geluk van een personage. Geluk kan van invloed zijn op alles."
+      }
     }
   },
   "navigation": {
@@ -230,8 +525,8 @@
   },
   "notfound": {
     "one": "Oooops",
-    "notfound": "404 - That's a not found...",
-    "message": "The requested page was not found. This probably means that somebody (me) forgot to insert said page. Or remove said link.",
+    "notfound": "404 - Deze pagina is verdwenen...",
+    "message": "De opgevraagde pagina bestaat niet, of bestaat niet meer ...",
     "return": "Home"
   }
 }

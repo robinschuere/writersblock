@@ -1,10 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Select from './generic/select';
 import { updateUser } from '../actions/user';
 import { getLanguages } from '../helpers';
+import Icon from './generic/icon';
 
 const NavBar = (props) => {
   const {
@@ -13,13 +16,19 @@ const NavBar = (props) => {
   const user = userStore.loggedInUser;
 
   const [collapsed, setCollapsed] = useState(true);
+  const [languageState, setLanguageState] = useState(false);
 
   const toggleOff = () => {
     setCollapsed(true);
+    setLanguageState(false);
   };
 
   const toggle = () => {
     setCollapsed(!collapsed);
+  };
+
+  const toggleLanguage = () => {
+    setLanguageState(!languageState);
   };
 
   const handleLanguageChange = async (value) => {
@@ -30,11 +39,26 @@ const NavBar = (props) => {
     }
   };
 
+  const updateLanguage = (value) => {
+    toggleOff();
+    handleLanguageChange(value);
+  };
+
+  const renderLanguages = () => {
+    const languages = getLanguages().map(l => (
+      <a className="dropdown-item" onClick={() => updateLanguage(l.value)}>
+        {language === l.value && <Icon name="check" />}
+        {` ${l.label}`}
+      </a>
+    ));
+    return languages;
+  };
+
   return (
     <Fragment>
       <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={toggle} aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" onClick={toggle}>
             <span className="navbar-toggler-icon" />
           </button>
 
@@ -60,8 +84,18 @@ const NavBar = (props) => {
                   <Link className="nav-link" onClick={toggleOff} to="/login">{i18n.t('navigation.login')}</Link>
                 </li>
               )}
-              <li className="nav-item dropdown">
-                <Select options={getLanguages()} value={language} onChange={handleLanguageChange} />
+              <li className={`nav-item dropdown ${languageState ? 'show' : ''}`}>
+                <a className="nav-link dropdown-toggle" onClick={toggleLanguage}>
+                  {i18n.t('user.language')}
+                </a>
+                {languageState && (
+                  <Fragment>
+                    <div className="dropdown-menu show">
+                      {renderLanguages()}
+                    </div>
+                  </Fragment>
+                )}
+
               </li>
             </ul>
           </div>
