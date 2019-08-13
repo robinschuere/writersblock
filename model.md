@@ -56,9 +56,9 @@ A user should be able to view a list of his stories and be able to add / update 
 Once a story is selected, a new navigation bar will be available for the user to go back to the story overview since a story consists out of different items.
 
 A user should be able to create certain subTypes for a generic itembase (used per story). This means the user is able to create it's own definitions of:
-  - items defined per subtype
-  - traits defined per subtype
-  - titles defined per subtype
+  + items defined per subtype
+  + traits defined per subtype
+  + titles defined per subtype
   - power defined per subtype
   - status
   - genders

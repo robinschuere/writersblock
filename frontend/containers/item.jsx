@@ -11,7 +11,7 @@ import StorySettingListSelect from '../components/storySettingListSelect';
 
 const Item = (props) => {
   const {
-    computedMatch, itemStore, storySettingStore, history, i18n,
+    computedMatch, itemStore, storySettingStore, history, i18n, mobile,
   } = props;
   const { storyId, itemId } = computedMatch.params;
   const item = itemStore[itemId];
@@ -26,7 +26,7 @@ const Item = (props) => {
       <div className="container">
         <h3>{i18n.t('item.view.header', { title: item.name })}</h3>
         <p>{i18n.t('item.view.message')}</p>
-        <Button color="green" toRight onClick={handleChangeCharacter}>{i18n.t('generic.edit')}</Button>
+        <Button color="green" icon="pencil-alt" toRight onClick={handleChangeCharacter}>{!mobile && i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
           <h5>Character information</h5>
           <LabelAndText type="text" label={i18n.t('generic.name')} value={item.name} />
@@ -53,6 +53,7 @@ Item.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(withRouter(Item));

@@ -8,7 +8,7 @@ import WithNavBar from '../components/hoc/withNavBar';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
 const Chapter = ({
-  computedMatch, chapterStore, dispatch, i18n,
+  computedMatch, chapterStore, dispatch, i18n, mobile,
 }) => {
   const [completed, setCompleted] = useState(false);
   const { storyId, chapterId } = computedMatch.params;
@@ -29,7 +29,7 @@ const Chapter = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
+      <BackAndSaveBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
       <div className="container">
         <h4>{i18n.t('chapter.delete.header', { title: chapter.title })}</h4>
         <p>{i18n.t('chapter.delete.message')}</p>
@@ -43,6 +43,7 @@ Chapter.propTypes = {
   chapterStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(Chapter);

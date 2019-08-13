@@ -9,7 +9,7 @@ import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
 const PasswordChange = ({
-  dispatch, userStore, i18n,
+  dispatch, userStore, i18n, mobile,
 }) => {
   const user = userStore.loggedInUser;
   const [oldPassword, setOldPassword] = useState('');
@@ -35,7 +35,12 @@ const PasswordChange = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={save} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={save}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
 
       <div className="container">
         <h4>{i18n.t('credentials.passwordEdit.header', { title: userStore.loggedInUser.userName })}</h4>
@@ -54,6 +59,7 @@ PasswordChange.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userStore: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(PasswordChange);

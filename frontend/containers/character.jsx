@@ -16,7 +16,8 @@ import constants from '../constants';
 
 const Character = (props) => {
   const {
-    computedMatch, characterStore, eventStore, relationStore, storySettingStore, history, i18n,
+    computedMatch, characterStore, eventStore,
+    relationStore, storySettingStore, history, i18n, mobile,
   } = props;
   const { storyId, characterId } = computedMatch.params;
   const [activeTab, setActiveTab] = useState(i18n.t('character.view.tabs.personal'));
@@ -34,7 +35,7 @@ const Character = (props) => {
       <div className="container">
         <h3>{i18n.t('character.view.header', { title: `${character.firstName} ${character.lastName}` })}</h3>
         <p>{i18n.t('character.view.message')}</p>
-        <Button color="green" toRight onClick={handleChangeCharacter}>{i18n.t('generic.edit')}</Button>
+        <Button color="green" toRight icon="pencil-alt" onClick={handleChangeCharacter}>{!mobile && i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
           <h5>Character information</h5>
           <LabelAndText type="text" label={i18n.t('character.firstname')} value={character.firstName} />
@@ -67,6 +68,7 @@ Character.propTypes = {
   relationStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(withRouter(Character));

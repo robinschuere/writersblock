@@ -6,7 +6,7 @@ import withNavBar from '../components/hoc/withNavBar';
 import LabelAndField from '../components/generic/labelAndField';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
-const Import = ({ i18n, importFromJson }) => {
+const Import = ({ i18n, importFromJson, mobile }) => {
   const [file, setFile] = useState();
   const [completed, setCompleted] = useState(false);
   const [importing, setImporting] = useState(false);
@@ -33,7 +33,12 @@ const Import = ({ i18n, importFromJson }) => {
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={handleImport} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={handleImport}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         <h4>{i18n.t('generic.import.title')}</h4>
         <p>{i18n.t('generic.import.message')}</p>
@@ -46,6 +51,7 @@ const Import = ({ i18n, importFromJson }) => {
 Import.propTypes = {
   i18n: PropTypes.object.isRequired,
   importFromJson: PropTypes.func.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default withNavBar(Import);

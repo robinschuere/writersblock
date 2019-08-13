@@ -34,8 +34,8 @@ const List = ({
         <tr key="list.head">
           { onAdd && (
             <th key="column-add">
-              <Button onClick={onAdd}>
-                {i18n.t('generic.add')}
+              <Button icon="plus" onClick={onAdd}>
+                {!mobile && i18n.t('generic.add')}
               </Button>
             </th>
           )}
@@ -45,6 +45,7 @@ const List = ({
               : renderColumn(column)
           ))}
           {onRemove && <th key="column-remove" />}
+          {customActions && customActions.length && customActions.map(e => (<th key={`column-customAction-${e.text}`} />))}
         </tr>
       </thead>
       <tbody>
@@ -52,8 +53,8 @@ const List = ({
           <tr key={`list.item.${item.id}`}>
             { !noView && (
               <td>
-                <Button color="green" linkTo={`${linkToPath}/${item.id}`}>
-                  {i18n.t('generic.view')}
+                <Button color="green" icon="binoculars" linkTo={`${linkToPath}/${item.id}`}>
+                  {!mobile && i18n.t('generic.view')}
                 </Button>
               </td>
             )}
@@ -66,16 +67,16 @@ const List = ({
 
             { onRemove && (
               <td>
-                <Button color="red" onClick={() => { onRemove(item); }}>
-                  {i18n.t('generic.delete')}
+                <Button color="red" icon="trash" onClick={() => { onRemove(item); }}>
+                  {!mobile && i18n.t('generic.delete')}
                 </Button>
               </td>
             )}
             { customActions && customActions.length > 0 && (
               customActions.map(e => (
                 <td>
-                  <Button color={e.color} onClick={() => { e.action(item); }}>
-                    {e.text}
+                  <Button color={e.color} icon={e.icon} onClick={() => { e.action(item); }}>
+                    {!mobile && e.text}
                   </Button>
                 </td>
               ))

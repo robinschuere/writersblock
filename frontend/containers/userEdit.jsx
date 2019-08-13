@@ -11,7 +11,7 @@ import WithNavBar from '../components/hoc/withNavBar';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
 const UserEdit = ({
-  dispatch, userStore, i18n,
+  dispatch, userStore, i18n, mobile,
 }) => {
   const user = userStore.loggedInUser;
   const [firstName, setFirstName] = useState(user.firstName);
@@ -52,7 +52,12 @@ const UserEdit = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={save} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={save}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         <h4>{i18n.t('user.edit.header', { username: userStore.loggedInUser.userName })}</h4>
         <p>{i18n.t('user.edit.message')}</p>
@@ -82,6 +87,7 @@ UserEdit.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userStore: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(UserEdit);

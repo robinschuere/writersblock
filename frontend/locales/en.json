@@ -39,7 +39,7 @@
     "relation": "Relation",
     "reverseRelation": "Reverse relation",
     "export": {
-      "wbson": "Export as file"
+      "wbson": "Export"
     },
     "import": {
       "importing": "The file is being imported.",

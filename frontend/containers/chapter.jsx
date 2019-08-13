@@ -13,7 +13,7 @@ import constants from '../constants';
 
 const Chapter = (props) => {
   const {
-    computedMatch, chapterStore, history, i18n, eventStore,
+    computedMatch, chapterStore, history, i18n, eventStore, mobile,
   } = props;
   const { storyId, chapterId } = computedMatch.params;
   const chapter = chapterStore[chapterId];
@@ -29,7 +29,7 @@ const Chapter = (props) => {
       <div className="container">
         <h3>{i18n.t('chapter.view.header', { title: chapter.title })}</h3>
         <p>{i18n.t('chapter.view.message')}</p>
-        <Button color="green" toRight onClick={handleChangeChapter}>{i18n.t('generic.edit')}</Button>
+        <Button color="green" icon="pencil-alt" toRight onClick={handleChangeChapter}>{!mobile && i18n.t('generic.edit')}</Button>
         <form className="form-horizontal">
           <h5>{i18n.t('chapter.edit.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.title')} value={chapter.title} />
@@ -55,6 +55,7 @@ Chapter.propTypes = {
   eventStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(withRouter(Chapter));

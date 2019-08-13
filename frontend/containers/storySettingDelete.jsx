@@ -8,7 +8,7 @@ import WithNavBar from '../components/hoc/withNavBar';
 import BackAndSaveBar from '../components/backAndSaveBar';
 
 const StorySettingDelete = ({
-  computedMatch, storySettingStore, dispatch, i18n,
+  computedMatch, storySettingStore, dispatch, i18n, mobile,
 }) => {
   const [completed, setCompleted] = useState(false);
   const { storyId, storySettingId } = computedMatch.params;
@@ -29,7 +29,7 @@ const StorySettingDelete = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
+      <BackAndSaveBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
       <div className="container">
         <h4>{i18n.t('storySetting.delete.header', { title: storySetting.name })}</h4>
         <p>{i18n.t('storySetting.delete.message')}</p>
@@ -43,6 +43,7 @@ StorySettingDelete.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(StorySettingDelete);

@@ -44,7 +44,8 @@ const Stories = ({
         items={stories}
         customActions={[
           {
-            color: 'yellow',
+            icon: 'file-export',
+            color: 'orange',
             action: exportToJSON,
             text: i18n.t('generic.export.wbson'),
           },

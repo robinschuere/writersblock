@@ -39,7 +39,7 @@
     "relation": "Relatie",
     "reverseRelation": "Wederzijdse relatie",
     "export": {
-      "wbson": "Exporteer als document"
+      "wbson": "Exporteer"
     },
     "import": {
       "importing": "Het bestand wordt geïmporteerd",

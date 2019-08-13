@@ -16,7 +16,7 @@ import Tabs from '../components/generic/tabs';
 
 const CharacterEdit = (props) => {
   const {
-    computedMatch, characterStore, storySettingStore, dispatch, i18n,
+    computedMatch, characterStore, storySettingStore, dispatch, i18n, mobile,
   } = props;
   const { storyId, characterId } = computedMatch.params;
   const character = !characterId ? {} : characterStore[characterId];
@@ -82,7 +82,12 @@ const CharacterEdit = (props) => {
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={addOrUpdate}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         {showAlert && <Alert message={i18n.t('character.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
@@ -113,6 +118,7 @@ CharacterEdit.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(CharacterEdit);

@@ -6,7 +6,7 @@ import Icon from './icon';
 class Button extends React.Component {
   getClasses() {
     const {
-      color, toRight, secondary, mobile,
+      color, toRight, secondary, size,
     } = this.props;
     let s = 'btn btn-lg ';
     const outline = secondary ? 'outline-' : '';
@@ -31,7 +31,7 @@ class Button extends React.Component {
         break;
     }
 
-    s += mobile ? 'btn-sm ' : '';
+    s += `btn-${size} `;
 
     s += toRight ? 'float-right ' : '';
 
@@ -42,6 +42,7 @@ class Button extends React.Component {
     const {
       linkTo, onClick, children, icon,
     } = this.props;
+
     if (linkTo) {
       return (
         <Link
@@ -49,6 +50,8 @@ class Button extends React.Component {
           to={linkTo}
           onClick={onClick}
         >
+          {icon && (<Icon name={icon} />)}
+          {icon && children && <span style={{ marginRight: 5 }} />}
           {children}
         </Link>
       );
@@ -60,6 +63,7 @@ class Button extends React.Component {
         onClick={onClick}
       >
         {icon && (<Icon name={icon} />)}
+        {icon && children && <span style={{ marginRight: 5 }} />}
         {children}
       </button>
     );
@@ -74,7 +78,7 @@ Button.propTypes = {
   icon: PropTypes.string,
   children: PropTypes.node,
   secondary: PropTypes.bool,
-  mobile: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 Button.defaultProps = {
@@ -85,7 +89,7 @@ Button.defaultProps = {
   icon: '',
   children: undefined,
   secondary: false,
-  mobile: true,
+  size: 'sm',
 };
 
 export default Button;

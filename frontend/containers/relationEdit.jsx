@@ -13,7 +13,7 @@ import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
 
 const RelationEdit = ({
-  computedMatch, relationStore, characterStore, dispatch, i18n,
+  computedMatch, relationStore, characterStore, dispatch, i18n, mobile,
 }) => {
   const {
     storyId, characterId, relationId,
@@ -82,7 +82,12 @@ const RelationEdit = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={addOrUpdate}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         {showAlert && <Alert message={i18n.t('relation.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
@@ -120,6 +125,7 @@ RelationEdit.propTypes = {
   relationStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(RelationEdit);

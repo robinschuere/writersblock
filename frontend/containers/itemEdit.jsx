@@ -16,7 +16,7 @@ import StorySettingListSelect from '../components/storySettingListSelect';
 
 const ItemEdit = (props) => {
   const {
-    computedMatch, itemStore, storySettingStore, dispatch, i18n,
+    computedMatch, itemStore, storySettingStore, dispatch, i18n, mobile,
   } = props;
   const { storyId, itemId } = computedMatch.params;
   const item = !itemId ? {} : itemStore[itemId];
@@ -77,7 +77,12 @@ const ItemEdit = (props) => {
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={addOrUpdate}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         {showAlert && <Alert message={i18n.t('item.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
@@ -106,6 +111,7 @@ ItemEdit.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(ItemEdit);

@@ -10,7 +10,7 @@ import BackAndSaveBar from '../components/backAndSaveBar';
 import WithNavBar from '../components/hoc/withNavBar';
 
 const StoryEdit = ({
-  computedMatch, storyStore, dispatch, userStore, i18n,
+  computedMatch, storyStore, dispatch, userStore, i18n, mobile,
 }) => {
   const { storyId } = computedMatch.params;
   const story = !storyId ? {} : storyStore[storyId];
@@ -54,7 +54,12 @@ const StoryEdit = ({
 
   return (
     <Fragment>
-      <BackAndSaveBar onAccept={addOrUpdate} onClose={() => setCompleted(true)} i18n={i18n} />
+      <BackAndSaveBar
+        mobile={mobile}
+        onAccept={addOrUpdate}
+        onClose={() => setCompleted(true)}
+        i18n={i18n}
+      />
       <div className="container">
         <h4>{i18n.t('story.edit.header')}</h4>
         {showAlert && <Alert message={i18n.t('story.edit.alert')} level="error" onClose={setAlert(false)} />}
@@ -74,6 +79,7 @@ StoryEdit.propTypes = {
   storyStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default WithNavBar(StoryEdit);
