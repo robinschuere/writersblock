@@ -8,6 +8,7 @@ import NumberInput from './numberInput';
 import PasswordInput from './passwordInput';
 import DateInput from './dateInput';
 import MailInput from './mailInput';
+import FileInput from './fileInput';
 import Icon from './icon';
 
 const typeToComponent = {
@@ -18,6 +19,7 @@ const typeToComponent = {
   password: PasswordInput,
   date: DateInput,
   mail: MailInput,
+  file: FileInput,
 };
 
 const LabelAndField = (props) => {
@@ -51,7 +53,7 @@ const LabelAndField = (props) => {
 };
 
 LabelAndField.propTypes = {
-  type: PropTypes.oneOf(['select', 'number', 'text', 'textarea', 'password', 'date', 'mail']).isRequired,
+  type: PropTypes.oneOf(['select', 'number', 'text', 'textarea', 'password', 'date', 'mail', 'file']).isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   required: PropTypes.bool,
   label: PropTypes.string.isRequired,

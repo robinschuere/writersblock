@@ -10,7 +10,7 @@ import Footer from '../footer';
 const WithNavBar = (WrappedComponent) => {
   const HOCWithNavBar = (props) => {
     const {
-      stores, dispatch, computedMatch, i18n, changeLanguage, language,
+      computedMatch, i18n,
     } = props;
     const [mobile, setMobile] = useState(isMobile());
 
@@ -26,32 +26,24 @@ const WithNavBar = (WrappedComponent) => {
     });
 
     const showNavBar = !constants.routesWithoutNavBarOrFooter.includes(computedMatch.path);
-
+    const { stores, ...rest } = props;
     return (
       <Fragment>
         {showNavBar && (
           <NavBar
+            {...rest}
             mobile={mobile}
             userStore={stores ? stores.userStore : {}}
-            dispatch={dispatch}
-            i18n={i18n}
-            language={language}
-            changeLanguage={changeLanguage}
-            computedMatch={computedMatch}
             storyStore={stores ? stores.storyStore : {}}
           />
         )}
 
         {showNavBar && <div style={{ marginBottom: 25 }} />}
         <WrappedComponent
-          key={computedMatch.path}
+          {...rest}
           {...stores}
-          computedMatch={computedMatch}
-          dispatch={dispatch}
           mobile={mobile}
-          i18n={i18n}
-          changeLanguage={changeLanguage}
-          language={language}
+          key={computedMatch.path}
         />
 
         {showNavBar && <div style={{ marginBottom: 150 }} />}
@@ -65,11 +57,7 @@ const WithNavBar = (WrappedComponent) => {
   HOCWithNavBar.propTypes = {
     stores: PropTypes.object.isRequired,
     computedMatch: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    language: PropTypes.string.isRequired,
     i18n: PropTypes.object.isRequired,
-    changeLanguage: PropTypes.func.isRequired,
-    history: PropTypes.func.isRequired,
   };
 
   return HOCWithNavBar;

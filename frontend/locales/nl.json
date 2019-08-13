@@ -37,7 +37,16 @@
     "character": "Personage",
     "level": "Niveau",
     "relation": "Relatie",
-    "reverseRelation": "Wederzijdse relatie"
+    "reverseRelation": "Wederzijdse relatie",
+    "export": {
+      "wbson": "Exporteer als document"
+    },
+    "import": {
+      "importing": "Het bestand wordt geïmporteerd",
+      "title": "Importeer bestaand formaat",
+      "file": "Selecteer document (.wbson)",
+      "message": "Bent u zeker dat u het onderstaande document wil importeren?"
+    }
   },
   "about": {
     "dev": "Robin Schuerewegen",
@@ -585,6 +594,7 @@
     "about": "Over",
     "logout": "Afmelden",
     "login": "Aanmelden",
+    "import": "Importeer verhaal",
     "breadCrumbs": {
       "storyOverview": "Verhalen overzicht",
       "chapterOverview": "Hoofdstukken overzicht",

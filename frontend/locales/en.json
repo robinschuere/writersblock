@@ -37,7 +37,16 @@
     "character": "Character",
     "level": "Level",
     "relation": "Relation",
-    "reverseRelation": "Reverse relation"
+    "reverseRelation": "Reverse relation",
+    "export": {
+      "wbson": "Export as file"
+    },
+    "import": {
+      "importing": "The file is being imported.",
+      "title": "Import existing format",
+      "file": "Select file (.wbson)",
+      "message": "Are you sure that you would like to insert to underneath file?"
+    }
   },
   "about": {
     "dev": "Robin Schuerewegen",
@@ -586,6 +595,7 @@
     "about": "About",
     "logout": "Logout",
     "login": "Login",
+    "import": "import story",
     "breadCrumbs": {
       "storyOverview": "Story overview",
       "chapterOverview": "Chapter overview",

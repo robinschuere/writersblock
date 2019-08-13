@@ -1,8 +1,8 @@
-import relationsDb from '../helpers/pouch/relation';
+import relationDb from '../helpers/pouch/relation';
 import constants from '../constants';
 
 export const addRelation = async (relation, dispatch) => {
-  const newSetting = await relationsDb.insert(relation);
+  const newSetting = await relationDb.insert(relation);
   dispatch({
     type: constants.actions.addRelation,
     value: newSetting,
@@ -10,20 +10,28 @@ export const addRelation = async (relation, dispatch) => {
 };
 
 export const updateRelation = async (relation, dispatch) => {
-  const updatedRelation = await relationsDb.update(relation);
+  const updatedRelation = await relationDb.update(relation);
   dispatch({
     type: constants.actions.updateRelation,
     value: updatedRelation,
   });
 };
 
+export const importRelation = async (relation, dispatch) => {
+  const imported = await relationDb.importData(relation);
+  dispatch({
+    type: constants.actions.updateRelation,
+    value: imported,
+  });
+};
+
 export const removeRelation = async (relation, dispatch) => {
-  await relationsDb.remove(relation);
+  await relationDb.remove(relation);
   dispatch({ type: constants.actions.removeRelation, value: relation });
 };
 
 export const getRelations = async (storyId, dispatch) => {
-  const relations = await relationsDb.getAll(storyId);
+  const relations = await relationDb.getAll(storyId);
   dispatch({
     type: constants.actions.setRelations,
     value: relations,
@@ -35,8 +43,8 @@ export const getRelationsByStories = async (stories, dispatch) => {
 };
 
 export const removeRelationsFromStory = async (storyId, dispatch) => {
-  const relations = await relationsDb.getAll(storyId);
-  await Promise.all(relations.map(c => relationsDb.remove(c)));
+  const relations = await relationDb.getAll(storyId);
+  await Promise.all(relations.map(c => relationDb.remove(c)));
   dispatch({
     type: constants.actions.removeRelations,
     value: relations,
@@ -44,8 +52,8 @@ export const removeRelationsFromStory = async (storyId, dispatch) => {
 };
 
 export const removeRelationsFromCharacter = async (characterId, dispatch) => {
-  const relations = await relationsDb.getAllByCharacterId(characterId);
-  await Promise.all(relations.map(c => relationsDb.remove(c)));
+  const relations = await relationDb.getAllByCharacterId(characterId);
+  await Promise.all(relations.map(c => relationDb.remove(c)));
   dispatch({
     type: constants.actions.removeRelations,
     value: relations,

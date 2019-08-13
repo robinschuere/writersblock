@@ -82,6 +82,9 @@ const NavBar = (props) => {
                   <li className="nav-item">
                     <Link className="nav-link" onClick={toggleOff} to="/logout">{i18n.t('navigation.logout')}</Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" onClick={toggleOff} to="/import">{i18n.t('navigation.import')}</Link>
+                  </li>
                 </Fragment>
               )}
               {!user && (

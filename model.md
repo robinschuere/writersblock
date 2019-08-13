@@ -69,9 +69,9 @@ Story export options:
   - as PDF
   - as md
   - as Ebook / Epub
-  - as json
+  + as json (.wbson)
 
 Story import options
-  - json
+  + json (.wbson)
 
 => A pre-defined list for item, personal and statistical traits will be made by WritersBlock (purely optional for the user to create)

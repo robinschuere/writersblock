@@ -1,8 +1,8 @@
-import itemsDb from '../helpers/pouch/item';
+import itemDb from '../helpers/pouch/item';
 import constants from '../constants';
 
 export const addItem = async (item, dispatch) => {
-  const newSetting = await itemsDb.insert(item);
+  const newSetting = await itemDb.insert(item);
   dispatch({
     type: constants.actions.addItem,
     value: newSetting,
@@ -10,20 +10,28 @@ export const addItem = async (item, dispatch) => {
 };
 
 export const updateItem = async (item, dispatch) => {
-  const updatedItem = await itemsDb.update(item);
+  const updatedItem = await itemDb.update(item);
   dispatch({
     type: constants.actions.updateItem,
     value: updatedItem,
   });
 };
 
+export const importItem = async (item, dispatch) => {
+  const imported = await itemDb.importData(item);
+  dispatch({
+    type: constants.actions.updateItem,
+    value: imported,
+  });
+};
+
 export const removeItem = async (item, dispatch) => {
-  await itemsDb.remove(item);
+  await itemDb.remove(item);
   dispatch({ type: constants.actions.removeItem, value: item });
 };
 
 export const getItems = async (storyId, dispatch) => {
-  const items = await itemsDb.getAll(storyId);
+  const items = await itemDb.getAll(storyId);
   dispatch({
     type: constants.actions.setItems,
     value: items,
@@ -35,8 +43,8 @@ export const getItemsByStories = async (stories, dispatch) => {
 };
 
 export const removeItemsFromStory = async (storyId, dispatch) => {
-  const items = await itemsDb.getAll(storyId);
-  await Promise.all(items.map(c => itemsDb.remove(c)));
+  const items = await itemDb.getAll(storyId);
+  await Promise.all(items.map(c => itemDb.remove(c)));
   dispatch({
     type: constants.actions.removeItems,
     value: items,

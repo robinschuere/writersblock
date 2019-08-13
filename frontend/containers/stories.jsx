@@ -9,7 +9,7 @@ import List from '../components/generic/list';
 import WithNavBar from '../components/hoc/withNavBar';
 
 const Stories = ({
-  mobile, userStore, storyStore, chapterStore, history, i18n,
+  mobile, userStore, storyStore, chapterStore, history, i18n, exportToJSON,
 }) => {
   const stories = Object.keys(storyStore).map(key => ({
     ...storyStore[key],
@@ -42,6 +42,13 @@ const Stories = ({
           { columnName: i18n.t('generic.updatedAt'), fieldName: 'updatedAt', format: formatDate },
         ]}
         items={stories}
+        customActions={[
+          {
+            color: 'yellow',
+            action: exportToJSON,
+            text: i18n.t('generic.export.wbson'),
+          },
+        ]}
       />
     </div>
   );
@@ -54,6 +61,7 @@ Stories.propTypes = {
   userStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  exportToJSON: PropTypes.func.isRequired,
 };
 
 export default WithNavBar(withRouter(Stories));

@@ -41,6 +41,14 @@ export const updateChapter = async (chapter, dispatch) => {
   });
 };
 
+export const importChapter = async (chapter, dispatch) => {
+  const imported = await chapterDb.importData(chapter);
+  dispatch({
+    type: constants.actions.updateChapter,
+    value: imported,
+  });
+};
+
 export const removeChapter = async (chapter, dispatch) => {
   await updateExistingChaptersCounterForStory(chapter, -1, dispatch);
   await chapterDb.remove(chapter);
@@ -48,8 +56,8 @@ export const removeChapter = async (chapter, dispatch) => {
   await removeEventsFromChapter(chapter.id, dispatch);
 };
 
-export const getChapters = async (storyId, dispatch) => {
-  const chapters = await chapterDb.getAll(storyId);
+export const getChapters = async (chapterId, dispatch) => {
+  const chapters = await chapterDb.getAll(chapterId);
   dispatch({
     type: constants.actions.setChapters,
     value: chapters,

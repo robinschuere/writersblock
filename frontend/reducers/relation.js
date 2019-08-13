@@ -36,6 +36,10 @@ const reducer = (state, action) => {
 
 export default reducer;
 
+export const getRelationsByStory = (store, storyId) => Object.keys(store)
+  .map(f => store[f])
+  .filter(f => f.storyId === storyId);
+
 export const getRelationsByCharacter = (store, characterId) => Object.keys(store)
   .map(f => store[f])
   .filter(f => f.parentId === characterId || f.childId === characterId);

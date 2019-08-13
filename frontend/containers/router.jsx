@@ -37,10 +37,12 @@ import EventEdit from './eventEdit';
 import EventDelete from './eventDelete';
 import RelationEdit from './relationEdit';
 import RelationDelete from './relationDelete';
+import Import from './import';
 
 import i18n from '../i18n';
 import PrivateRoute from '../components/privateRoute';
 import PublicRoute from '../components/publicRoute';
+import { exportStoryToJson, readFileAsync, importStoryFromJson } from '../helpers/exportImport';
 
 const Router = () => {
   const [language, setLanguage] = useState(i18n.language);
@@ -63,6 +65,24 @@ const Router = () => {
     changeLanguage: handleChangeLanguage,
   };
 
+  const handleImportFromJSON = async (path) => {
+    const data = await readFileAsync(path);
+
+    await importStoryFromJson(JSON.parse(data), stores, dispatch);
+  };
+
+  const handleExportToJSON = (item) => {
+    const data = exportStoryToJson(item.id, stores);
+    const element = document.createElement('a');
+    element.style.display = 'none';
+    element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(data)}`);
+    const fileName = stores.storyStore[item.id].title.toLowerCase().replace(/[^a-zA-Z]/g, '_');
+    element.setAttribute('download', `${fileName}.wbson`);
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
     <HashRouter key={`writersblock_${language}`}>
       <Switch>
@@ -72,6 +92,7 @@ const Router = () => {
         <PublicRoute path="/login" component={Login} {...props} />
         <PublicRoute path="/register" component={Register} {...props} />
 
+        <PrivateRoute path="/import" component={Import} {...props} importFromJson={handleImportFromJSON} />
         <PrivateRoute path="/user/edit" component={UserEdit} {...props} />
         <PrivateRoute path="/user/changepassword" component={PasswordChange} {...props} />
         <PrivateRoute path="/user" component={User} {...props} />
@@ -112,7 +133,7 @@ const Router = () => {
         <PrivateRoute path="/stories/:storyId/delete" component={StoryDelete} {...props} />
         <PrivateRoute path="/stories/:storyId/edit" component={StoryEdit} {...props} />
         <PrivateRoute path="/stories/:storyId" component={Story} {...props} />
-        <PrivateRoute path="/stories" component={Stories} {...props} />
+        <PrivateRoute path="/stories" exportToJSON={handleExportToJSON} component={Stories} {...props} />
         <PrivateRoute path="/logout" component={Logout} {...props} />
 
         <PublicRoute path="*" component={NotFound} {...props} />

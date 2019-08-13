@@ -74,6 +74,7 @@ export default {
   },
 
   routesWithoutNavBarOrFooter: [
+    '/import',
     '/user/edit',
     '/user/changepassword',
     '/stories/new',

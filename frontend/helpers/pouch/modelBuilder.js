@@ -41,6 +41,19 @@ export default (table) => {
     return undefined;
   };
 
+  const importData = async (row) => {
+    const exists = await getById(row.id);
+    if (exists && new Date(exists.updatedAt) > new Date(row.updatedAt)) {
+      return exists;
+    }
+    const result = await database.put(row, { force: true });
+    if (result.ok) {
+      const record = await getById(result.id);
+      return record;
+    }
+    return undefined;
+  };
+
   const remove = async (row) => {
     const toRemove = { ...row };
     toRemove.updated = new Date().toISOString();
@@ -64,5 +77,6 @@ export default (table) => {
     drop,
     getAll,
     getById,
+    importData,
   };
 };

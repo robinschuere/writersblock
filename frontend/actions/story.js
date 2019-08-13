@@ -29,6 +29,14 @@ export const updateStory = async (story, dispatch) => {
   });
 };
 
+export const importStory = async (story, dispatch) => {
+  const imported = await storyDb.importData(story);
+  dispatch({
+    type: constants.actions.updateStory,
+    value: imported,
+  });
+};
+
 export const removeStory = async (story, dispatch) => {
   await removeChaptersFromStory(story.id, dispatch);
   await removeCharactersFromStory(story.id, dispatch);
