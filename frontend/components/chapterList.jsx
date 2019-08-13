@@ -11,10 +11,10 @@ const ChapterList = ({
 }) => {
   const { storyId } = computedMatch.params;
   const chapters = Object.keys(chapterStore)
+    .filter(key => chapterStore[key].storyId === storyId)
     .map(key => ({
       ...chapterStore[key],
     }))
-    .filter(c => c.storyId === storyId)
     .sort((a, b) => a.counter - b.counter);
 
   const handleAdd = () => {

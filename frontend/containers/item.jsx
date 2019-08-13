@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import Button from '../components/generic/button';
+import Tabs from '../components/generic/tabs';
 import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
 import StorySettingLabel from '../components/storySettingLabel';
 import StorySettingListSelect from '../components/storySettingListSelect';
 
-const Item = ({
-  computedMatch, itemStore, storySettingStore, history, i18n,
-}) => {
+const Item = (props) => {
+  const {
+    computedMatch, itemStore, storySettingStore, history, i18n,
+  } = props;
   const { storyId, itemId } = computedMatch.params;
   const item = itemStore[itemId];
+  const [activeTab, setActiveTab] = useState(i18n.t('item.view.tabs.statistic'));
 
   const handleChangeCharacter = () => {
     history.push(`/stories/${storyId}/items/${itemId}/edit`);
@@ -30,7 +33,14 @@ const Item = ({
           <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={item.authorDescription} />
           <StorySettingLabel storyId={storyId} parent="item" type="item" i18n={i18n} storySettingStore={storySettingStore} value={item.type} />
           <LabelAndText type="textarea" label={i18n.t('generic.description')} value={item.description} />
-          <StorySettingListSelect readOnly storyId={storyId} parent="item" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} values={item.statisticTraits} />
+          <Tabs
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            tabValues={[
+              { tabName: i18n.t('item.view.tabs.statistic'), render: () => <StorySettingListSelect {...props} readOnly storyId={storyId} parent="item" type="trait" subType="statistic" values={item.statisticTraits} /> },
+              { tabName: i18n.t('item.view.tabs.requiredStatistic'), render: () => <StorySettingListSelect {...props} readOnly storyId={storyId} parent="item" type="trait" subType="statistic" values={item.reqStatisticTraits} /> },
+            ]}
+          />
         </form>
       </div>
     </div>

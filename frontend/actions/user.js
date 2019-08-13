@@ -2,14 +2,6 @@ import userDb from '../helpers/pouch/user';
 import constants from '../constants';
 import { getStories } from './story';
 
-export const registerUser = async (user, dispatch) => {
-  const newUser = await userDb.insert(user);
-  dispatch({
-    type: constants.actions.addUser,
-    value: newUser,
-  });
-};
-
 export const updateUser = async (user, dispatch) => {
   const updatedUser = await userDb.update(user);
   dispatch({
@@ -34,4 +26,18 @@ export const loginUser = async (username, password, dispatch) => {
 export const getUsers = async (user) => {
   const users = await userDb.getAll(user.id);
   return users;
+};
+
+export const registerUser = async (user, dispatch) => {
+  const existingUser = await userDb.getByUserName(user.userName);
+  if (existingUser) {
+    return false;
+  }
+  const newUser = await userDb.insert(user);
+  dispatch({
+    type: constants.actions.addUser,
+    value: newUser,
+  });
+  await loginUser(user.userName, user.password, dispatch);
+  return true;
 };

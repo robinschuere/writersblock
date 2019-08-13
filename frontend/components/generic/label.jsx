@@ -9,13 +9,14 @@ const Label = ({ fieldLabel, id, level }) => (
 );
 
 Label.propTypes = {
-  fieldLabel: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  fieldLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  id: PropTypes.string,
   level: PropTypes.oneOf(['warning', 'info']),
 };
 
 Label.defaultProps = {
   level: undefined,
+  id: undefined,
 };
 
 export default Label;

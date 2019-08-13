@@ -40,7 +40,11 @@ StorySettingLabel.propTypes = {
   storyId: PropTypes.string.isRequired,
   parent: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
+};
+
+StorySettingLabel.defaultProps = {
+  value: undefined,
 };
 
 export default StorySettingLabel;

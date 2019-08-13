@@ -5,11 +5,10 @@ import { isMobile } from '../../helpers';
 import constants from '../../constants';
 
 import NavBar from '../navbar';
-import StoryBoardBar from '../storyBoardBar';
 import Footer from '../footer';
 
 const WithNavBar = (WrappedComponent) => {
-  const HOC = (props) => {
+  const HOCWithNavBar = (props) => {
     const {
       stores, dispatch, computedMatch, i18n, changeLanguage, language,
     } = props;
@@ -18,14 +17,15 @@ const WithNavBar = (WrappedComponent) => {
     const updateDimensions = () => setMobile(isMobile());
 
     useEffect(() => {
+      window.scrollTo(0, 0);
       window.addEventListener('resize', updateDimensions);
+
       return () => {
         window.removeEventListener('resize', updateDimensions);
       };
     });
 
     const showNavBar = !constants.routesWithoutNavBarOrFooter.includes(computedMatch.path);
-    const showStoryBoard = constants.routesWithStoryBoard.includes(computedMatch.path);
 
     return (
       <Fragment>
@@ -38,17 +38,11 @@ const WithNavBar = (WrappedComponent) => {
             language={language}
             changeLanguage={changeLanguage}
             computedMatch={computedMatch}
+            storyStore={stores ? stores.storyStore : {}}
           />
         )}
 
-        {showStoryBoard && (
-          <StoryBoardBar
-            computedMatch={computedMatch}
-            storyStore={stores ? stores.storyStore : {}}
-            i18n={i18n}
-          />
-        )}
-        {(showNavBar || showStoryBoard) && <div style={{ marginBottom: 25 }} />}
+        {showNavBar && <div style={{ marginBottom: 25 }} />}
         <WrappedComponent
           key={computedMatch.path}
           {...stores}
@@ -68,16 +62,17 @@ const WithNavBar = (WrappedComponent) => {
     );
   };
 
-  HOC.propTypes = {
+  HOCWithNavBar.propTypes = {
     stores: PropTypes.object.isRequired,
     computedMatch: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
     i18n: PropTypes.object.isRequired,
     changeLanguage: PropTypes.func.isRequired,
+    history: PropTypes.func.isRequired,
   };
 
-  return HOC;
+  return HOCWithNavBar;
 };
 
 export default WithNavBar;

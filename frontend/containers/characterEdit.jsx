@@ -12,10 +12,12 @@ import BackAndSaveBar from '../components/backAndSaveBar';
 import WithNavBar from '../components/hoc/withNavBar';
 import StorySettingSelect from '../components/storySettingSelect';
 import StorySettingListSelect from '../components/storySettingListSelect';
+import Tabs from '../components/generic/tabs';
 
-const CharacterEdit = ({
-  computedMatch, characterStore, storySettingStore, dispatch, i18n,
-}) => {
+const CharacterEdit = (props) => {
+  const {
+    computedMatch, characterStore, storySettingStore, dispatch, i18n,
+  } = props;
   const { storyId, characterId } = computedMatch.params;
   const character = !characterId ? {} : characterStore[characterId];
 
@@ -28,6 +30,7 @@ const CharacterEdit = ({
   const [statisticTraits, setStatisticTraits] = useState(character.statisticTraits || []);
   const [personalTraits, setPersonalTraits] = useState(character.personalTraits || []);
   const [validatedOnce, setValidatedOnce] = useState(false);
+  const [activeTab, setActiveTab] = useState(i18n.t('character.view.tabs.personal'));
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
@@ -59,6 +62,7 @@ const CharacterEdit = ({
         race,
         gender,
         statisticTraits,
+        personalTraits,
         description,
       };
       if (updatedCharacter.id) {
@@ -89,9 +93,15 @@ const CharacterEdit = ({
           <StorySettingSelect validatedOnce={validatedOnce} storyId={storyId} parent="character" type="race" i18n={i18n} storySettingStore={storySettingStore} onChange={setRace} value={race} />
           <StorySettingSelect validatedOnce={validatedOnce} storyId={storyId} parent="character" type="gender" i18n={i18n} storySettingStore={storySettingStore} onChange={setGender} value={gender} />
           <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
-          <StorySettingListSelect storyId={storyId} parent="character" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} onChange={handleSetStatisticTrait} values={statisticTraits} />
-          <StorySettingListSelect storyId={storyId} parent="character" type="trait" subType="personal" i18n={i18n} storySettingStore={storySettingStore} onChange={handleSetPersonalTrait} values={personalTraits} />
         </form>
+        <Tabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabValues={[
+            { tabName: i18n.t('character.view.tabs.personal'), render: () => <StorySettingListSelect {...props} storyId={storyId} parent="character" type="trait" subType="statistic" onChange={handleSetStatisticTrait} values={statisticTraits} /> },
+            { tabName: i18n.t('character.view.tabs.statistic'), render: () => <StorySettingListSelect {...props} storyId={storyId} parent="character" type="trait" subType="personal" onChange={handleSetPersonalTrait} values={personalTraits} /> },
+          ]}
+        />
       </div>
     </Fragment>
   );

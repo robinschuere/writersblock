@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { registerUser } from '../actions/user';
@@ -11,9 +11,8 @@ import Alert from '../components/generic/alert';
 import Button from '../components/generic/button';
 
 const Register = ({
-  dispatch, i18n,
+  dispatch, i18n, history,
 }) => {
-  const [showAlert, setAlert] = useState(false);
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +28,8 @@ const Register = ({
   const [postbox, setPostBox] = useState('');
   const [language, setLanguage] = useState(i18n.language);
   const [synopsis, setSynopsis] = useState('');
-  const [completed, setCompleted] = useState(false);
+  const [showAlert, setAlert] = useState(false);
+  const [showUserNameAlert, setUserNameAlert] = useState(false);
 
   const validateNewUser = () => {
     if ([userName, password, email].filter(x => x).length !== 3) {
@@ -56,23 +56,25 @@ const Register = ({
         postbox,
         synopsis,
       };
-      await registerUser(user, dispatch);
-      setCompleted(true);
+      const succes = await registerUser(user, dispatch);
+      if (succes) {
+        history.push('/stories/');
+        return;
+      }
+      setUserNameAlert(true);
       return;
     }
     setAlert(true);
   };
-
-  if (completed) {
-    return <Redirect to="/stories" />;
-  }
 
   return (
     <div className="container">
       <h4>{i18n.t('credentials.register')}</h4>
       <p>{i18n.t('credentials.messages.one')}</p>
       <p>{i18n.t('credentials.messages.two')}</p>
-      {showAlert && <Alert message={i18n.t('credentials.edit.alert')} level="error" onClose={setAlert(false)} />}
+      {showAlert && <Alert message={i18n.t('credentials.passwordEdit.alert')} level="error" onClose={() => setAlert(false)} />}
+      {showUserNameAlert && <Alert message={i18n.t('credentials.passwordEdit.alertUserName')} level="error" onClose={() => setUserNameAlert(false)} />}
+      <Button color="green" toRight onClick={register}>{i18n.t('credentials.register')}</Button>
       <form className="form-horizontal">
         <h5>{i18n.t('credentials.header')}</h5>
         <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('credentials.username')} placeholder={i18n.t('credentials.placeholders.username')} onChange={setUserName} value={userName} />
@@ -102,6 +104,7 @@ const Register = ({
 Register.propTypes = {
   dispatch: PropTypes.func.isRequired,
   i18n: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default WithNavBar(Register);
+export default WithNavBar(withRouter(Register));

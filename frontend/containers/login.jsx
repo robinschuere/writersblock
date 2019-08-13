@@ -30,23 +30,23 @@ const Login = ({
     return true;
   };
 
-  const handleOnClick = async () => {
-    if (validate()) {
-      const login = await loginUser(userName, password, dispatch, changeLanguage);
-
-      if (login) {
-        setCompleted(true);
-      }
-
+  const setLogin = (login) => {
+    setEnter(false);
+    if (login) {
+      setCompleted(true);
+    } else {
       setUserName('');
       setPassword('');
-      setEnter(false);
-      return;
+      setAlert(true);
     }
-    setUserName('');
-    setPassword('');
-    setAlert(true);
-    setEnter(false);
+  };
+
+  const handleOnClick = async () => {
+    if (!completed && validate()) {
+      const login = await loginUser(userName, password, dispatch, changeLanguage);
+      setLogin(login);
+    }
+    setLogin();
   };
 
   if (completed) {

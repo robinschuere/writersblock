@@ -5,15 +5,16 @@ import PropTypes from 'prop-types';
 import { getOptionsFromStorySetting } from '../helpers';
 import NumberInput from './generic/numberInput';
 import Label from './generic/label';
+import List from './generic/list';
 
 const StorySettingListSelect = ({
-  storySettingStore, storyId, values, type, i18n, onChange, parent, subType, readOnly,
+  storySettingStore, storyId, values, type, i18n, onChange, parent, subType, readOnly, mobile,
 }) => {
   const options = getOptionsFromStorySetting(
     storySettingStore, storyId, type, i18n, subType,
   )
     .map((option) => {
-      const existingValue = values.find(v => v.id === option.id);
+      const existingValue = values.find(v => v.id === option.value);
       return {
         ...option,
         level: existingValue ? existingValue.level : 0,
@@ -24,36 +25,27 @@ const StorySettingListSelect = ({
     return (<Label level="warning" fieldLabel={i18n.t(`${parent}.edit.${type}`)} />);
   }
 
-  return (
+  const renderField = option => (
     <Fragment>
-      <p id="storySettingListSelect.label">
-        {subType && i18n.t(`storySetting.types.${type}.subTypes.${subType}.title`)}
-        {!subType && i18n.t(`storySetting.types.${type}.title`)}
-      </p>
-      <table className="table table-sm table-hover table-condensed">
-        <thead>
-          <tr key="storySettingList.head" className="row">
-            <th className="col-3">Name</th>
-            <th className="col-6">Description</th>
-            <th className="col-3">Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          {options.map(option => (
-            <tr className="row">
-              <td className="col-3">{option.label}</td>
-              <td className="col-6"><Label level="info" fieldLabel={option.description} /></td>
-              <td className="col-3">
-                {readOnly && <Label level="warning" fieldLabel={option.level} /> }
-                {!readOnly && (
-                  <NumberInput onChange={e => onChange(option.value, e)} value={option.level} />
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {readOnly && <Label level="warning" fieldLabel={option.level} />}
+      {!readOnly && (
+        <NumberInput onChange={e => onChange(option.value, e)} value={option.level} />
+      )}
     </Fragment>
+  );
+
+  return (
+    <List
+      noView
+      i18n={i18n}
+      mobile={mobile}
+      columns={[
+        { columnName: i18n.t('generic.name'), fieldName: 'label' },
+        { columnName: i18n.t('generic.level'), fieldName: 'level', renderField },
+        { columnName: i18n.t('generic.description'), fieldName: 'description' },
+      ]}
+      items={options}
+    />
   );
 };
 
@@ -61,7 +53,7 @@ StorySettingListSelect.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   values: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    level: PropTypes.number.isRequired,
+    level: PropTypes.number,
   })),
   i18n: PropTypes.object.isRequired,
   storyId: PropTypes.string.isRequired,
@@ -70,6 +62,7 @@ StorySettingListSelect.propTypes = {
   subType: PropTypes.string,
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
+  mobile: PropTypes.bool.isRequired,
 };
 
 StorySettingListSelect.defaultProps = {

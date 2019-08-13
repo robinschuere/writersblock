@@ -5,10 +5,18 @@ export default {
   characterDb: 'writersblock_character_db',
   storySettingsDb: 'writersblock_storysettings_db',
   itemDb: 'writersblock_item_db',
+  eventDb: 'writersblock_event_db',
+  relationDb: 'writersblock_relation_db',
 
   dbVersion: '0.0.1',
 
   mobileListColumns: 2,
+
+  storyRoutes: {
+    characters: 'characters',
+    chapters: 'chapters',
+    storySettings: 'storySettings',
+  },
 
   actions: {
     addUser: 'add_user',
@@ -36,6 +44,20 @@ export default {
     emptyCharacters: 'empty_characters',
     removeCharacters: 'remove_characters',
 
+    addEvent: 'add_event',
+    updateEvent: 'update_event',
+    removeEvent: 'remove_event',
+    setEvents: 'set_events',
+    emptyEvents: 'empty_events',
+    removeEvents: 'remove_events',
+
+    addRelation: 'add_relation',
+    updateRelation: 'update_relation',
+    removeRelation: 'remove_relation',
+    setRelations: 'set_relations',
+    emptyRelations: 'empty_relations',
+    removeRelations: 'remove_relations',
+
     addItem: 'add_item',
     updateItem: 'update_item',
     removeItem: 'remove_item',
@@ -57,10 +79,16 @@ export default {
     '/stories/new',
     '/stories/:storyId/edit',
     '/stories/:storyId/delete',
+    '/stories/:storyId/:storyRoute/:parentId/events/new',
+    '/stories/:storyId/:storyRoute/:parentId/events/:eventId/delete',
+    '/stories/:storyId/:storyRoute/:parentId/events/:eventId',
     '/stories/:storyId/chapters/new',
     '/stories/:storyId/chapters/:chapterId/edit',
     '/stories/:storyId/chapters/:chapterId/delete',
     '/stories/:storyId/characters/new',
+    '/stories/:storyId/characters/:characterId/relations/new',
+    '/stories/:storyId/characters/:characterId/relations/:relationId',
+    '/stories/:storyId/characters/:characterId/relations/:relationId/delete',
     '/stories/:storyId/characters/:characterId/edit',
     '/stories/:storyId/characters/:characterId/delete',
     '/stories/:storyId/items/new',
@@ -104,6 +132,9 @@ export default {
     tipsAndTricks: {
       register: ['title', 'one', 'two'],
       story: ['title', 'startStory', 'startChapter', 'authorDescription'],
+      events: ['title', 'one', 'two', 'three', 'four'],
+      relations: ['title', 'description'],
+      data: ['title', 'one', 'two'],
       markdown: ['title', 'description', 'url'],
     },
   },

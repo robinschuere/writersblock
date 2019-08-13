@@ -4,6 +4,8 @@ import chapterModel from './chapter';
 import characterModel from './character';
 import storySettingModel from './storySetting';
 import itemModel from './item';
+import eventModel from './event';
+import relationModel from './relation';
 import constants from '../../../constants';
 
 export default (table) => {
@@ -20,6 +22,10 @@ export default (table) => {
       return row => storySettingModel(row);
     case constants.itemDb:
       return row => itemModel(row);
+    case constants.eventDb:
+      return row => eventModel(row);
+    case constants.relationDb:
+      return row => relationModel(row);
     default:
       throw new Error('Table was not recognized');
   }

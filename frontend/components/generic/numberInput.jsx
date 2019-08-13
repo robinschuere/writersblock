@@ -33,7 +33,7 @@ const NumberInput = ({
 
 NumberInput.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -41,6 +41,7 @@ NumberInput.propTypes = {
 };
 
 NumberInput.defaultProps = {
+  value: 0,
   min: 0,
   max: 100,
   readOnly: false,

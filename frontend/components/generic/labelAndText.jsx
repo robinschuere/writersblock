@@ -26,14 +26,16 @@ const LabelAndText = (props) => {
       <label htmlFor={id}>
         {label}
       </label>
-      <pre className="form-control" id={id}>{isMarkDown ? <ReactMarkdown source={formattedValue} /> : formattedValue}</pre>
+      {isMarkDown
+        ? <div className="form-control" id={id}><ReactMarkdown source={formattedValue} /></div>
+        : <pre className="form-control" id={id}>{formattedValue}</pre>}
     </div>
   );
 };
 
 LabelAndText.propTypes = {
   type: PropTypes.oneOf(['select', 'number', 'text', 'textarea', 'password', 'date', 'mail']).isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
   isMarkDown: PropTypes.bool,
@@ -41,6 +43,7 @@ LabelAndText.propTypes = {
 
 LabelAndText.defaultProps = {
   options: [],
+  value: undefined,
   isMarkDown: false,
 };
 

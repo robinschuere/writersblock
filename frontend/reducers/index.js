@@ -6,6 +6,8 @@ import chapter from './chapter';
 import character from './character';
 import storySetting from './storySetting';
 import item from './item';
+import event from './event';
+import relation from './relation';
 
 const reducers = () => {
   const [userStore, userDispatch] = useReducer(user, {});
@@ -14,6 +16,8 @@ const reducers = () => {
   const [characterStore, characterDispatch] = useReducer(character, {});
   const [storySettingStore, storySettingDispatch] = useReducer(storySetting, {});
   const [itemStore, itemDispatch] = useReducer(item, {});
+  const [eventStore, eventDispatch] = useReducer(event, {});
+  const [relationStore, relationDispatch] = useReducer(relation, {});
 
   const dispatch = (params) => {
     [
@@ -23,6 +27,8 @@ const reducers = () => {
       storySettingDispatch,
       characterDispatch,
       itemDispatch,
+      eventDispatch,
+      relationDispatch,
     ]
       .forEach(dispatcher => dispatcher(params));
   };
@@ -35,6 +41,8 @@ const reducers = () => {
       storySettingStore,
       characterStore,
       itemStore,
+      eventStore,
+      relationStore,
     },
     dispatch,
   };

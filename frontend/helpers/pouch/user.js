@@ -17,9 +17,15 @@ const login = async (userName, password) => {
   return existingUsers.find(r => r.userName === userName && r.password === password);
 };
 
+const getByUserName = async (userName) => {
+  const existingUsers = await users.getAll();
+  return !!existingUsers.find(r => r.userName === userName);
+};
+
 export default {
   ...users,
   getAll,
   getById: login,
   login,
+  getByUserName,
 };

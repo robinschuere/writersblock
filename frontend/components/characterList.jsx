@@ -11,11 +11,10 @@ const CharacterList = ({
 }) => {
   const { storyId } = computedMatch.params;
   const characters = Object.keys(characterStore)
+    .filter(key => characterStore[key].storyId === storyId)
     .map(key => ({
       ...characterStore[key],
-    }))
-    .filter(c => c.storyId === storyId)
-    .sort((a, b) => a.counter - b.counter);
+    }));
 
   const handleAdd = () => {
     history.push(`/stories/${storyId}/characters/new`);

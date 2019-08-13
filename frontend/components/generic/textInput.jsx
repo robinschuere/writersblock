@@ -18,6 +18,11 @@ const TextInput = ({
     }
   };
 
+  const handleFocus = (e) => {
+    e.target.select();
+    e.preventDefault();
+  };
+
   return (
     <input
       type="text"
@@ -25,6 +30,7 @@ const TextInput = ({
       defaultValue={value}
       onChange={handleInputChange}
       onBlur={handleBlurChange}
+      onFocus={handleFocus}
       id={id}
       placeholder={placeholder}
       maxLength={maxLength}
@@ -35,7 +41,7 @@ const TextInput = ({
 
 TextInput.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
@@ -44,6 +50,7 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
+  value: undefined,
   onBlur: undefined,
   placeholder: 'Insert text',
   maxLength: 50,

@@ -26,7 +26,7 @@ const TextArea = ({
 
 TextArea.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
@@ -35,6 +35,7 @@ TextArea.propTypes = {
 };
 
 TextArea.defaultProps = {
+  value: undefined,
   onBlur: undefined,
   placeholder: 'Insert some text',
   amountOfRows: 5,

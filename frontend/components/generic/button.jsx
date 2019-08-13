@@ -67,7 +67,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  color: PropTypes.oneOf('blue', 'red', 'orange', 'green', 'black'),
+  color: PropTypes.oneOf(['blue', 'red', 'orange', 'green', 'black', 'white']),
   toRight: PropTypes.bool,
   onClick: PropTypes.func,
   linkTo: PropTypes.string,

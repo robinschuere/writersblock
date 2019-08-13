@@ -32,7 +32,7 @@ const Alert = ({ level, message, onClose }) => {
 };
 
 Alert.propTypes = {
-  level: PropTypes.oneOf('warn', 'error', 'info'),
+  level: PropTypes.oneOf(['warn', 'error', 'info']),
   message: PropTypes.node.isRequired,
   onClose: PropTypes.func.isRequired,
 };

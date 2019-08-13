@@ -26,7 +26,7 @@ const Select = ({
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   readOnly: PropTypes.bool,
@@ -34,6 +34,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   readOnly: false,
+  value: undefined,
 };
 
 export default Select;

@@ -11,11 +11,11 @@ const AboutGenerator = ({
   const renderValue = (parent, sub) => {
     switch (sub) {
       case 'title':
-        return <h6>{i18n.t(`about.${sectionName}.${parent}.title`)}</h6>;
+        return <h6 key={`header-${sectionName}-${parent}`}>{i18n.t(`about.${sectionName}.${parent}.title`)}</h6>;
       case 'url':
-        return <a href={i18n.t(`about.${sectionName}.${parent}.${sub}`)} rel="noopener noreferrer" target="_blank">{i18n.t(`about.${sectionName}.${parent}.${sub}`)}</a>;
+        return <a key={`a-${sectionName}-${parent}-${sub}`} href={i18n.t(`about.${sectionName}.${parent}.${sub}`)} rel="noopener noreferrer" target="_blank">{i18n.t(`about.${sectionName}.${parent}.${sub}`)}</a>;
       default:
-        return <p>{i18n.t(`about.${sectionName}.${parent}.${sub}`)}</p>;
+        return <p key={`p-${sectionName}-${parent}-${sub}`}>{i18n.t(`about.${sectionName}.${parent}.${sub}`)}</p>;
     }
   };
 

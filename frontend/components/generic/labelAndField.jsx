@@ -52,7 +52,7 @@ const LabelAndField = (props) => {
 
 LabelAndField.propTypes = {
   type: PropTypes.oneOf(['select', 'number', 'text', 'textarea', 'password', 'date', 'mail']).isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   required: PropTypes.bool,
   label: PropTypes.string.isRequired,
   validatedOnce: PropTypes.bool.isRequired,
@@ -62,6 +62,7 @@ LabelAndField.propTypes = {
 };
 
 LabelAndField.defaultProps = {
+  value: undefined,
   required: false,
   onChange: undefined,
   onBlur: undefined,

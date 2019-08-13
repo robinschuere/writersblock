@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -7,16 +7,27 @@ import WithNavBar from '../components/hoc/withNavBar';
 import LabelAndText from '../components/generic/labelAndText';
 import StorySettingLabel from '../components/storySettingLabel';
 import StorySettingListSelect from '../components/storySettingListSelect';
+import EventList from '../components/eventList';
+import RelationList from '../components/relationList';
+import { getEventsByCharacter } from '../reducers/event';
+import { getRelationsByCharacter } from '../reducers/relation';
+import Tabs from '../components/generic/tabs';
+import constants from '../constants';
 
-const Character = ({
-  computedMatch, characterStore, storySettingStore, history, i18n,
-}) => {
+const Character = (props) => {
+  const {
+    computedMatch, characterStore, eventStore, relationStore, storySettingStore, history, i18n,
+  } = props;
   const { storyId, characterId } = computedMatch.params;
+  const [activeTab, setActiveTab] = useState(i18n.t('character.view.tabs.personal'));
   const character = characterStore[characterId];
 
   const handleChangeCharacter = () => {
     history.push(`/stories/${storyId}/characters/${characterId}/edit`);
   };
+
+  const events = getEventsByCharacter(eventStore, characterId);
+  const relations = getRelationsByCharacter(relationStore, characterId);
 
   return (
     <div>
@@ -32,9 +43,17 @@ const Character = ({
           <StorySettingLabel storyId={storyId} parent="character" type="race" i18n={i18n} storySettingStore={storySettingStore} value={character.race} />
           <StorySettingLabel storyId={storyId} parent="character" type="gender" i18n={i18n} storySettingStore={storySettingStore} value={character.gender} />
           <LabelAndText type="textarea" label={i18n.t('generic.description')} value={character.description} />
-          <StorySettingListSelect readOnly storyId={storyId} parent="character" type="trait" subType="statistic" i18n={i18n} storySettingStore={storySettingStore} values={character.statisticTraits} />
-          <StorySettingListSelect readOnly storyId={storyId} parent="character" type="trait" subType="personal" i18n={i18n} storySettingStore={storySettingStore} values={character.personalTraits} />
         </form>
+        <Tabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabValues={[
+            { tabName: i18n.t('character.view.tabs.personal'), render: () => <StorySettingListSelect {...props} readOnly storyId={storyId} parent="character" type="trait" subType="statistic" values={character.statisticTraits} /> },
+            { tabName: i18n.t('character.view.tabs.statistic'), render: () => <StorySettingListSelect {...props} readOnly storyId={storyId} parent="character" type="trait" subType="personal" values={character.personalTraits} /> },
+            { tabName: i18n.t('character.view.tabs.events'), render: () => <EventList {...props} storyRoute={constants.storyRoutes.characters} parentId={characterId} events={events} /> },
+            { tabName: i18n.t('character.view.tabs.relations'), render: () => <RelationList {...props} relations={relations} /> },
+          ]}
+        />
       </div>
     </div>
   );
@@ -44,6 +63,8 @@ Character.propTypes = {
   computedMatch: PropTypes.object.isRequired,
   characterStore: PropTypes.object.isRequired,
   storySettingStore: PropTypes.object.isRequired,
+  eventStore: PropTypes.object.isRequired,
+  relationStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
 };

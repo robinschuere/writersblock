@@ -33,6 +33,10 @@ import Logout from './logout';
 import User from './user';
 import UserEdit from './userEdit';
 import PasswordChange from './passwordChange';
+import EventEdit from './eventEdit';
+import EventDelete from './eventDelete';
+import RelationEdit from './relationEdit';
+import RelationDelete from './relationDelete';
 
 import i18n from '../i18n';
 import PrivateRoute from '../components/privateRoute';
@@ -73,11 +77,19 @@ const Router = () => {
         <PrivateRoute path="/user" component={User} {...props} />
         <PrivateRoute path="/stories/new" component={StoryEdit} {...props} />
 
+        <PrivateRoute path="/stories/:storyId/:storyRoute/:parentId/events/new" component={EventEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/:storyRoute/:parentId/events/:eventId/delete" component={EventDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/:storyRoute/:parentId/events/:eventId" component={EventEdit} {...props} />
+
         <PrivateRoute path="/stories/:storyId/chapters/new" component={ChapterEdit} {...props} />
         <PrivateRoute path="/stories/:storyId/chapters/:chapterId/edit" component={ChapterEdit} {...props} />
         <PrivateRoute path="/stories/:storyId/chapters/:chapterId/delete" component={ChapterDelete} {...props} />
         <PrivateRoute path="/stories/:storyId/chapters/:chapterId" component={Chapter} {...props} />
         <PrivateRoute path="/stories/:storyId/chapters" component={Chapters} {...props} />
+
+        <PrivateRoute path="/stories/:storyId/characters/:characterId/relations/new" component={RelationEdit} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters/:characterId/relations/:relationId/delete" component={RelationDelete} {...props} />
+        <PrivateRoute path="/stories/:storyId/characters/:characterId/relations/:relationId" component={RelationEdit} {...props} />
 
         <PrivateRoute path="/stories/:storyId/characters/new" component={CharacterEdit} {...props} />
         <PrivateRoute path="/stories/:storyId/characters/:characterId/edit" component={CharacterEdit} {...props} />

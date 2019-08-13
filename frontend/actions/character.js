@@ -1,5 +1,7 @@
 import charactersDb from '../helpers/pouch/character';
 import constants from '../constants';
+import { removeRelationsFromCharacter } from './relation';
+import { removeEventsFromCharacter } from './event';
 
 export const addCharacter = async (character, dispatch) => {
   const newSetting = await charactersDb.insert(character);
@@ -20,6 +22,8 @@ export const updateCharacter = async (character, dispatch) => {
 export const removeCharacter = async (character, dispatch) => {
   await charactersDb.remove(character);
   dispatch({ type: constants.actions.removeCharacter, value: character });
+  await removeRelationsFromCharacter(character.id, dispatch);
+  await removeEventsFromCharacter(character.id, dispatch);
 };
 
 export const getCharacters = async (storyId, dispatch) => {

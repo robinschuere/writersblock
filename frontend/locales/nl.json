@@ -21,19 +21,34 @@
       "title": "Geef de titel",
       "authorDescription": "Geef de auteursbeschrijving",
       "description": "Geef de beschrijving",
-      "name": "Geef een naam"
+      "name": "Geef een naam",
+      "chapter": "Selecteer een hoofdstuk",
+      "character": "Selecteer een personage",
+      "relation": "Geef de relatie",
+      "reverseRelation": "Geef de wederzijdse relatie"
     },
     "markdown": "Markdown",
     "yes": "Ja",
     "no": "Neen",
     "true": "Waar",
-    "false": "Onwaar"
+    "false": "Onwaar",
+    "events": "Evenementen",
+    "chapter": "Hoofdstuk",
+    "character": "Personage",
+    "level": "Niveau",
+    "relation": "Relatie",
+    "reverseRelation": "Wederzijdse relatie"
   },
   "about": {
     "dev": "Robin Schuerewegen",
     "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React.",
     "tipsAndTricks": {
       "title": "Tips and hints",
+      "data": {
+        "title": "Waar wordt mijn data geplaatst?",
+        "one": "Op dit moment, nergens op het internet. Writersblock plaatst de data op het interne Browser geheugen van het toestel. Dit betekent dat WritersBlock geen cross-device, cross-browser data-exchange ondersteunt. We zijn wel naar oplossingen aan het zoeken voor dit probleem.",
+        "two": "Waarom hebben we dit op deze manier gedaan? Omdat data bijhouden op servers gewoonweg niet gratis is (nog niet...). Mits WritersBlock ook nog in de kinderschoenen staat en voornamelijk leeft als een hobby project worden de kosten op een minimum gehouden."
+      },
       "register": {
         "title": "Hoe registreer ik?",
         "one": "Om te registreren volstaat het om op de menuknop Aanmelden in te drukken. Hierop is een registratie knop terug te vinden.",
@@ -44,6 +59,17 @@
         "startStory": "Na het registreren kan je een verhaal aanmaken door op de menuknop Verhalen te drukken. Hierna navigeer je naar het overzicht van jou verhalen.",
         "startChapter": "De eerste stap om een verhaal te starten is een titel te bedenken. Dit kan eenvoudig door er [DRAFT] te zetten zodat je nog rustig kan nadenken over hoe de titel van het verhaal moet zijn. Je kan het veld auteursbeschrijving al invullen om voor jezelf een beknopte uitleg van je verhaal neer te pennen.",
         "authorDescription": "Het veld auteursbeschrijving is een veld dat specifiek gericht is naar de auteur om extra informatie neer te pennen die enkel voor de auteur dient. In de toekomst is het de bedoeling om een export van je verhaal te voorzien met de optie op een bibliografie zodat alle gegevens waaraan je gewerkt hebt ook zochtbaar worden."
+      },
+      "events": {
+        "title": "Evenementen",
+        "one": "Evenemeneten worden gebruikt om de groei van een personage aan te tonen. Er worden 2 types ondersteund:",
+        "two": " - een evenement dat gedurende een hoofdstuk voorkwam",
+        "three": " - een evenement dat voorkwam (zonder hoofdstuk)",
+        "four": "Op dit moment ondersteunt WritersBlock enkel een omschrijving van het evenement. Het is wel de bedoeling om karaktertrekken ook hier te plaatsen zodat de groei van een personage daadwerkelijk kan bijgehouden worden."
+      },
+      "relations": {
+        "title": "Relaties",
+        "description": "Relaties worden gebruikt om de relatie tussen personages te beschrijven. Een relatie bevat altijd 2 personages, een relatie en een wederwijdse relatie. Meerdere relaties tussen 2 personages kunnen zo gedefinieerd worden."
       },
       "markdown": {
         "title": "Hoe gebruik ik MarkDown",
@@ -82,6 +108,7 @@
     "passwordEdit": {
       "header": "Welkom {{user}}",
       "alert": "Er dient nog informatie ingegeven te worden alvorens het registreren kan voltooid worden.",
+      "alertUserName": "Deze gebruikersnaam is alreeds in gebruik.",
       "message": "Geef alle velden in om zo uw bestaand wachtwoord te updaten.",
       "newPassword": "Nieuw wachtwoord",
       "oldPassword": "Oud wachtwoord",
@@ -147,7 +174,7 @@
     },
     "delete": {
       "header": "Verwijder verhaal {{title}}",
-      "message": "Ben je zeker dat je dit verhaal wil verwijderen? Alle onderliggende informatie zoals personages, hoofdstukken en verhaal speifieke instellingen worden ook verwijderd."
+      "message": "Ben je zeker dat je dit verhaal wil verwijderen? Alle onderliggende informatie zoals personages, hoofdstukken en verhaal specifieke instellingen worden ook verwijderd."
     }
   },
   "chapter": {
@@ -175,6 +202,43 @@
       "alert": "Er dient nog informatie ingegeven te worden alvorens het hoofdstuk kan opgeslagen worden."
     }
   },
+  "event": {
+    "list": {
+      "header": "Evenementen",
+      "message": "Deze lijst bevat alle evenementen die u tot nog toe geschreven hebt"
+    },
+    "view": {
+      "header": "Evenement {{title}}",
+      "message": "Deze pagina bevat alle evenement informatie"
+    },
+    "delete": {
+      "header": "Verwijder evenement {{title}}",
+      "message": "Ben je zeker dat je dit evenement wil verwijderen?"
+    },
+    "edit": {
+      "header": "Evenement informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het evenement kan opgeslagen worden."
+    }
+  },
+  "relation": {
+    "parent": "Hoofd personage",
+    "list": {
+      "header": "Relaties",
+      "message": "Deze lijst bevat alle relaties die u tot nog toe geschreven hebt"
+    },
+    "view": {
+      "header": "Relatie {{title}}",
+      "message": "Deze pagina bevat alle relatie informatie"
+    },
+    "delete": {
+      "header": "Verwijder relatie tussen {{personA}} and {{personB}}",
+      "message": "Ben je zeker dat je deze relatie wil verwijderen?"
+    },
+    "edit": {
+      "header": "Relatie informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens de relatie kan opgeslagen worden."
+    }
+  },
   "character": {
     "firstname": "Voornaam",
     "lastname": "Achternaam",
@@ -191,7 +255,13 @@
     },
     "view": {
       "header": "Personage {{title}}",
-      "message": "Deze pagina bevat alle personage informatie"
+      "message": "Deze pagina bevat alle personage informatie",
+      "tabs": {
+        "personal": "Persoonlijke kenmerken",
+        "statistic": "Statistische kenmerken",
+        "events": "Evenementen",
+        "relations": "Relaties"
+      }
     },
     "delete": {
       "header": "Verwijder personage {{title}}",
@@ -213,7 +283,11 @@
     },
     "view": {
       "header": "Voorwerp {{title}}",
-      "message": "Deze pagina bevat alle voorwerp informatie"
+      "message": "Deze pagina bevat alle voorwerp informatie",
+      "tabs": {
+        "requiredStatistic": "Benodigde statistische kenmerken",
+        "statistic": "Statistische kenmerken"
+      }
     },
     "delete": {
       "header": "Verwijder voorwerp {{title}}",

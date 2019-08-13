@@ -1,5 +1,6 @@
 import chapterDb from '../helpers/pouch/chapter';
 import constants from '../constants';
+import { removeEventsFromChapter } from './event';
 
 const updateExistingChaptersCounterForStory = async (chapter, amount, dispatch) => {
   const existingChapters = await chapterDb.getAll(chapter.storyId);
@@ -44,6 +45,7 @@ export const removeChapter = async (chapter, dispatch) => {
   await updateExistingChaptersCounterForStory(chapter, -1, dispatch);
   await chapterDb.remove(chapter);
   dispatch({ type: constants.actions.removeChapter, value: chapter });
+  await removeEventsFromChapter(chapter.id, dispatch);
 };
 
 export const getChapters = async (storyId, dispatch) => {

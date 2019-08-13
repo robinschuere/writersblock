@@ -21,19 +21,34 @@
       "title": "Enter the title",
       "authorDescription": "Enter the author description",
       "description": "Enter the description",
-      "name": "Enter a name"
+      "name": "Enter a name",
+      "chapter": "Select a chapter",
+      "character": "Select a character",
+      "relation": "Enter a relation",
+      "reverseRelation": "Enter a reverse relation"
     },
     "markdown": "Markdown",
     "yes": "Yes",
     "no": "No",
     "true": "True",
-    "false": "False"
+    "false": "False",
+    "events": "Events",
+    "chapter": "Chapter",
+    "character": "Character",
+    "level": "Level",
+    "relation": "Relation",
+    "reverseRelation": "Reverse relation"
   },
   "about": {
     "dev": "Robin Schuerewegen",
     "synopsis": "A programmer working as a consultant in different fields. This app was created due to an overflowing idea. Written in React.",
     "tipsAndTricks": {
       "title": "Tips and tricks",
+      "data": {
+        "title": "Where remains my data",
+        "one": "At this moment, WritersBlock is just a JavaScript webpage that places your data on your device. This means that WritersBlock doesn't support cross-device data-exchange. However, we are investigating a few ways to export the data from one device to another.",
+        "two": "Why did we went for this approach? Because storing data does not come cheap (yet ...) and as WritersBlock remains a hobby project for now, costs are kept to a strict minimum."
+      },
       "register": {
         "title": "How do I register?",
         "one": "If you want to register, simply press the login button on the menu. If you do not see that button, press the 'hamburger' sign (small devices).",
@@ -44,6 +59,17 @@
         "startStory": "When you have registered and are logged in, you are able to create stories. Press the menu-item stories and press the 'Add' button. This will guide you throught the first steps of creating your story by adding a title. Do not worry to much about it because you always will be able to update it.",
         "startChapter": "After the creation of your story title, you will find yourself on the story dashboard in which you are now able to add chapters, characters, items and story specific settings. Navigate to the chapters and create your first chapter.",
         "authorDescription": "During your process you will find the generic field author description. This field was added for the writer to add memo's about certain items. In the future, I try to establish an export way in which it will also be possible to add a bibliography about all your story specific settings, items and characters. Author description would then be the field that will not be printed out."
+      },
+      "events": {
+        "title": "Events",
+        "one": "Events are used to define a characters growth during your story. You can create 2 kinds of events:",
+        "two": " - an event that occurred during a chapter",
+        "three": " - an event that just occurred (without a chapter)",
+        "four": "We now support only text as a description, but the option to raise certain traits is meant to take place here."
+      },
+      "relations": {
+        "title": "Relations",
+        "description": "Relations are used to define the relations between characters. A relation is always between 2 characters and has a relation and reverse relation. Multiple relations can be defined between characters."
       },
       "markdown": {
         "title": "How to use MarkDown",
@@ -83,6 +109,7 @@
     "passwordEdit": {
       "header": "Welcome {{user}}",
       "alert": "You still need to enter some information to complete your registration.",
+      "alertUserName": "This username is already in use.",
       "message": "Please provide all the necessary fields to update your password.",
       "newPassword": "New password",
       "oldPassword": "Old password",
@@ -148,7 +175,7 @@
     },
     "delete": {
       "header": "Remove story {{title}}",
-      "message": "Are you sure to remove this story?"
+      "message": "Are you sure to remove this story? All subsequent chapters, characters, items and settings will be removed."
     }
   },
   "chapter": {
@@ -176,6 +203,43 @@
       "alert": "You still need to enter some information to complete the chapter."
     }
   },
+  "event": {
+    "list": {
+      "header": "Events",
+      "message": "This list contains all events you have written thus far."
+    },
+    "view": {
+      "header": "Event {{title}}",
+      "message": "This page contains all your event information."
+    },
+    "delete": {
+      "header": "Remove event {{title}}",
+      "message": "Are you sure to remove this event?"
+    },
+    "edit": {
+      "header": "Event information",
+      "alert": "You still need to enter some information to complete the event."
+    }
+  },
+  "relation": {
+    "parent": "Main character",
+    "list": {
+      "header": "Relations",
+      "message": "This list contains all relations you have written thus far."
+    },
+    "view": {
+      "header": "Relation {{title}}",
+      "message": "This page contains all your relation information."
+    },
+    "delete": {
+      "header": "Remove relation between {{personA}} and {{personB}}",
+      "message": "Are you sure to remove this relation?"
+    },
+    "edit": {
+      "header": "Relation information",
+      "alert": "You still need to enter some information to complete the relation."
+    }
+  },
   "character": {
     "firstname": "Firstname",
     "lastname": "Lastname",
@@ -192,7 +256,13 @@
     },
     "view": {
       "header": "Character {{title}}",
-      "message": "This page contains all your character information."
+      "message": "This page contains all your character information.",
+      "tabs": {
+        "personal": "Personal traits",
+        "statistic": "Statistic traits",
+        "events": "Occurred events",
+        "relations": "Relations"
+      }
     },
     "delete": {
       "header": "Remove character {{title}}",
@@ -214,7 +284,11 @@
     },
     "view": {
       "header": "Item {{title}}",
-      "message": "This page contains all your item information."
+      "message": "This page contains all your item information.",
+      "tabs": {
+        "requiredStatistic": "Required statistic traits",
+        "statistic": "Statistic traits"
+      }
     },
     "delete": {
       "header": "Remove item {{title}}",

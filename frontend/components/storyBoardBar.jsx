@@ -13,7 +13,7 @@ const StoryBoardBar = ({
       <nav>
         <ol className="breadcrumb">
           {breadCrumbs.map(b => (
-            <li className="breadcrumb-item">
+            <li key={`bread-${b.name}`} className="breadcrumb-item">
               <Link to={b.path}>
                 {i18n.t(`navigation.breadCrumbs.${b.name}`)}
               </Link>

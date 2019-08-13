@@ -26,11 +26,22 @@ A story consists out
   - Items
     - Name
     - ItemType
+    - Authors description
     - Description
     - Created
     - List of titles
     - List of personal traits (exceptionally)
     - List of statistical traits
+  - Skills
+    - Name
+    - Authors description
+    - Description
+    - list of required powers
+    - list of required statistic traits
+    - list of required personal traits
+    - damage
+    - MP use
+    - Energy use
 
 ## Login
 The app should be user specific. This means that the App holds a minimum security measure for unwilling eyes. (Since the data is stored on the chrome DB, no data will be sent to a remote server)
@@ -56,13 +67,12 @@ A user should be able to create certain subTypes for a generic itembase (used pe
   - notes
 
 A user should be able to print out the complete story.
-  - PDF / EBook selection
-  - Select print size (A4, A5, ...) only on PDF
-  - Insert a Cover image (or just the name of the story)
-  - Insert a foreword (only if you haven't defined one as a chapter yet)
-  - Choose a lettertype for the text (only on PDF)
-  - Insert a backword (only if you haven't defined one as a chapter yet)
-  - Insert a back Cover (only PDF)
-  -
+  - PDF or EBook selection or both
+    - Select print size (A4, A5, ...) only on PDF
+    - Insert a Cover image (or just the name of the story)
+    - Insert a foreword (only if you haven't defined one as a chapter yet)
+    - Choose a lettertype for the text (only on PDF)
+    - Insert a backword (only if you haven't defined one as a chapter yet)
+    - Insert a back Cover (only PDF)
 
-=> A defined list for item, personal and statistical traits will be made as default option.
+=> A defined list for item, personal and statistical traits will be made as default option so that a bibliography is created.

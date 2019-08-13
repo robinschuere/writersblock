@@ -20,7 +20,7 @@ const ItemList = ({
     history.push(`/stories/${storyId}/items/new`);
   };
 
-  const handleStartRemove = (item) => {
+  const handleRemove = (item) => {
     history.push(`/stories/${storyId}/items/${item.id}/delete`);
   };
 
@@ -28,7 +28,7 @@ const ItemList = ({
     <List
       i18n={i18n}
       onAdd={handleAdd}
-      onRemove={handleStartRemove}
+      onRemove={handleRemove}
       mobile={mobile}
       linkToPath="items"
       columns={[

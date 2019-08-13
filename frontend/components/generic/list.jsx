@@ -5,7 +5,7 @@ import constants from '../../constants';
 import Button from './button';
 
 const List = ({
-  columns, mobile, items, linkToPath, onRemove, onAdd, customActions, i18n,
+  columns, mobile, items, linkToPath, onRemove, onAdd, customActions, i18n, noView,
 }) => {
   const showValue = (column, item) => {
     if (column.format) {
@@ -18,19 +18,22 @@ const List = ({
   };
 
   const renderColumn = column => (mobile
-    ? <th><h5>{column.columnName}</h5></th>
-    : <th><h4>{column.columnName}</h4></th>);
+    ? <th key={column.columnName}><h5>{column.columnName}</h5></th>
+    : <th key={column.columnName}><h4>{column.columnName}</h4></th>);
 
-  const renderValue = (column, item) => (mobile
-    ? <td><p>{showValue(column, item)}</p></td>
-    : <td><h5>{showValue(column, item)}</h5></td>);
+  const renderValue = (column, item) => {
+    if (column.renderField) {
+      return <td key={`value-${item.id}-${column.fieldName}`}>{column.renderField(item)}</td>;
+    }
+    return <td key={`value-${item.id}-${column.fieldName}`}><p>{showValue(column, item)}</p></td>;
+  };
 
   return (
     <table className="table table-sm table-hover table-condensed">
       <thead>
         <tr key="list.head">
           { onAdd && (
-            <th>
+            <th key="column-add">
               <Button onClick={onAdd}>
                 {i18n.t('generic.add')}
               </Button>
@@ -41,16 +44,19 @@ const List = ({
               ? null
               : renderColumn(column)
           ))}
+          {onRemove && <th key="column-remove" />}
         </tr>
       </thead>
       <tbody>
         {items && items.length > 0 && items.map(item => (
           <tr key={`list.item.${item.id}`}>
-            <td>
-              <Button color="green" linkTo={`${linkToPath}/${item.id}`}>
-                {i18n.t('generic.view')}
-              </Button>
-            </td>
+            { !noView && (
+              <td>
+                <Button color="green" linkTo={`${linkToPath}/${item.id}`}>
+                  {i18n.t('generic.view')}
+                </Button>
+              </td>
+            )}
 
             {columns.map((column, index) => (
               index > (constants.mobileListColumns - 1) && mobile
@@ -83,15 +89,17 @@ const List = ({
 
 List.propTypes = {
   mobile: PropTypes.bool.isRequired,
+  noView: PropTypes.bool,
   i18n: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({
     fieldName: PropTypes.string,
     columnName: PropTypes.string,
     format: PropTypes.func,
+    renderField: PropTypes.func,
     formatFields: PropTypes.arrayOf(PropTypes.string.isRequired),
   })).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  linkToPath: PropTypes.string.isRequired,
+  linkToPath: PropTypes.string,
   onAdd: PropTypes.func,
   onRemove: PropTypes.func,
   customActions: PropTypes.arrayOf(PropTypes.shape({
@@ -102,6 +110,8 @@ List.propTypes = {
 };
 
 List.defaultProps = {
+  linkToPath: '',
+  noView: false,
   onAdd: undefined,
   onRemove: undefined,
   customActions: undefined,

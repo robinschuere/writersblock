@@ -27,7 +27,7 @@ export const formatDate = (date) => {
 
 export const formatAmount = (list = []) => list.length;
 
-const alphabeticalSort = (a, b) => {
+export const alphabeticalSort = (a, b) => {
   const labelA = a.label.toUpperCase();
   const labelB = b.label.toUpperCase();
 
@@ -45,6 +45,7 @@ export const getOptionsFromStorySetting = (
 ) => getStorySettingsByStory(store, storyId)
   .filter(f => f.type === typeId && (subType ? f.subType === subType : true))
   .map(f => ({
+    id: f.id,
     value: f.id,
     label: f.name,
     longDescription: [f.subType ? i18n.t(`storySetting.types.${typeId}.subTypes.${f.subType}.title`) : '', f.description].filter(x => x).join(': '),
@@ -143,11 +144,24 @@ export const updateStorySettingList = (array, object) => {
 };
 
 export const getYesNoOptions = i18n => [
-  { value: true, label: i18n.t('generic.yes') },
-  { value: false, label: i18n.t('generic.no') },
+  { value: 'yes', label: i18n.t('generic.yes') },
+  { value: 'no', label: i18n.t('generic.no') },
 ];
 
 export const getTrueFalseOptions = i18n => [
-  { value: true, label: i18n.t('generic.true') },
-  { value: false, label: i18n.t('generic.false') },
+  { value: 'true', label: i18n.t('generic.true') },
+  { value: 'false', label: i18n.t('generic.false') },
 ];
+
+export const isYes = value => value === 'yes';
+export const isTrue = value => value === 'true';
+
+export const formatCharacter = characterStore => (characterId) => {
+  const character = characterStore[characterId];
+  return `${character.firstName} ${character.lastName}`;
+};
+
+export const formatChapter = chapterStore => (chapterId) => {
+  const chapter = chapterStore[chapterId];
+  return chapter ? `${chapter.counter}: ${chapter.title}` : '';
+};
