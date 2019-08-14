@@ -48,6 +48,9 @@
       "message": "Bent u zeker dat u het onderstaande document wil importeren?"
     }
   },
+  "version": {
+    "title": "Versies Writersblock"
+  },
   "about": {
     "dev": "Robin Schuerewegen",
     "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React.",
@@ -595,6 +598,7 @@
     "logout": "Afmelden",
     "login": "Aanmelden",
     "import": "Importeer verhaal",
+    "version": "Release notes",
     "breadCrumbs": {
       "storyOverview": "Verhalen overzicht",
       "chapterOverview": "Hoofdstukken overzicht",

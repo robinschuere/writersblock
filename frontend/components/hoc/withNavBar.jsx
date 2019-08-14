@@ -48,7 +48,7 @@ const WithNavBar = (WrappedComponent) => {
 
         {showNavBar && <div style={{ marginBottom: 150 }} />}
 
-        {showNavBar && <Footer i18n={i18n} />}
+        {showNavBar && !mobile && <Footer i18n={i18n} />}
 
       </Fragment>
     );

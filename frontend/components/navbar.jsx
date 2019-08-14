@@ -14,7 +14,7 @@ import StoryBoardBar from './storyBoardBar';
 
 const NavBar = (props) => {
   const {
-    userStore, dispatch, language, i18n, changeLanguage, computedMatch, storyStore,
+    userStore, dispatch, language, i18n, changeLanguage, computedMatch, storyStore, mobile,
   } = props;
   const user = userStore.loggedInUser;
 
@@ -92,6 +92,7 @@ const NavBar = (props) => {
                   <Link className="nav-link" onClick={toggleOff} to="/login">{i18n.t('navigation.login')}</Link>
                 </li>
               )}
+
               <li className={`nav-item dropdown ${languageState ? 'show' : ''}`}>
                 <a className="nav-link dropdown-toggle" onClick={toggleLanguage}>
                   {i18n.t('user.language')}
@@ -103,7 +104,19 @@ const NavBar = (props) => {
                     </div>
                   </Fragment>
                 )}
-
+              </li>
+              {mobile && (
+                <Fragment>
+                  <li className="nav-item">
+                    <Link className="nav-link" onClick={toggleOff} to="/contact">{i18n.t('navigation.contact')}</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" onClick={toggleOff} to="/about">{i18n.t('navigation.about')}</Link>
+                  </li>
+                </Fragment>
+              )}
+              <li className="nav-item">
+                <Link className="nav-link" onClick={toggleOff} to="/version">{i18n.t('navigation.version')}</Link>
               </li>
             </ul>
           </div>
@@ -129,6 +142,7 @@ NavBar.propTypes = {
   changeLanguage: PropTypes.func.isRequired,
   computedMatch: PropTypes.object.isRequired,
   storyStore: PropTypes.object.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default NavBar;

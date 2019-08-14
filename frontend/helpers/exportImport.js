@@ -52,3 +52,15 @@ export const readFileAsync = path => new Promise((resolve, reject) => {
 
   reader.readAsText(path);
 });
+
+export const readFromSource = fileName => new Promise((resolve, reject) => {
+  const client = new XMLHttpRequest();
+  client.open('GET', `./releaseNotes/${fileName}`, true);
+  client.onload = () => {
+    resolve(client.response);
+  };
+  client.onerror = () => {
+    reject(client.statusText);
+  };
+  client.send();
+});

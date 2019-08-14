@@ -6,6 +6,7 @@ import reducers from '../reducers';
 import Home from './home';
 import NotFound from './notFound';
 import About from './about';
+import Version from './version';
 import Contact from './contact';
 import Login from './login';
 import Register from './register';
@@ -89,6 +90,7 @@ const Router = () => {
         <PublicRoute exact path="/" component={Home} {...props} />
         <PublicRoute path="/about" component={About} {...props} />
         <PublicRoute path="/contact" component={Contact} {...props} />
+        <PublicRoute path="/version" component={Version} {...props} />
         <PublicRoute path="/login" component={Login} {...props} />
         <PublicRoute path="/register" component={Register} {...props} />
 

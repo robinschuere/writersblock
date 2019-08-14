@@ -48,6 +48,9 @@
       "message": "Are you sure that you would like to insert to underneath file?"
     }
   },
+  "version": {
+    "title": "Versions Writersblock"
+  },
   "about": {
     "dev": "Robin Schuerewegen",
     "synopsis": "A programmer working as a consultant in different fields. This app was created due to an overflowing idea. Written in React.",
@@ -596,6 +599,7 @@
     "logout": "Logout",
     "login": "Login",
     "import": "import story",
+    "version": "Release notes",
     "breadCrumbs": {
       "storyOverview": "Story overview",
       "chapterOverview": "Chapter overview",

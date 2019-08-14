@@ -43,6 +43,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: path.join(__dirname, './frontend/app/favicon/favicon.ico'), to: path.join(__dirname, './bundled/favicon.ico') },
+      { from: path.join(__dirname, './frontend/releaseNotes'), to: path.join(__dirname, './bundled/releaseNotes') },
     ]),
   ],
   optimization: {

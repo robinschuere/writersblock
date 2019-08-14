@@ -12,6 +12,10 @@ export default {
 
   mobileListColumns: 2,
 
+  releaseNotes: [
+    '1.0.0',
+  ],
+
   storyRoutes: {
     characters: 'characters',
     chapters: 'chapters',
