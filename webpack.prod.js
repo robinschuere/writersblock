@@ -46,7 +46,4 @@ module.exports = {
       { from: path.join(__dirname, './frontend/releaseNotes'), to: path.join(__dirname, './bundled/releaseNotes') },
     ]),
   ],
-  optimization: {
-    minimize: true,
-  },
 };

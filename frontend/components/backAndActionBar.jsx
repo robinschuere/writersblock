@@ -8,7 +8,7 @@ const BackAndActionBar = ({
 }) => (
   <Fragment>
     <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark">
         <Button secondary size={mobile ? 'md' : 'sm'} icon="times" color="black" onClick={onClose}>{!mobile && i18n.t('generic.back')}</Button>
         <Button secondary size={mobile ? 'md' : 'sm'} icon={acceptIcon} color="white" toRight onClick={onAccept}>{!mobile && acceptText}</Button>
       </nav>
