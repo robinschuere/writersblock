@@ -1,13 +1,12 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { getOptionsFromStorySetting } from '../helpers';
-import Label from './generic/label';
 import LabelAndField from './generic/labelAndField';
+import Alert from './generic/alert';
 
 const StorySettingSelect = ({
-  storySettingStore, storyId, value, onChange, type, validatedOnce, i18n, parent,
+  storySettingStore, storyId, value, onChange, type, validatedOnce, i18n,
 }) => {
   const options = getOptionsFromStorySetting(
     storySettingStore, storyId, type, i18n,
@@ -16,10 +15,10 @@ const StorySettingSelect = ({
   if (options.length > 0) {
     return (
       <Fragment>
-        <LabelAndField validatedOnce={validatedOnce} type="select" label={i18n.t(`${parent}.${type}`)} options={options} onChange={onChange} value={value} />
+        <LabelAndField validatedOnce={validatedOnce} type="select" label={i18n.t(`storySetting.types.${type}.type`)} options={options} onChange={onChange} value={value} />
         {selectedOption && (
           <Fragment>
-            <Label level="info" fieldLabel={selectedOption.description} />
+            <Alert level="info" message={selectedOption.description} />
             <br />
           </Fragment>
         )}
@@ -28,7 +27,7 @@ const StorySettingSelect = ({
   }
   return (
     <Fragment>
-      <Label level="warning" fieldLabel={i18n.t(`${parent}.edit.${type}`)} />
+      <Alert level="warn" message={i18n.t(`storySetting.types.${type}.missing`)} />
       <br />
     </Fragment>
   );
@@ -38,7 +37,6 @@ StorySettingSelect.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   storyId: PropTypes.string.isRequired,
-  parent: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,

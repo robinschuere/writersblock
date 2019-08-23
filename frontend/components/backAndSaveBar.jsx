@@ -1,20 +1,15 @@
-import React, { Fragment } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from './generic/button';
+import BackAndActionBar from './backAndActionBar';
 
-const BackAndSaveBar = ({
-  onClose, onAccept, i18n, mobile,
-}) => (
-  <Fragment>
-    <div style={{ position: 'sticky', top: 0, zIndex: 999 }}>
-      <nav className="navbar navbar-dark bg-dark">
-        <Button secondary size={mobile ? 'md' : 'sm'} icon="times" color="black" onClick={onClose}>{!mobile && i18n.t('generic.back')}</Button>
-        <Button secondary size={mobile ? 'md' : 'sm'} icon="save" color="white" toRight onClick={onAccept}>{!mobile && i18n.t('generic.save')}</Button>
-      </nav>
-    </div>
-    <div style={{ marginTop: 25 }} />
-  </Fragment>
+const BackAndSaveBar = props => (
+  <BackAndActionBar
+    {...props}
+    acceptText={props.i18n.t('generic.save')}
+    acceptIcon="save"
+  />
 );
 
 BackAndSaveBar.propTypes = {

@@ -1,13 +1,12 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { getOptionsFromStorySetting } from '../helpers';
-import Label from './generic/label';
 import LabelAndText from './generic/labelAndText';
+import Alert from './generic/alert';
 
 const StorySettingLabel = ({
-  storySettingStore, storyId, value, type, i18n, parent,
+  storySettingStore, storyId, value, type, i18n,
 }) => {
   const options = getOptionsFromStorySetting(
     storySettingStore, storyId, type, i18n,
@@ -16,10 +15,10 @@ const StorySettingLabel = ({
   if (options.length > 0) {
     return (
       <Fragment>
-        <LabelAndText type="select" label={i18n.t(`${parent}.${type}`)} value={value} options={options} />
+        <LabelAndText type="select" label={i18n.t(`storySetting.types.${type}.type`)} value={value} options={options} />
         {selectedOption && (
           <Fragment>
-            <Label level="info" fieldLabel={selectedOption.description} />
+            <Alert level="info" message={selectedOption.description} />
             <br />
           </Fragment>
         )}
@@ -28,7 +27,7 @@ const StorySettingLabel = ({
   }
   return (
     <Fragment>
-      <Label level="warning" fieldLabel={i18n.t(`${parent}.edit.${type}`)} />
+      <Alert level="warn" message={i18n.t(`storySetting.types.${type}.missing`)} />
       <br />
     </Fragment>
   );
@@ -38,7 +37,6 @@ StorySettingLabel.propTypes = {
   storySettingStore: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   storyId: PropTypes.string.isRequired,
-  parent: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string,
 };

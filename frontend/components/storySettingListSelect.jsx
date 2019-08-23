@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,9 +5,10 @@ import { getOptionsFromStorySetting } from '../helpers';
 import NumberInput from './generic/numberInput';
 import Label from './generic/label';
 import List from './generic/list';
+import Alert from './generic/alert';
 
 const StorySettingListSelect = ({
-  storySettingStore, storyId, values, type, i18n, onChange, parent, subType, readOnly, mobile,
+  storySettingStore, storyId, values, type, i18n, onChange, subType, readOnly, mobile,
 }) => {
   const options = getOptionsFromStorySetting(
     storySettingStore, storyId, type, i18n, subType,
@@ -22,12 +22,12 @@ const StorySettingListSelect = ({
     });
 
   if (options.length === 0) {
-    return (<Label level="warning" fieldLabel={i18n.t(`${parent}.edit.${type}`)} />);
+    return (<Alert level="warn" message={i18n.t(`storySetting.types.${type}.missing`)} />);
   }
 
   const renderField = option => (
     <Fragment>
-      {readOnly && <Label level="warning" fieldLabel={option.level} />}
+      {readOnly && <Label level="info" fieldLabel={option.level} />}
       {!readOnly && (
         <NumberInput onChange={e => onChange(option.value, e)} value={option.level} />
       )}
@@ -57,7 +57,6 @@ StorySettingListSelect.propTypes = {
   })),
   i18n: PropTypes.object.isRequired,
   storyId: PropTypes.string.isRequired,
-  parent: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   subType: PropTypes.string,
   onChange: PropTypes.func,

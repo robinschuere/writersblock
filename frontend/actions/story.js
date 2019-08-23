@@ -6,6 +6,7 @@ import { removeStorySettingsFromStory, getStorySettingsByStories } from './story
 import { removeItemsFromStory, getItemsByStories } from './item';
 import { removeEventsFromStory, getEventsByStories } from './event';
 import { removeRelationsFromStory, getRelationsByStories } from './relation';
+import { removePlacesFromStory, getPlacesByStories } from './place';
 
 export const addStory = async (story, dispatch) => {
   const newStory = await storyDb.insert(story);
@@ -18,6 +19,7 @@ export const addStory = async (story, dispatch) => {
   await getStorySettingsByStories([newStory], dispatch);
   await getItemsByStories([newStory], dispatch);
   await getEventsByStories([newStory], dispatch);
+  await getPlacesByStories([newStory], dispatch);
   await getRelationsByStories([newStory], dispatch);
 };
 
@@ -44,6 +46,7 @@ export const removeStory = async (story, dispatch) => {
   await removeItemsFromStory(story.id, dispatch);
   await removeEventsFromStory(story.id, dispatch);
   await removeRelationsFromStory(story.id, dispatch);
+  await removePlacesFromStory(story.id, dispatch);
   await storyDb.remove(story);
   dispatch({ type: constants.actions.removeStory, value: story });
 };
@@ -60,4 +63,6 @@ export const getStories = async (userId, dispatch) => {
   await getItemsByStories(stories, dispatch);
   await getEventsByStories(stories, dispatch);
   await getRelationsByStories(stories, dispatch);
+  await getPlacesByStories(stories, dispatch);
+  return stories;
 };

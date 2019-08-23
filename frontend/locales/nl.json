@@ -19,6 +19,7 @@
     "updatedAt": "laatst geüpdated",
     "placeholders": {
       "title": "Geef de titel",
+      "status": "Selecteer de status",
       "authorDescription": "Geef de auteursbeschrijving",
       "description": "Geef de beschrijving",
       "name": "Geef een naam",
@@ -27,6 +28,12 @@
       "relation": "Geef de relatie",
       "reverseRelation": "Geef de wederzijdse relatie"
     },
+    "storyStatus": {
+      "draft": "Opzet",
+      "completed": "Afgewerkt",
+      "revision": "Revisie"
+    },
+    "status": "Status",
     "markdown": "Markdown",
     "yes": "Ja",
     "no": "Neen",
@@ -36,17 +43,20 @@
     "chapter": "Hoofdstuk",
     "character": "Personage",
     "level": "Niveau",
+    "relationParent": "Relatie-eigenaar",
     "relation": "Relatie",
     "reverseRelation": "Wederzijdse relatie",
     "export": {
       "wbson": "Exporteer"
     },
     "import": {
+      "action": "Importeer",
       "importing": "Het bestand wordt geïmporteerd",
       "title": "Importeer bestaand formaat",
       "file": "Selecteer document (.wbson)",
       "message": "Bent u zeker dat u het onderstaande document wil importeren?"
-    }
+    },
+    "search": "Zoeken"
   },
   "version": {
     "title": "Versies Writersblock"
@@ -118,6 +128,9 @@
       "message": "Onderstaand vind u alle gegevens terug met betrekking tot uw profiel in Writersblock."
     },
     "passwordEdit": {
+      "action": "Pas wachtwoord gegevens aan",
+      "remove": "Verwijder gebruiker",
+      "drop": "ONOMKEERBARE ACTIE: DB WORD VERWIJDERD",
       "header": "Welkom {{user}}",
       "alert": "Er dient nog informatie ingegeven te worden alvorens het registreren kan voltooid worden.",
       "alertUserName": "Deze gebruikersnaam is alreeds in gebruik.",
@@ -135,6 +148,7 @@
     "lastname": "Achternaam",
     "email": "Email",
     "dateOfBirth": "geboortedatum",
+    "persistLogin": "Blijf aangemeld",
     "country": "Land",
     "city": "Stad",
     "postal": "Postcode",
@@ -159,6 +173,10 @@
       "header": "Hallo {{username}}",
       "message": "Het onderstaande formulier dient om meer data over uzelf weer te geven."
     },
+    "delete": {
+      "header": "Spijtig dat je gaat.",
+      "message": "We gaan je missen. Al je verhalen en onderliggende objecten worden verwijderd. Tot weerziens."
+    },
     "edit": {
       "header": "Hallo {{username}}",
       "message": "Het onderstaande formulier dient om meer data over uzelf weer te geven.",
@@ -172,7 +190,16 @@
       "header": "Verhalen",
       "message": "Deze lijst bevat alle verhalen die u tot nog toe geschreven hebt",
       "columns": {
-        "chapters": "Hoofdstukken"
+        "chapters": "HOOFD",
+        "items": "VOOR",
+        "places": "PlAATS",
+        "characters": "PERS",
+        "storySettings": "BIB",
+        "chaptersLong": "Hoofdstukken",
+        "itemsLong": "Voorwerpen",
+        "placesLong": "Plaatsen",
+        "charactersLong": "Personages",
+        "storySettingsLong": "Bibliografie"
       }
     },
     "view": {
@@ -203,7 +230,8 @@
     },
     "view": {
       "header": "Hoofdstuk {{title}}",
-      "message": "Deze pagina bevat alle hoofdstuk informatie"
+      "message": "Deze pagina bevat alle hoofdstuk informatie",
+      "events": "Evenementen"
     },
     "delete": {
       "header": "Verwijder hoofdstuk {{title}}",
@@ -254,9 +282,6 @@
   "character": {
     "firstname": "Voornaam",
     "lastname": "Achternaam",
-    "race": "Ras",
-    "gender": "Geslacht",
-    "traits": "Karaktertrekken",
     "placeholders": {
       "firstname": "Geef de voornaam",
       "lastname": "Geef de achternaam"
@@ -281,14 +306,10 @@
     },
     "edit": {
       "header": "Personage informatie",
-      "alert": "Er dient nog informatie ingegeven te worden alvorens het personage kan opgeslagen worden.",
-      "race": "Er werden nog geen rassen gedefinieerd.",
-      "gender": "Er werden nog geen geslachten gedefinieerd.",
-      "trait": "Er werden nog geen karaktertrekken gedefinieerd"
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het personage kan opgeslagen worden."
     }
   },
   "item": {
-    "item": "Type voorwerp",
     "list": {
       "header": "Voorwerpen",
       "message": "Deze lijst bevat alle voorwerpen die u tot nog toe beschreven hebt"
@@ -307,8 +328,25 @@
     },
     "edit": {
       "header": "Voorwerp informatie",
-      "alert": "Er dient nog informatie ingegeven te worden alvorens het voorwepr kan opgeslagen worden.",
-      "noStorySettingItems": "U dient eerst verhaal instellingen voor type voorwerp toe te voegen alvorens u een type voorwerp kan selecteren."
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het voorwerp kan opgeslagen worden."
+    }
+  },
+  "place": {
+    "list": {
+      "header": "Plaatsen",
+      "message": "Deze lijst bevat alle plaatsen die u tot nog toe beschreven hebt"
+    },
+    "view": {
+      "header": "Plaats {{title}}",
+      "message": "Deze pagina bevat alle plaats informatie"
+    },
+    "delete": {
+      "header": "Verwijder plaats {{title}}",
+      "message":"Ben je zeker dat je deze plaats wil verwijderen?"
+    },
+    "edit": {
+      "header": "plaats informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens de plaats kan opgeslagen worden."
     }
   },
   "storySetting": {
@@ -332,6 +370,8 @@
     "types": {
       "item": {
         "title": "Voorwerp",
+        "missing": "Er werden nog geen voorwerpen gedefinieerd",
+        "type": "Type voorwerp",
         "description": "Een voorwerp beschrijft een object dat kan gedragen of opgenomen worden.",
         "subTypes": {
           "clothing": {
@@ -353,11 +393,21 @@
           "tool": {
             "title": "Gebruiksvoorwerp",
             "description": "Dit zijn objecten die gebruikt worden in het dagdagelijkse leven"
+          },
+          "food": {
+            "title": "Voedsel",
+            "description": "Dit zijn objecten die gebruikt worden in het dagdagelijkse leven om te nuttigen"
+          },
+          "resource": {
+            "title": "Bron",
+            "description": "Dit zijn objecten die gebruikt worden als bron om voorwerpen mee te bouwen"
           }
         }
       },
       "trait": {
         "title": "Karaktertrek",
+        "missing": "Er werden nog geen karaktertrekken gedefinieerd",
+        "type": "Karaktertrek",
         "description": "Een karaktertrek is iets dat aan een personage wordt gegeven om het personage 'zichzelf' te laten zijn.",
         "subTypes": {
           "personal": {
@@ -372,6 +422,8 @@
       },
       "title": {
         "title": "Titel",
+        "missing": "Er werden nog geen titels gedefinieerd",
+        "type": "Titel",
         "description": "Een aanduiding van waardigheid, eer, onderscheiding of voorrang.",
         "subTypes": {
           "artisan": {
@@ -390,22 +442,38 @@
       },
       "race": {
         "title": "Ras & ethniciteit",
+        "missing": "Er werden nog geen rassen gedefinieerd",
+        "type": "Ras",
         "description": "Beschrijft de ethnische origine van een individueel"
       },
       "gender": {
         "title": "Geslacht",
+        "missing": "Er werden nog geen geslachten gedefinieerd",
+        "type": "Geslacht",
         "description": "Beschrijft de sexe van een individueel."
       },
       "status": {
         "title": "Status",
+        "missing": "Er werden nog geen statussen gedefinieerd",
+        "type": "Status",
         "description": "Beschrijft een abnormale status die een voorwerp of persoon met zich meedraagt (omwille van een evenement of beperkt in tijd)"
+      },
+      "placeType": {
+        "title": "Plaats type",
+        "missing": "Er werden nog geen plaats types gedefinieerd",
+        "type": "Type plaats",
+        "description": "Een plaatstype beschrijft een generieke plaatsbeschrijving. Bijvoorbeeld een dorp."
       },
       "notes": {
         "title": "Notitie",
+        "missing": "Er werden nog geen notities gedefinieerd",
+        "type": "Notitie",
         "description": "Een notitie dient ervoor om bepaalde verhaal specifieke benodigdheden te omschrijven."
       },
       "power": {
         "title": "Kracht",
+        "missing": "Er werden nog geen krachten gedefinieerd",
+        "type": "Kracht",
         "description": "Beschijft mogelijke krachten die een personage of voorwerp draagt.",
         "subTypes": {
           "innate": {
@@ -584,6 +652,30 @@
       "luck": {
         "name": "Geluk",
         "description": "Een maatstaf voor het geluk van een personage. Geluk kan van invloed zijn op alles."
+      },
+      "woodland": {
+        "name": "Bos",
+        "description": "Land bedekt met bomen en begroeiing."
+      },
+      "forest": {
+        "name": "Woud",
+        "description": "Een groot stuk land eveneens bedekt met bomen en begroeiing."
+      },
+      "village": {
+        "name": "Dorp",
+        "description": "Een kleine gemeenschap of groep huizen in een landelijke omgeving, groter dan een gehucht en meestal kleiner dan een stad."
+      },
+      "town": {
+        "name": "Stad",
+        "description": "Een dichtbevolkt gebied, meestal kleiner dan een gemeente en groter dan een dorp, met vaste grenzen en bepaalde lokale overheden."
+      },
+      "city": {
+        "name": "Gemeente",
+        "description": "Een gemeente, meestal bestuurd door een burgemeester en een raad van wethouders of raadsleden..."
+      },
+      "citadel": {
+        "name": "Fort",
+        "description": "Een fort dat een stad bestuurt en gebruikt wordt in de controle van de inwoners en als verdediging tijdens een aanval of belegering."
       }
     }
   },
@@ -592,6 +684,7 @@
     "chapters": "Hoofdstukken",
     "characters": "Personages",
     "items": "Voorwerpen",
+    "places": "Plaatsen",
     "storySettings": "Verhaal specifieke instellingen",
     "contact": "Contact",
     "about": "Over",

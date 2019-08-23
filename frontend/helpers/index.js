@@ -148,6 +148,12 @@ export const getYesNoOptions = i18n => [
   { value: 'no', label: i18n.t('generic.no') },
 ];
 
+export const getStoryStatusOptions = i18n => [
+  { value: 'draft', label: i18n.t('generic.storyStatus.draft') },
+  { value: 'completed', label: i18n.t('generic.storyStatus.completed') },
+  { value: 'revision', label: i18n.t('generic.storyStatus.revision') },
+];
+
 export const getTrueFalseOptions = i18n => [
   { value: 'true', label: i18n.t('generic.true') },
   { value: 'false', label: i18n.t('generic.false') },

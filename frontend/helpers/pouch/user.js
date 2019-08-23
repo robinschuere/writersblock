@@ -17,6 +17,14 @@ const login = async (userName, password) => {
   return existingUsers.find(r => r.userName === userName && r.password === password);
 };
 
+const getPersistentUser = async () => {
+  const existingUsers = await users.getAll();
+  if (existingUsers.length === 1 && existingUsers[0].persistLogin === 'yes') {
+    return existingUsers[0];
+  }
+  return null;
+};
+
 const getByUserName = async (userName) => {
   const existingUsers = await users.getAll();
   return !!existingUsers.find(r => r.userName === userName);
@@ -27,5 +35,6 @@ export default {
   getAll,
   getById: login,
   login,
+  getPersistentUser,
   getByUserName,
 };

@@ -33,14 +33,28 @@ A story consists out
     + Authors description
     + Description
     - List of titles
-    - List of personal traits (exceptionally)
-    - List of statistical traits
+    + List of statistic traits
+    + List of required statistic traits
   - Events
     + Description
     + Authors description
     - statistical trait change
     - personal trait change
     - title gain
+  - Places
+    - Name
+    - Description
+    - Authors description
+    - List of characters
+    - List of main resources
+  - Nations and Countries
+    - Name
+    - Description
+    - Authors description
+    - List of places
+
+## Nations and countries
+It should be possible to create a kind of structure in where places are linked to a coordinates based system.
 
 ## Login
 The app should be user specific. This means that the App holds a minimum security measure for unwilling eyes. (Since the data is stored on the chrome DB, no data will be sent to a remote server)
@@ -60,10 +74,11 @@ A user should be able to create certain subTypes for a generic itembase (used pe
   + traits defined per subtype
   + titles defined per subtype
   - power defined per subtype
-  - status
-  - genders
-  - race
-  - notes
+  + status
+  + genders
+  + race
+  + notes
+  + placeType
 
 Story export options:
   - as PDF
@@ -73,5 +88,8 @@ Story export options:
 
 Story import options
   + json (.wbson)
+
+Guide
+  - Add a guide so users get a general understanding of how the app works.
 
 => A pre-defined list for item, personal and statistical traits will be made by WritersBlock (purely optional for the user to create)

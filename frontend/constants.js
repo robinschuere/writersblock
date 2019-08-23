@@ -7,12 +7,16 @@ export default {
   itemDb: 'writersblock_item_db',
   eventDb: 'writersblock_event_db',
   relationDb: 'writersblock_relation_db',
+  placeDb: 'writersblock_place_db',
 
   dbVersion: '0.0.1',
 
   mobileListColumns: 2,
 
+  enableDropper: false,
+
   releaseNotes: [
+    '1.1.0',
     '1.0.0',
   ],
 
@@ -79,7 +83,10 @@ export default {
 
   routesWithoutNavBarOrFooter: [
     '/import',
+    '/register',
+    '/user',
     '/user/edit',
+    '/user/delete',
     '/user/changepassword',
     '/stories/new',
     '/stories/:storyId/edit',
@@ -87,19 +94,27 @@ export default {
     '/stories/:storyId/:storyRoute/:parentId/events/new',
     '/stories/:storyId/:storyRoute/:parentId/events/:eventId/delete',
     '/stories/:storyId/:storyRoute/:parentId/events/:eventId',
+    '/stories/:storyId/places/new',
+    '/stories/:storyId/places/:placeId',
+    '/stories/:storyId/places/:placeId/edit',
+    '/stories/:storyId/places/:placeId/delete',
     '/stories/:storyId/chapters/new',
+    '/stories/:storyId/chapters/:chapterId',
     '/stories/:storyId/chapters/:chapterId/edit',
     '/stories/:storyId/chapters/:chapterId/delete',
     '/stories/:storyId/characters/new',
+    '/stories/:storyId/characters/:characterId',
     '/stories/:storyId/characters/:characterId/relations/new',
     '/stories/:storyId/characters/:characterId/relations/:relationId',
     '/stories/:storyId/characters/:characterId/relations/:relationId/delete',
     '/stories/:storyId/characters/:characterId/edit',
     '/stories/:storyId/characters/:characterId/delete',
     '/stories/:storyId/items/new',
+    '/stories/:storyId/items/:itemId',
     '/stories/:storyId/items/:itemId/edit',
     '/stories/:storyId/items/:itemId/delete',
     '/stories/:storyId/storySettings/new',
+    '/stories/:storyId/storySettings/:storySettingId',
     '/stories/:storyId/storySettings/:storySettingId/edit',
     '/stories/:storyId/storySettings/:storySettingId/delete',
   ],
@@ -107,25 +122,19 @@ export default {
   breadCrumbRoutes: {
     storyOverview: '/stories/:storyId',
     chapterOverview: '/stories/:storyId/chapters',
-    chapterView: '/stories/:storyId/chapters/:chapterId',
     characterOverview: '/stories/:storyId/characters',
-    characterView: '/stories/:storyId/characters/:characterId',
     storySettingOverview: '/stories/:storyId/storySettings',
-    storySettingView: '/stories/:storyId/storySettings/:storySettingId',
     itemOverview: '/stories/:storyId/items',
-    itemView: '/stories/:storyId/items/:itemId',
+    placeOverview: '/stories/:storyId/places',
   },
 
   routesWithStoryBoard: [
     '/stories/:storyId',
     '/stories/:storyId/chapters',
-    '/stories/:storyId/chapters/:chapterId',
     '/stories/:storyId/storySettings',
-    '/stories/:storyId/storySettings/:storySettingId',
     '/stories/:storyId/characters',
-    '/stories/:storyId/characters/:characterId',
     '/stories/:storyId/items',
-    '/stories/:storyId/items/:itemId',
+    '/stories/:storyId/places',
   ],
 
   locales: {
@@ -146,13 +155,15 @@ export default {
 
   storySetting: {
     types: {
-      item: {
+      itemType: {
         subTypes: {
           clothing: 'clothing',
           armor: 'armor',
           weapon: 'weapon',
           trinket: 'trinket',
           tool: 'tool',
+          food: 'food',
+          resource: 'resource',
         },
       },
       trait: {
@@ -172,6 +183,7 @@ export default {
       race: 'race',
       gender: 'gender',
       status: 'status',
+      placeType: 'place',
       power: {
         subTypes: {
           innate: 'innate',
@@ -371,6 +383,34 @@ export default {
         name: 'luck',
         type: 'trait',
         subType: 'statistic',
+      },
+      {
+        name: 'woodland',
+        type: 'placeType',
+      },
+      {
+        name: 'forest',
+        type: 'placeType',
+      },
+      {
+        name: 'village',
+        type: 'placeType',
+      },
+      {
+        name: 'town',
+        type: 'placeType',
+      },
+      {
+        name: 'city',
+        type: 'placeType',
+      },
+      {
+        name: 'citadel',
+        type: 'placeType',
+      },
+      {
+        name: 'plains',
+        type: 'placeType',
       },
     ],
   },

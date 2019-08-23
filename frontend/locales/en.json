@@ -19,6 +19,7 @@
     "updatedAt": "Updated at",
     "placeholders": {
       "title": "Enter the title",
+      "status": "Select the status",
       "authorDescription": "Enter the author description",
       "description": "Enter the description",
       "name": "Enter a name",
@@ -27,6 +28,12 @@
       "relation": "Enter a relation",
       "reverseRelation": "Enter a reverse relation"
     },
+    "storyStatus": {
+      "draft": "Draft",
+      "completed": "Completed",
+      "revision": "Revision"
+    },
+    "status": "Status",
     "markdown": "Markdown",
     "yes": "Yes",
     "no": "No",
@@ -36,17 +43,20 @@
     "chapter": "Chapter",
     "character": "Character",
     "level": "Level",
+    "relationParent": "Relation-owner",
     "relation": "Relation",
     "reverseRelation": "Reverse relation",
     "export": {
       "wbson": "Export"
     },
     "import": {
+      "action": "Import",
       "importing": "The file is being imported.",
       "title": "Import existing format",
       "file": "Select file (.wbson)",
       "message": "Are you sure that you would like to insert to underneath file?"
-    }
+    },
+    "search": "Search"
   },
   "version": {
     "title": "Versions Writersblock"
@@ -92,7 +102,7 @@
     }
   },
   "contact": {
-  "header": "Contact me",
+    "header": "Contact me",
     "message": "You can't ... Yet ..."
   },
   "logout": {
@@ -119,6 +129,8 @@
       "message": "Below you can find all your information regarding your profile on writersblock."
     },
     "passwordEdit": {
+      "action": "Edit password",
+      "remove": "Remove user",
       "header": "Welcome {{user}}",
       "alert": "You still need to enter some information to complete your registration.",
       "alertUserName": "This username is already in use.",
@@ -136,6 +148,7 @@
     "lastname": "Lastname",
     "email": "Email",
     "dateOfBirth": "Date of birth",
+    "persistLogin": "Persist login",
     "country": "Country",
     "city": "City",
     "postal": "Postal code",
@@ -160,6 +173,10 @@
       "header": "Hello {{username}}",
       "message": "The form below is used for setting your user information."
     },
+    "delete": {
+      "header": "Such a shame.",
+      "message": "You will be missed. Your user, stories and subsequent objects will be removed."
+    },
     "edit": {
       "header": "Hello {{username}}",
       "message": "The form below is used for setting your user information.",
@@ -173,7 +190,16 @@
       "header": "Stories",
       "message": "This list contains all stories you have written thus far.",
       "columns": {
-        "chapters": "Chapters"
+        "chapters": "CHAP",
+        "items": "ITEM",
+        "places": "PLACE",
+        "characters": "CHAR",
+        "storySettings": "BIB",
+        "chaptersLong": "Chapters",
+        "itemsLong": "Items",
+        "placesLong": "Places",
+        "charactersLong": "Characters",
+        "storySettingsLong": "Bibliography"
       }
     },
     "view": {
@@ -204,7 +230,8 @@
     },
     "view": {
       "header": "Chapter {{title}}",
-      "message": "This page contains all your chapter information."
+      "message": "This page contains all your chapter information.",
+      "events": "Events"
     },
     "delete": {
       "header": "Remove chapter {{title}}",
@@ -255,9 +282,6 @@
   "character": {
     "firstname": "Firstname",
     "lastname": "Lastname",
-    "race": "Race",
-    "gender": "Gender",
-    "traits": "Traits",
     "placeholders": {
       "firstname": "Enter a firstname",
       "lastname": "Enter a lastname"
@@ -282,14 +306,10 @@
     },
     "edit": {
       "header": "Character information",
-      "alert": "You still need to enter some information to complete the character.",
-      "race": "No races were defined yet.",
-      "gender": "No genders were defined yet.",
-      "trait": "No traits were defined yet"
+      "alert": "You still need to enter some information to complete the character."
     }
   },
   "item": {
-    "item": "Item type",
     "list": {
       "header": "Items",
       "message": "This list contains all items you have defined thus far."
@@ -308,8 +328,25 @@
     },
     "edit": {
       "header": "Item information",
-      "alert": "You still need to enter some information to complete the item.",
-      "item": "No items were defined yet."
+      "alert": "You still need to enter some information to complete the item."
+    }
+  },
+  "place": {
+    "list": {
+      "header": "Places",
+      "message": "This list contains all places you have defined thus far."
+    },
+    "view": {
+      "header": "Place {{title}}",
+      "message": "This page contains all your place information."
+    },
+    "delete": {
+      "header": "Remove palce {{title}}",
+      "message": "Are you sure to remove this place?"
+    },
+    "edit": {
+      "header": "Place information",
+      "alert": "You still need to enter some information to complete the place."
     }
   },
   "storySetting": {
@@ -331,8 +368,10 @@
       "message": "Are you sure to remove this story setting? Subsequent data will not be updated!"
     },
     "types": {
-      "item": {
-        "title": "Item",
+      "itemType": {
+        "title": "Item type",
+        "missing": "No item types were defined yet.",
+        "type": "Item type",
         "description": "An item describes an object that can be worn or can be taken.",
         "subTypes": {
           "clothing": {
@@ -354,11 +393,21 @@
           "tool": {
             "title": "Tool",
             "description": "These are objects for general use."
+          },
+          "food": {
+            "title": "Food",
+            "description": "These are objects for general use. Mainly for eating."
+          },
+          "resource": {
+            "title": "Resource",
+            "description": "These are objects that are used to create other items."
           }
         }
       },
       "trait": {
         "title": "Trait",
+        "missing": "No traits were defined yet.",
+        "type": "Trait",
         "description": "A trait is something about your character that makes the character 'his own'.",
         "subTypes": {
           "personal": {
@@ -373,6 +422,8 @@
       },
       "title": {
         "title": "Title",
+        "missing": "No titles were defined yet.",
+        "type": "Title",
         "description": "An appellation of dignity, honor, distinction, or preeminence attached to a person or family by virtue of rank, office, precedent, privilege, attainment, or lands.",
         "subTypes": {
           "artisan": {
@@ -391,22 +442,38 @@
       },
       "race": {
         "title": "Race",
+        "missing": "No races were defined yet.",
+        "type": "Race",
         "description": "A race describes the ethnitic origin of an individual"
       },
       "gender": {
         "title": "Gender",
+        "missing": "No genders were defined yet.",
+        "type": "Gender",
         "description": "A gender describes the sexe of an individual"
       },
       "status": {
         "title": "Status",
+        "missing": "No statusses were defined yet.",
+        "type": "Status",
         "description": "A status describes an abnormality (fixed in time or event) that can be placed on a character or item."
+      },
+      "placeType": {
+        "title": "Place type",
+        "missing": "No place types were defined yet.",
+        "type": "Place type",
+        "description": "A place type describes a generic place ie a forest or a village."
       },
       "notes": {
         "title": "Notes",
+        "missing": "No notes were defined yet.",
+        "type": "Notes",
         "description": "A note serves the purpose to write specific informative text."
       },
       "power": {
         "title": "Power",
+        "missing": "No powers were defined yet.",
+        "type": "Power",
         "description": "Describes the possibility of an item or character to exert a lot of force.",
         "subTypes": {
           "innate": {
@@ -585,6 +652,30 @@
       "luck": {
         "name": "Luck",
         "description": "A measure of a character's luck. Luck might influence anything."
+      },
+      "woodland": {
+        "name": "Woodland",
+        "description": "Land covered with woods or trees."
+      },
+      "forest": {
+        "name": "Forest",
+        "description": "A large tract of land covered with trees and underbrush."
+      },
+      "village": {
+        "name": "Village",
+        "description": "A small community or group of houses in a rural area, larger than a hamlet and usually smaller than a town."
+      },
+      "town": {
+        "name": "Town",
+        "description": "A thickly populated area, usually smaller than a city and larger than a village, having fixed boundaries and certain local powers of government"
+      },
+      "city": {
+        "name": "City",
+        "description": "A municipality, usually governed by a mayor and a board of aldermen or councilmen."
+      },
+      "citadel": {
+        "name": "Citadel",
+        "description": "A fortress that commands a city and is used in the control of the inhabitants and in defense during attack or siege."
       }
     }
   },
@@ -593,6 +684,7 @@
     "chapters": "Chapters",
     "characters": "Characters",
     "items": "Items",
+    "places": "Places",
     "storySettings": "Story specific settings",
     "contact": "Contact",
     "about": "About",
