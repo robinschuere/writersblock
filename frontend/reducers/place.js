@@ -1,38 +1,6 @@
-import constants from '../constants';
+import reducerBuilder from './reducerBuilder';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case constants.actions.addPlace:
-    case constants.actions.updatePlace:
-      return {
-        ...state,
-        [action.value.id]: action.value,
-      };
-    case constants.actions.removePlace:
-      delete state[action.value.id]; // eslint-disable-line no-param-reassign
-      return state;
-    case constants.actions.setPlaces: {
-      const newState = { ...state };
-      action.value.forEach((place) => {
-        newState[place.id] = place;
-      });
-      return newState;
-    }
-    case constants.actions.emptyPlaces: {
-      return {};
-    }
-    case constants.actions.removePlaces: {
-      const newState = { ...state };
-      action.value.forEach((place) => {
-        newState[place.id] = undefined;
-      });
-      return newState;
-    }
-
-    default:
-      return state;
-  }
-};
+const reducer = reducerBuilder('Place');
 
 export default reducer;
 

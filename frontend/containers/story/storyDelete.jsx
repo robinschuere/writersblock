@@ -20,6 +20,7 @@ const Story = ({
 
   const handleDelete = async () => {
     await removeStory(story, dispatch);
+    setCompleted(true);
   };
 
   if (completed || !story) {
@@ -34,7 +35,7 @@ const Story = ({
         onClose={handleClose}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('story.delete.header', { title: story.title })}</h4>
         <p>{i18n.t('story.delete.message')}</p>
       </div>

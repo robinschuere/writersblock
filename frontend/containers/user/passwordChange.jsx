@@ -42,7 +42,7 @@ const PasswordChange = ({
         i18n={i18n}
       />
 
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('credentials.passwordEdit.header', { title: userStore.loggedInUser.userName })}</h4>
         <p>{i18n.t('credentials.passwordEdit.message')}</p>
         <form className="form-horizontal">

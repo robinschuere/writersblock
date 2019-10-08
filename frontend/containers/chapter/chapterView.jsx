@@ -2,21 +2,23 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Redirect } from 'react-router-dom';
 
-import { getYesNoOptions, isYes } from '../../helpers';
+import { isYes } from '../../helpers';
 import { getEventsByChapter } from '../../reducers/event';
 
 import WithNavBar from '../../components/hoc/withNavBar';
 import LabelAndText from '../../components/generic/labelAndText';
 import EventList from '../../components/eventList';
-import constants from '../../constants';
+import { constants } from '../../constants';
 import BackAndEditBar from '../../components/backAndEditBar';
 
 const Chapter = (props) => {
   const {
-    computedMatch, chapterStore, history, i18n, eventStore, mobile,
+    computedMatch, withAuthorDescription, storyStore, chapterStore,
+    history, i18n, eventStore, mobile,
   } = props;
   const { storyId, chapterId } = computedMatch.params;
   const chapter = chapterStore[chapterId];
+  const story = storyStore[storyId];
   const [completed, setCompleted] = useState(false);
 
   const handleChangeChapter = () => {
@@ -37,14 +39,15 @@ const Chapter = (props) => {
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <form className="form-horizontal">
-          <h5>{i18n.t('chapter.edit.header')}</h5>
+          <h5>{i18n.t('chapter.view.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.title')} value={chapter.title} />
-          <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={chapter.authorDescription} />
-          <LabelAndText type="select" label={i18n.t('generic.markdown')} value={chapter.markdown} options={getYesNoOptions(i18n)} />
+          {withAuthorDescription && (
+            <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={chapter.authorDescription} />
+          )}
           <LabelAndText type="number" label={i18n.t('generic.counter')} value={chapter.counter} />
-          <LabelAndText type="textarea" label={i18n.t('chapter.text')} value={chapter.text} isMarkDown={isYes(chapter.markdown)} />
+          <LabelAndText type="textarea" label={i18n.t('chapter.text')} value={chapter.text} isMarkDown={isYes(story.withMarkdown)} />
           <h4>{i18n.t('chapter.view.events')}</h4>
           <EventList
             {...props}
@@ -60,6 +63,8 @@ const Chapter = (props) => {
 
 Chapter.propTypes = {
   computedMatch: PropTypes.object.isRequired,
+  withAuthorDescription: PropTypes.bool.isRequired,
+  storyStore: PropTypes.object.isRequired,
   chapterStore: PropTypes.object.isRequired,
   eventStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

@@ -1,21 +1,40 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import constants from '../../constants';
+import debounce from 'debounce';
+import { constants } from '../../constants';
 import { getValue, filterItems, getSearchValues } from './helpers/list';
+import updateSearch from '../../actions/search';
 
 import Button from './button';
 import SearchField from './searchField';
 
 const List = ({
-  columns, mobile, items, linkToPath, onRemove, onAdd, customActions, i18n, noView,
+  computedMatch, columns, mobile, items, linkToPath, dispatch, onView,
+  onRemove, onAdd, customActions, i18n, noView, noSearch, searchStore,
 }) => {
-  const [search, setSearch] = useState('');
+  const { path } = computedMatch || {};
+  const [search, setSearch] = useState(noSearch ? '' : searchStore[path]);
   const searchValues = getSearchValues(items, columns, i18n);
   const filteredItems = filterItems(items, searchValues, search);
 
-  const renderColumn = column => (mobile
-    ? <th key={column.columnName}><h5>{column.columnName}</h5></th>
-    : <th key={column.columnName}><h4>{column.columnName}</h4></th>);
+  const handleSearch = (value) => {
+    updateSearch(path, value, dispatch);
+    setSearch(value);
+  };
+
+  const renderColumn = (column) => {
+    const headerStyle = { textAlign: 'center', minWidth: '75px' };
+    if (column.renderColumnHeader) {
+      return (
+        <th style={headerStyle}>
+          {column.renderColumnHeader}
+        </th>
+      );
+    }
+    return mobile
+      ? (<th style={headerStyle} key={column.columnName}><h4>{column.columnName}</h4></th>)
+      : (<th style={headerStyle} key={column.columnName}><h3>{column.columnName}</h3></th>);
+  };
 
   const renderValue = (column, item) => {
     if (column.renderField) {
@@ -25,14 +44,14 @@ const List = ({
   };
 
   const searchField = (
-    <SearchField value={search} onChange={setSearch} i18n={i18n} />
+    <SearchField value={search} onChange={debounce(handleSearch, 200)} i18n={i18n} />
   );
 
   return (
     <Fragment>
       {mobile && (
         <div className="form-group">
-          {searchField}
+          {!noSearch && searchField}
         </div>
       )}
 
@@ -55,18 +74,20 @@ const List = ({
                 : renderColumn(column)
             ))}
             <th key="column-remove" colSpan={customActions ? [onRemove, ...customActions].filter(x => x).length : 1}>
-              {!mobile && searchField}
+              {(!mobile && !noSearch) && searchField}
             </th>
           </tr>
         </thead>
         <tbody>
           {filteredItems && filteredItems.length > 0 && filteredItems.map(item => (
             <tr key={`list.item.${item.id}`}>
-              {!noView && (
-                <td>
-                  <Button color="green" icon="binoculars" linkTo={`${linkToPath}/${item.id}`}>
-                    {!mobile && i18n.t('generic.view')}
-                  </Button>
+              {(onAdd || !noView) && (
+                <td key={`list.item.${item.id}-view`}>
+                  {!noView && (
+                    <Button color="green" icon="binoculars" linkTo={!onView ? `${linkToPath}/${item.id}` : undefined} onClick={() => (onView ? onView(item.id) : undefined)}>
+                      {!mobile && i18n.t('generic.view')}
+                    </Button>
+                  )}
                 </td>
               )}
 
@@ -77,7 +98,7 @@ const List = ({
               ))}
 
               {onRemove && (
-                <td>
+                <td key={`list.item.${item.id}-remove`} className="text-right">
                   <Button color="red" icon="trash" onClick={() => { onRemove(item); }}>
                     {!mobile && i18n.t('generic.delete')}
                   </Button>
@@ -85,7 +106,7 @@ const List = ({
               )}
               {customActions && customActions.length > 0 && (
                 customActions.map(e => (
-                  <td>
+                  <td key={`list.item.${item.id}-custom-${e.text}`} className="text-right">
                     <Button color={e.color} icon={e.icon} onClick={() => { e.action(item); }}>
                       {!mobile && e.text}
                     </Button>
@@ -96,15 +117,24 @@ const List = ({
           ))}
         </tbody>
       </table>
+      <div style={{ marginBottom: 150 }} />
     </Fragment>
   );
 };
 
 List.propTypes = {
+  /* Defines the route where the list is running. This for search functionality */
+  computedMatch: PropTypes.object.isRequired,
+  /* Defines the searchStore */
+  searchStore: PropTypes.object.isRequired,
+  /* Defines the dispatch functionality for altering the searchStore */
+  dispatch: PropTypes.func.isRequired,
   /* Defines if the list will show less columns (due to device width) */
   mobile: PropTypes.bool.isRequired,
   /* Defines if the view button is invisible */
   noView: PropTypes.bool,
+  /* Defines if the search field invisible */
+  noSearch: PropTypes.bool,
   /* the translation object */
   i18n: PropTypes.object.isRequired,
   /* The columns to show */
@@ -126,6 +156,8 @@ List.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   /* Defines the viewpath and navigation to the view screens */
   linkToPath: PropTypes.string,
+  /* A custom function to override the view action */
+  onView: PropTypes.func,
   /* A function for adding new items */
   onAdd: PropTypes.func,
   /* A function to remove an existing value */
@@ -141,6 +173,8 @@ List.propTypes = {
 List.defaultProps = {
   linkToPath: '',
   noView: false,
+  noSearch: false,
+  onView: undefined,
   onAdd: undefined,
   onRemove: undefined,
   customActions: undefined,

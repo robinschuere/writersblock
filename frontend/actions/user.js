@@ -1,5 +1,5 @@
 import userDb from '../helpers/pouch/user';
-import constants from '../constants';
+import { constants } from '../constants';
 import { getStories, removeStory } from './story';
 
 export const updateUser = async (user, dispatch) => {
@@ -13,24 +13,30 @@ export const updateUser = async (user, dispatch) => {
 export const loginUser = async (username, password, dispatch) => {
   const user = await userDb.login(username, password);
   if (user) {
+    await getStories(user.id, dispatch);
     dispatch({
       type: constants.actions.loginUser,
       value: user,
     });
-    getStories(user.id, dispatch);
     return user;
   }
   return undefined;
 };
 
+export const logoutUser = async (user, dispatch) => {
+  const updatedUser = { ...user, persistLogin: 'no' };
+  await userDb.update(updatedUser);
+  dispatch({ type: constants.actions.logoutUser });
+  dispatch({ type: constants.actions.emptyStories });
+  dispatch({ type: constants.actions.emptyChapters });
+  dispatch({ type: constants.actions.emptyStorySettings });
+};
+
 export const loginPersistentUser = async (dispatch) => {
   const persistentUser = await userDb.getPersistentUser();
+
   if (persistentUser) {
-    dispatch({
-      type: constants.actions.loginUser,
-      value: persistentUser,
-    });
-    getStories(persistentUser.id, dispatch);
+    await loginUser(persistentUser.userName, persistentUser.password, dispatch);
     return persistentUser;
   }
   return undefined;

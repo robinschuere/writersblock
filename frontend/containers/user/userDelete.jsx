@@ -34,7 +34,7 @@ const UserDelete = ({
   return (
     <Fragment>
       <BackAndDeleteBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('user.delete.header')}</h4>
         <p>{i18n.t('user.delete.message')}</p>
       </div>

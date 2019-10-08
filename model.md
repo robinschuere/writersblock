@@ -6,13 +6,14 @@ A story consists out
   - General data
     + Title
     + Synopsis
+    + written in Markdown
+    - functionalities
   - Chapters
     + Sequence
     + Authors description
     + Description
     + Title
     + Chapter
-    + written in Markdown
     + List of events
   - Characters
     + Firstname
@@ -20,33 +21,45 @@ A story consists out
     - Birthdate or year
     + Authors description
     + Description
-    - List of items
-    - List of titles
-    - growth functionality
-    + List of personal traits
-    + List of statistical traits
+    + growth functionality
     + List of events
-    + List of relations
   - Items
     + Name
     + ItemType
     + Authors description
     + Description
-    - List of titles
+    + title
     + List of statistic traits
     + List of required statistic traits
   - Events
     + Description
     + Authors description
-    - statistical trait change
-    - personal trait change
-    - title gain
+    + personal trait change (list of traits)
+    + statistic trait change (list of traits)
+    - list with acquired or lost items
+    - list with acquired relations
+    - list with acquired or lost titles
+    - list with acquired or lost powers
   - Places
-    - Name
-    - Description
-    - Authors description
+    + Name
+    + Description
+    + Authors description
     - List of characters
     - List of main resources
+  - Powers
+    + Name
+    + Description
+    + Authors description
+    + List of power appliers
+      - target (self / other)
+      - type (damage / recover)
+      - prop (HP / SP / MP / ST / TRAIT)
+      - basedOn (trait)
+      - calc type ( % / #)
+      - amount
+      - affectedTrait (only when prop = trait)
+    - List of statistic traits
+    - List of required statistic traits
   - Nations and Countries
     - Name
     - Description

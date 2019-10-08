@@ -23,10 +23,10 @@ const EventDelete = ({
 
   const handleDelete = async () => {
     await removeEvent(event, dispatch);
-    handleClose();
+    setCompleted(true);
   };
 
-  if (completed) {
+  if (completed || !event) {
     return <Redirect to={`/stories/${storyId}/${storyRoute}/${parentId}`} />;
   }
 
@@ -38,7 +38,7 @@ const EventDelete = ({
         onClose={handleClose}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('event.delete.header', { title: event.name })}</h4>
         <p>{i18n.t('event.delete.message')}</p>
       </div>

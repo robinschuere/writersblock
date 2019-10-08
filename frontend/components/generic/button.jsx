@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Icon from './icon';
 
-class Button extends React.Component {
-  getClasses() {
-    const {
-      color, toRight, secondary, size,
-    } = this.props;
+const Button = ({
+  linkTo, onClick, children, icon, disabled, spinner,
+  color, toRight, secondary, size,
+}) => {
+  const getClasses = () => {
     let s = 'btn btn-lg ';
     const outline = secondary ? 'outline-' : '';
     switch (color) {
@@ -36,54 +36,56 @@ class Button extends React.Component {
     s += toRight ? 'float-right ' : '';
 
     return s;
-  }
+  };
 
-  render() {
-    const {
-      linkTo, onClick, children, icon,
-    } = this.props;
-
-    if (linkTo) {
-      return (
-        <Link
-          className={this.getClasses()}
-          to={linkTo}
-          onClick={onClick}
-        >
-          {icon && (<Icon name={icon} />)}
-          {icon && children && <span style={{ marginRight: 5 }} />}
-          {children}
-        </Link>
-      );
-    }
+  if (linkTo) {
     return (
-      <button
-        type="button"
-        className={this.getClasses()}
+      <Link
+        className={getClasses()}
+        to={linkTo}
         onClick={onClick}
       >
         {icon && (<Icon name={icon} />)}
         {icon && children && <span style={{ marginRight: 5 }} />}
         {children}
-      </button>
+      </Link>
     );
   }
-}
+
+  return (
+    <button
+      type="button"
+      className={getClasses()}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {spinner && <Icon name="spinner fa-pulse" />}
+      {spinner && children && <span style={{ marginRight: 5 }} />}
+      {icon && (<Icon name={icon} />)}
+      {icon && children && <span style={{ marginRight: 5 }} />}
+      {children}
+    </button>
+  );
+};
 
 Button.propTypes = {
   color: PropTypes.oneOf(['blue', 'red', 'orange', 'green', 'black', 'white']),
   toRight: PropTypes.bool,
+  spinner: PropTypes.bool,
   onClick: PropTypes.func,
   linkTo: PropTypes.string,
   icon: PropTypes.string,
   children: PropTypes.node,
   secondary: PropTypes.bool,
+  disabled: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 Button.defaultProps = {
   color: 'blue',
   toRight: false,
+  spinner: false,
+  disabled: false,
   onClick: () => { },
   linkTo: '',
   icon: '',

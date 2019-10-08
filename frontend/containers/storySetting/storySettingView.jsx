@@ -8,7 +8,7 @@ import LabelAndText from '../../components/generic/labelAndText';
 import BackAndEditBar from '../../components/backAndEditBar';
 
 const StorySetting = ({
-  computedMatch, storySettingStore, history, i18n, mobile,
+  computedMatch, withAuthorDescription, storySettingStore, history, i18n, mobile,
 }) => {
   const { storyId, storySettingId } = computedMatch.params;
   const storySetting = storySettingStore[storySettingId];
@@ -32,14 +32,16 @@ const StorySetting = ({
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <form className="form-horizontal">
-          <h5>{i18n.t('storySetting.edit.header')}</h5>
+          <h5>{i18n.t('storySetting.view.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.name')} value={storySetting.name} />
           <LabelAndText type="select" options={getStorySettingOptions(i18n)} label={i18n.t('generic.type')} value={storySetting.type} />
           {subTypes && <LabelAndText type="select" options={subTypes} label={i18n.t('generic.subType')} value={storySetting.subType} />}
-          <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={storySetting.authorDescription} />
-          <LabelAndText type="textarea" label={i18n.t('generic.description')} value={storySetting.description} />
+          {withAuthorDescription && (
+            <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={storySetting.authorDescription} />
+          )}
+          <LabelAndText type="textarea" amountOfRows={mobile || withAuthorDescription ? 10 : 20} label={i18n.t('generic.description')} value={storySetting.description} />
         </form>
       </div>
     </Fragment>
@@ -48,6 +50,7 @@ const StorySetting = ({
 
 StorySetting.propTypes = {
   computedMatch: PropTypes.object.isRequired,
+  withAuthorDescription: PropTypes.bool.isRequired,
   storySettingStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,

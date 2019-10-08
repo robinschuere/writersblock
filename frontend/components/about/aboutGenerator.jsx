@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import constants from '../../constants';
+import { constants } from '../../constants';
 
 const AboutGenerator = ({
   i18n, sectionName,

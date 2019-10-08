@@ -60,7 +60,7 @@ const Register = ({
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('credentials.register')}</h4>
         {showAlert && <Alert message={i18n.t('credentials.passwordEdit.alert')} level="error" onClose={() => setAlert(false)} />}
         {showUserNameAlert && <Alert message={i18n.t('credentials.passwordEdit.alertUserName')} level="error" onClose={() => setUserNameAlert(false)} />}

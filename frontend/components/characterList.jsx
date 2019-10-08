@@ -6,9 +6,10 @@ import { formatDate } from '../helpers';
 
 import List from './generic/list';
 
-const CharacterList = ({
-  computedMatch, mobile, characterStore, history, i18n,
-}) => {
+const CharacterList = (props) => {
+  const {
+    computedMatch, characterStore, history, i18n,
+  } = props;
   const { storyId } = computedMatch.params;
   const characters = Object.keys(characterStore)
     .filter(key => characterStore[key].storyId === storyId)
@@ -26,15 +27,13 @@ const CharacterList = ({
 
   return (
     <List
-      i18n={i18n}
+      {...props}
       onAdd={handleAdd}
       onRemove={handleStartRemove}
-      mobile={mobile}
       linkToPath="characters"
       columns={[
         { columnName: i18n.t('character.firstname'), fieldName: 'firstName' },
         { columnName: i18n.t('character.lastname'), fieldName: 'lastName' },
-        { columnName: i18n.t('generic.authorDescription'), fieldName: 'authorDescription' },
         { columnName: i18n.t('generic.createdAt'), fieldName: 'createdAt', format: formatDate },
         { columnName: i18n.t('generic.updatedAt'), fieldName: 'updatedAt', format: formatDate },
       ]}

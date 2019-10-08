@@ -9,6 +9,8 @@ const BackAndRegisterBar = props => (
     {...props}
     acceptText={props.i18n.t('credentials.register')}
     acceptIcon="user"
+    closeIcon="arrow-circle-left"
+    closeText={props.i18n.t('generic.back')}
   />
 );
 

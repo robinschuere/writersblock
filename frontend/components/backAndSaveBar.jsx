@@ -9,6 +9,8 @@ const BackAndSaveBar = props => (
     {...props}
     acceptText={props.i18n.t('generic.save')}
     acceptIcon="save"
+    closeIcon="times"
+    closeText={props.i18n.t('generic.cancel')}
   />
 );
 

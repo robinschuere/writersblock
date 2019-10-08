@@ -20,6 +20,7 @@ const Item = ({
 
   const handleDelete = async () => {
     await removeItem(item, dispatch);
+    setCompleted(true);
   };
 
   if (completed || !item) {
@@ -29,7 +30,7 @@ const Item = ({
   return (
     <Fragment>
       <BackAndDeleteBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('item.delete.header', { title: item.name })}</h4>
         <p>{i18n.t('item.delete.message')}</p>
       </div>

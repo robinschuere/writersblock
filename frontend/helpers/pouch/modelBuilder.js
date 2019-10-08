@@ -1,6 +1,6 @@
 import PouchDB from 'pouchdb';
 import uuid from 'uuid';
-import constants from '../../constants';
+import { constants } from '../../constants';
 import model from './model';
 
 export default (table) => {
@@ -56,15 +56,16 @@ export default (table) => {
 
   const remove = async (row) => {
     const toRemove = { ...row };
-    toRemove.updated = new Date().toISOString();
-    toRemove._deleted = true; // eslint-disable-line no-underscore-dangle
-    const result = await database.put(toRemove);
+    const result = await database.remove(toRemove);
+    console.info(`row ${row.id} of ${row.name} was deleted.`); // eslint-disable-line no-console
+    console.info(result); // eslint-disable-line no-console
     return result;
   };
 
   const drop = async () => {
-    new PouchDB(table)
+    database
       .destroy()
+      .then(() => { console.info(`${table}.successfully dropped`); }) // eslint-disable-line no-console
       .catch((e) => {
         console.error(`An error occurred while removing a row for table ${table}`, e); // eslint-disable-line no-console
       });

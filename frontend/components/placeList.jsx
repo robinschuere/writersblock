@@ -6,9 +6,10 @@ import { formatDate } from '../helpers';
 
 import List from './generic/list';
 
-const PlaceList = ({
-  computedMatch, mobile, placeStore, history, i18n,
-}) => {
+const PlaceList = (props) => {
+  const {
+    computedMatch, placeStore, history, i18n,
+  } = props;
   const { storyId } = computedMatch.params;
   const places = Object.keys(placeStore)
     .map(key => ({
@@ -26,14 +27,12 @@ const PlaceList = ({
 
   return (
     <List
-      i18n={i18n}
+      {...props}
       onAdd={handleAdd}
       onRemove={handleRemove}
-      mobile={mobile}
       linkToPath="places"
       columns={[
         { columnName: i18n.t('generic.name'), fieldName: 'name' },
-        { columnName: i18n.t('generic.authorDescription'), fieldName: 'authorDescription' },
         { columnName: i18n.t('generic.createdAt'), fieldName: 'createdAt', format: formatDate },
         { columnName: i18n.t('generic.updatedAt'), fieldName: 'updatedAt', format: formatDate },
       ]}

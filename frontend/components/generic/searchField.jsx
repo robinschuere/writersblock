@@ -19,7 +19,7 @@ const SearchField = ({ value, onChange, i18n }) => (
         color: '#aaa',
       }}
     />
-    <TextInput style={{ paddingLeft: '2.375rem' }} value={value} onChange={onChange} placeholder={i18n.t('generic.search')} />
+    <TextInput id="list-searchField" style={{ paddingLeft: '2.375rem' }} value={value} onChange={onChange} placeholder={i18n.t('generic.search')} />
   </Fragment>
 );
 

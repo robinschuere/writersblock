@@ -5,7 +5,7 @@ import Button from '../components/generic/button';
 import WithNavBar from '../components/hoc/withNavBar';
 
 const NotFound = ({ i18n }) => (
-  <div className="container">
+  <div className="container-fluid">
     <div className="row">
       <div className="col-md-12">
         <div className="error-template">

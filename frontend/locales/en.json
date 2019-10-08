@@ -1,32 +1,44 @@
 {
   "generic": {
     "app": "Writersblock",
+    "total": "Total",
+    "active": "Active",
+    "passive": "Passive",
     "underDevelopment": "As you might see, this page is still under construction. Do not hesitate to use other functionalities.",
     "edit": "Edit",
     "delete": "delete",
     "view": "View",
     "add": "Add",
     "back": "Back",
+    "cancel": "Cancel",
     "save": "Save",
-    "title": "Title",
     "authorDescription": "Author description",
     "description": "Description",
     "name": "Name",
     "counter": "#",
     "type": "Type",
     "subType": "Subtype",
-    "createdAt": "Created at",
-    "updatedAt": "Updated at",
+    "createdAt": "Created",
+    "updatedAt": "Updated",
+    "trait": "Trait",
+    "traitMaximum": "Maximum level trait",
+    "withMarkdown": "With markdown",
+    "withAuthorDescription": "With authors description",
+    "unique": "Unique",
+    "parent": "Main character",
     "placeholders": {
+      "slot": "Select a slot",
       "title": "Enter the title",
+      "type": "Select the type",
       "status": "Select the status",
       "authorDescription": "Enter the author description",
       "description": "Enter the description",
       "name": "Enter a name",
       "chapter": "Select a chapter",
       "character": "Select a character",
-      "relation": "Enter a relation",
-      "reverseRelation": "Enter a reverse relation"
+      "traitMaximum": "Enter the maximum",
+      "withAuthorDescription": "Select yes or no",
+      "event": "Select event"
     },
     "storyStatus": {
       "draft": "Draft",
@@ -35,17 +47,51 @@
     },
     "status": "Status",
     "markdown": "Markdown",
+    "statType": "Active or Passive power",
+    "powerType": "Type",
+    "targetType": "Target",
+    "self": "Self",
+    "other": "Other",
+    "percentage": "%",
+    "amount": "#",
+    "damage": "Damage",
+    "recover": "Recover",
+    "damageType": "Dam / rec",
+    "calcType": "% / #",
+    "damagePropType": "on",
+    "health": "HP",
+    "stamina": "ST",
+    "skillPoints": "SP",
+    "magicPoints": "MP",
+    "basedOnTrait": "Trait",
+    "affectedTrait": "Affected",
+    "isEffect": "Effect",
+    "duration": "Duration",
+    "found": "Found",
+    "lost": "Lost",
+    "acquired": "Acquired",
+    "removed": "Removed",
+    "learnt": "Learnt",
+    "forgotten": "Forgotten",
     "yes": "Yes",
     "no": "No",
     "true": "True",
     "false": "False",
+    "event": "Event",
     "events": "Events",
     "chapter": "Chapter",
+    "chapters": "Chapters",
     "character": "Character",
-    "level": "Level",
-    "relationParent": "Relation-owner",
+    "characters": "Characters",
+    "power": "Power",
+    "powers": "Powers",
+    "title": "Title",
+    "titles": "Titles",
+    "item": "Item",
+    "items": "Items",
     "relation": "Relation",
-    "reverseRelation": "Reverse relation",
+    "relations": "Relations",
+    "level": "Level",
     "export": {
       "wbson": "Export"
     },
@@ -56,10 +102,29 @@
       "file": "Select file (.wbson)",
       "message": "Are you sure that you would like to insert to underneath file?"
     },
+    "list": "List",
+    "radar": "Radar",
     "search": "Search"
   },
   "version": {
     "title": "Versions Writersblock"
+  },
+  "home": {
+    "p1": "Welcome at WritersBlock. Write your own story. In blocks.",
+    "p2": "Have you ever thought: 'I would like to write a story, but i don`t know how to define my characters and I have no good way to organise this.'",
+    "p3": "Then WritersBlock is there for you.",
+    "p4": "WritersBlock was developed with better character building in mind. This means we define an event as a way for your character to grow. Events can link a character to a chapter, so no problems their whenever you seem to have lost a bit of information. ",
+    "p5": "Short:",
+    "p6": " - create a new story",
+    "p7": " - add a character",
+    "p8": " - enhance your character through events.",
+    "p9": " - add a first chapter",
+    "p10": " - and start writing",
+    "p11": "More you say?",
+    "p12": " - add your own definitions of items, places and powers.",
+    "p13": " - see your character growth through the events",
+    "p14": " - add powers and items to your character",
+    "p15": " - see what your character can wear and what the benefits are"
   },
   "about": {
     "dev": "Robin Schuerewegen",
@@ -89,16 +154,11 @@
         "three": " - an event that just occurred (without a chapter)",
         "four": "We now support only text as a description, but the option to raise certain traits is meant to take place here."
       },
-      "relations": {
-        "title": "Relations",
-        "description": "Relations are used to define the relations between characters. A relation is always between 2 characters and has a relation and reverse relation. Multiple relations can be defined between characters."
-      },
       "markdown": {
         "title": "How to use MarkDown",
         "description": "A simple and easy-to-use markup language you can use to format virtually any document",
         "url": "https://www.markdownguide.org/"
       }
-
     }
   },
   "contact": {
@@ -249,7 +309,14 @@
     },
     "view": {
       "header": "Event {{title}}",
-      "message": "This page contains all your event information."
+      "tabs": {
+        "personal": "Personal traits",
+        "statistic": "Statistic traits",
+        "items": "Items",
+        "powers": "Powers",
+        "titles": "Titles",
+        "relations": "Relations"
+      }
     },
     "delete": {
       "header": "Remove event {{title}}",
@@ -257,26 +324,90 @@
     },
     "edit": {
       "header": "Event information",
-      "alert": "You still need to enter some information to complete the event."
+      "alert": "You still need to enter some information to complete the event.",
+      "tabs": {
+        "personal": "Personal traits",
+        "statistic": "Statistic traits"
+      }
     }
   },
-  "relation": {
-    "parent": "Main character",
+  "eventTitle": {
     "list": {
-      "header": "Relations",
-      "message": "This list contains all relations you have written thus far."
+      "header": "Event titles"
     },
     "view": {
-      "header": "Relation {{title}}",
-      "message": "This page contains all your relation information."
+      "header": "Event title"
     },
     "delete": {
-      "header": "Remove relation between {{personA}} and {{personB}}",
-      "message": "Are you sure to remove this relation?"
+      "header": "Remove event title {{title}}",
+      "message": "Are you sure to remove this event title?"
     },
     "edit": {
-      "header": "Relation information",
-      "alert": "You still need to enter some information to complete the relation."
+      "header": "Event title information",
+      "alert": "You still need to enter some information to complete the event title."
+    }
+  },
+  "eventPower": {
+    "list": {
+      "header": "Event powers"
+    },
+    "view": {
+      "header": "Event power"
+    },
+    "delete": {
+      "header": "Remove event power {{title}}",
+      "message": "Are you sure to remove this event power?"
+    },
+    "edit": {
+      "header": "Event power information",
+      "alert": "You still need to enter some information to complete the event power."
+    }
+  },
+  "eventItem": {
+    "list": {
+      "header": "Event items"
+    },
+    "view": {
+      "header": "Event item"
+    },
+    "delete": {
+      "header": "Remove event item {{title}}",
+      "message": "Are you sure to remove this event item?"
+    },
+    "edit": {
+      "header": "Event item information",
+      "alert": "You still need to enter some information to complete the event item."
+    }
+  },
+  "eventRelation": {
+    "list": {
+      "header": "Event relations"
+    },
+    "view": {
+      "header": "Event relation"
+    },
+    "delete": {
+      "header": "Remove event relation {{title}}",
+      "message": "Are you sure to remove this event relation?"
+    },
+    "edit": {
+      "header": "Event relation information",
+      "alert": "You still need to enter some information to complete the event relation."
+    }
+  },
+  "growth": {
+    "withItems": "With Items",
+    "placeholders": {
+      "withItems": "Select an item"
+    },
+    "tabs": {
+      "personal": "Personal traits",
+      "statistic": "Statistic traits",
+      "items": "Items",
+      "powers": "Powers",
+      "titles": "Titles",
+      "relations": "Relations",
+      "setup": "Setup"
     }
   },
   "character": {
@@ -291,14 +422,10 @@
       "message": "This list contains all characters you have described thus far."
     },
     "view": {
-      "header": "Character {{title}}",
-      "message": "This page contains all your character information.",
-      "tabs": {
-        "personal": "Personal traits",
-        "statistic": "Statistic traits",
-        "events": "Occurred events",
-        "relations": "Relations"
-      }
+      "growth": {
+        "statistic": "View growth"
+      },
+      "header": "Character {{title}}"
     },
     "delete": {
       "header": "Remove character {{title}}",
@@ -310,13 +437,13 @@
     }
   },
   "item": {
+    "missing": "No items were defined yet",
     "list": {
       "header": "Items",
       "message": "This list contains all items you have defined thus far."
     },
     "view": {
       "header": "Item {{title}}",
-      "message": "This page contains all your item information.",
       "tabs": {
         "requiredStatistic": "Required statistic traits",
         "statistic": "Statistic traits"
@@ -341,7 +468,7 @@
       "message": "This page contains all your place information."
     },
     "delete": {
-      "header": "Remove palce {{title}}",
+      "header": "Remove place {{title}}",
       "message": "Are you sure to remove this place?"
     },
     "edit": {
@@ -349,15 +476,73 @@
       "alert": "You still need to enter some information to complete the place."
     }
   },
-  "storySetting": {
+  "power": {
     "list": {
-      "header": "Story settings",
-      "message": "This list contains all story specific settings that you have defined thus far",
-      "default": "Add a default list generated by the app."
+      "header": "Powers"
     },
     "view": {
-      "header": "Story setting {{title}}",
-      "message": "This page contains all your story setting information"
+      "header": "Power {{title}}",
+      "tabs": {
+        "statistic": "Statistic traits",
+        "requiredStatistic": "Required statistic traits",
+        "appliers": "Power appliers"
+      }
+    },
+    "delete": {
+      "header": "Remove power {{title}}",
+      "message": "Are you sure to remove this power?"
+    },
+    "edit": {
+      "header": "Power information",
+      "alert": "You still need to enter some information to complete the power.",
+      "tabs": {
+        "statistic": "Statistic traits",
+        "requiredStatistic": "Required statistic traits"
+      }
+    }
+  },
+  "powerApplier": {
+    "targetType": "Type of target",
+    "damageType": "Type of damage",
+    "damagePropType": "Prop to damage",
+    "calcType": "Type of calculation",
+    "basedOnTrait": "Percentage based on trait",
+    "amount": "Amount",
+    "affectedTrait": "Affected trait",
+    "isEffect": "Has effect",
+    "duration": "Effect duration (rounds)",
+    "placeholders": {
+      "targetType": "Select the target type",
+      "damageType": "Select the type of damage",
+      "damagePropType": "Select the prop to damage",
+      "calcType": "Select the type of calculation",
+      "basedOnTrait": "Select the trait",
+      "amount": "Enter an amount",
+      "affectedTrait": "Select the trait",
+      "isEffect": "Yes or No",
+      "duration": "Enter a duration"
+    },
+    "list": {
+      "header": "Power appliers"
+    },
+    "view": {
+      "header": "Powerapplier {{title}}"
+    },
+    "delete": {
+      "header": "Remove power applier",
+      "message": "Are you sure to remove this power applier?"
+    },
+    "edit": {
+      "header": "Power applier information",
+      "alert": "You still need to enter some information to complete the power applier."
+    }
+  },
+  "storySetting": {
+    "list": {
+      "header": "Story settings"
+    },
+    "view": {
+      "header": "Story setting {{title}}"
     },
     "edit": {
       "header": "Story setting information",
@@ -372,35 +557,16 @@
         "title": "Item type",
         "missing": "No item types were defined yet.",
         "type": "Item type",
+        "placeholder": "Select an item type",
         "description": "An item describes an object that can be worn or can be taken.",
         "subTypes": {
-          "clothing": {
-            "title": "Clothing",
-            "description": "These are objects worn by somebody"
-          },
-          "armor": {
-            "title": "Armor",
-            "description": "These are objects worn by somebody wich are also meant for protection"
-          },
-          "weapon": {
-            "title": "Weapon",
-            "description": "These are objects meant to be used as a tool of warfare"
-          },
-          "trinket": {
-            "title": "Trinket",
-            "description": "These are objects that are worn as an accessory."
+          "wearable": {
+            "title": "Wearable",
+            "description": "An item meant to be used actively by a character."
           },
           "tool": {
             "title": "Tool",
-            "description": "These are objects for general use."
-          },
-          "food": {
-            "title": "Food",
-            "description": "These are objects for general use. Mainly for eating."
-          },
-          "resource": {
-            "title": "Resource",
-            "description": "These are objects that are used to create other items."
+            "description": "An item meant to be used (passively) by a character."
           }
         }
       },
@@ -408,6 +574,7 @@
         "title": "Trait",
         "missing": "No traits were defined yet.",
         "type": "Trait",
+        "placeholder": "Select a trait",
         "description": "A trait is something about your character that makes the character 'his own'.",
         "subTypes": {
           "personal": {
@@ -415,7 +582,7 @@
             "description": "These are traits that a character holds from birth and changes due to character growth."
           },
           "statistic": {
-            "title": "Statistical Traits",
+            "title": "Statistic Traits",
             "description": "These are traits both for character and item use."
           }
         }
@@ -424,32 +591,38 @@
         "title": "Title",
         "missing": "No titles were defined yet.",
         "type": "Title",
+        "placeholder": "Select a title",
         "description": "An appellation of dignity, honor, distinction, or preeminence attached to a person or family by virtue of rank, office, precedent, privilege, attainment, or lands.",
         "subTypes": {
-          "artisan": {
-            "title": "Artisan",
-            "description": "A title meant for artisan use. For example: Master blacksmith."
+          "item": {
+            "title": "Item",
+            "description": "A title meant for item use."
           },
-          "heroic": {
-            "title": "Heroic",
-            "description": "A title meant for heroic use. For example: Knight of the round table."
-          },
-          "malicious": {
-            "title": "Malicious",
-            "description": "A title meant for malicious use. For example: Demon warlord."
+          "character": {
+            "title": "Character",
+            "description": "A title meant for character use."
           }
         }
+      },
+      "resourceType": {
+        "title": "Resource",
+        "missing": "No resources were defined yet.",
+        "type": "Resource",
+        "placeholder": "Select a resource",
+        "description": "A resource describes an item or object that is used to create other items"
       },
       "race": {
         "title": "Race",
         "missing": "No races were defined yet.",
         "type": "Race",
+        "placeholder": "Select a Race",
         "description": "A race describes the ethnitic origin of an individual"
       },
       "gender": {
         "title": "Gender",
         "missing": "No genders were defined yet.",
         "type": "Gender",
+        "placeholder": "Select a gender",
         "description": "A gender describes the sexe of an individual"
       },
       "status": {
@@ -473,209 +646,16 @@
       "power": {
         "title": "Power",
         "missing": "No powers were defined yet.",
+        "placeholder": "Select a power",
         "type": "Power",
-        "description": "Describes the possibility of an item or character to exert a lot of force.",
-        "subTypes": {
-          "innate": {
-            "title": "Innate",
-            "description": "An innate power is active from the moment a character or item is 'born'."
-          },
-          "slumbering": {
-            "title": "Slumbering",
-            "description": "A slumbering power becomes active whene a defined moment passes."
-          },
-          "taught": {
-            "title": "Taught",
-            "description": "A taught power becomes active whenever the character is structured about the power by an instructor."
-          }
-        }
-      }
-    },
-    "defaultSettings": {
-      "creation": "Created by WritersBlock",
-      "human": {
-        "name": "Human",
-        "description": "A power hungry subject of the realm."
+        "description": "Describes the possibility of an item or character to exert a lot of force."
       },
-      "elf": {
-        "name": "Elf",
-        "description": "A mystical subject of the realm."
-      },
-      "dwarf": {
-        "name": "Dwarf",
-        "description": "A small yet skilled subject of the realm."
-      },
-      "centaur": {
-        "name": "Centaur",
-        "description": "A mythical subject of the realm."
-      },
-      "orc": {
-        "name": "Orc",
-        "description": "A malicious subject of the realm."
-      },
-      "troll": {
-        "name": "Troll",
-        "description": "A big and malicious subject of the realm."
-      },
-      "demon": {
-        "name": "Demon",
-        "description": "A mystical and malicious subject of the realm."
-      },
-      "male": {
-        "name": "Male",
-        "description": "The male gender."
-      },
-      "female": {
-        "name": "Female",
-        "description": "The female gender."
-      },
-      "sword": {
-        "name": "Sword",
-        "description": "A weapon with a long metal blade and a hilt with a hand guard, used for thrusting or striking."
-      },
-      "staff": {
-        "name": "Staff",
-        "description": "A weapon most distinguished by it's long shape. Mostly used by wizards."
-      },
-      "bow": {
-        "name": "Bow",
-        "description": "A weapon for shooting arrows, typically made of a curved piece of wood joined at both ends by a taut string."
-      },
-      "dagger": {
-        "name": "Dagger",
-        "description": "A short knife with a pointed and edged blade, used as a weapon."
-      },
-      "wand": {
-        "name": "Wand",
-        "description": "A slender rod used by conjurers and magicians."
-      },
-      "crossbow": {
-        "name": "Crossbow",
-        "description": "A  bow of a kind that is fixed across a wooden support and has a groove for the bolt and a mechanism for drawing and releasing the string."
-      },
-      "cloak": {
-        "name": "Cloak",
-        "description": "A sleeveless outdoor overgarment that hangs loosely from the shoulders."
-      },
-      "hat": {
-        "name": "Hat",
-        "description": "A shaped covering for the head worn for warmth, as a fashion item, or as part of a uniform."
-      },
-      "gloves": {
-        "name": "Gloves",
-        "description": "A covering for the hand worn for protection against cold or dirt and typically having separate parts for each finger and the thumb."
-      },
-      "tunic": {
-        "name": "Tunic",
-        "description": "A loose garment, typically sleeveless and reaching to the knees."
-      },
-      "shirt": {
-        "name": "Shirt",
-        "description": "A loose garment, typically with sleeves for each arm and reaching to the knees."
-      },
-      "trousers": {
-        "name": "Trousers",
-        "description": "A garment covering the body from the waist to the ankles, with a separate part for each leg."
-      },
-      "helmet": {
-        "name": "Helmet",
-        "description": "A hard or padded protective hat."
-      },
-      "platebody": {
-        "name": "Platebody",
-        "description": "A body armor of plates of metal."
-      },
-      "platelegs": {
-        "name": "Platelegs",
-        "description": "A leg armor of plates of metal."
-      },
-      "shield": {
-        "name": "Shield",
-        "description": "A broad piece of metal or another suitable material, held by straps or a handle attached on one side, used as a protection against blows or missiles."
-      },
-      "knife": {
-        "name": "Knife",
-        "description": "An instrument composed of a blade fixed into a handle, used for cutting or as a weapon."
-      },
-      "hammer": {
-        "name": "Hammer",
-        "description": "A hammer is a tool that consists of a heavy piece of metal at the end of a handle. It is used, for example, to hit nails into a piece of wood or a wall, or to break things into pieces."
-      },
-      "necklace": {
-        "name": "Necklace",
-        "description": "An ornamental chain or string of beads, jewels, or links worn round the neck."
-      },
-      "amulet": {
-        "name": "Amulet",
-        "description": "A charm (such as an ornament) often inscribed with a magic incantation or symbol to aid the wearer or protect against evil."
-      },
-      "ring": {
-        "name": "Ring",
-        "description": "A typically circular band of metal or other durable material, especially one of gold or other precious metal, often set with gems, for wearing on the finger as an ornament."
-      },
-      "strength": {
-        "name": "Strength",
-        "description": "A measure of how physically strong a character is. Strength often controls the maximum weight the character can carry, melee attack and/or damage, and sometimes hit points. Armor and weapons might also have a Strength requirement."
-      },
-      "constitution": {
-        "name": "Constitution",
-        "description": "A measure of how sturdy a character is. Constitution often influences hit points, resistances for special types of damage (poisons, illness, heat etc.) and fatigue."
-      },
-      "defence": {
-        "name": "Defence",
-        "description": "A measure of how resilient a character is. Defence usually decreases taken damage by either a percentage or a fixed amount per hit. Occasionally combined with Constitution."
-      },
-      "dexterity": {
-        "name": "Dexterity",
-        "description": "A measure of how agile a character is. Dexterity controls attack and movement speed and accuracy, as well as evading an opponent's attack"
-      },
-      "intelligence": {
-        "name": "Intelligence",
-        "description": "A measure of a character's problem-solving ability. Intelligence often determines a character's ability to understand foreign languages and magic. Intelligence can also determine how fast a character can grow."
-      },
-      "charisma": {
-        "name": "Charisma",
-        "description": "A measure of a character's social skills, and sometimes their physical appearance."
-      },
-      "wisdom": {
-        "name": "Wisdom",
-        "description": "A measure of a character's common sense and/or spirituality. Wisdom often controls a character's ability to cast certain spells, communicate to mystical entities, or discern other character's motives or feelings."
-      },
-      "willpower": {
-        "name": "Willpower",
-        "description": "A measure of the character's mental resistance (against pain, fear etc.) when falling victim to mind-altering magic, torture, or insanity."
-      },
-      "perception": {
-        "name": "Perception",
-        "description": "A measure of a character's openness to their surroundings. Perception controls the chance to detect vital clues, traps or hiding enemies, and might influence combat sequence or the accuracy of ranged attacks."
-      },
-      "luck": {
-        "name": "Luck",
-        "description": "A measure of a character's luck. Luck might influence anything."
-      },
-      "woodland": {
-        "name": "Woodland",
-        "description": "Land covered with woods or trees."
-      },
-      "forest": {
-        "name": "Forest",
-        "description": "A large tract of land covered with trees and underbrush."
-      },
-      "village": {
-        "name": "Village",
-        "description": "A small community or group of houses in a rural area, larger than a hamlet and usually smaller than a town."
-      },
-      "town": {
-        "name": "Town",
-        "description": "A thickly populated area, usually smaller than a city and larger than a village, having fixed boundaries and certain local powers of government"
-      },
-      "city": {
-        "name": "City",
-        "description": "A municipality, usually governed by a mayor and a board of aldermen or councilmen."
-      },
-      "citadel": {
-        "name": "Citadel",
-        "description": "A fortress that commands a city and is used in the control of the inhabitants and in defense during attack or siege."
+      "relationType": {
+        "title": "Relation type",
+        "missing": "No relation types were defined yet.",
+        "placeholder": "Select a relation type",
+        "type": "Relation type",
+        "description": "Describes the relation between 2 characters."
       }
     }
   },
@@ -692,6 +672,7 @@
     "login": "Login",
     "import": "import story",
     "version": "Release notes",
+    "powers": "Powers",
     "breadCrumbs": {
       "storyOverview": "Story overview",
       "chapterOverview": "Chapter overview",
@@ -709,5 +690,24 @@
     "notfound": "404 - That's a not found...",
     "message": "The requested page was not found. This probably means that somebody (me) forgot to insert said page. Or remove said link.",
     "return": "Home"
+  },
+  "slot": {
+    "name": "Slot",
+    "helm": "Head-slot",
+    "body": "Body-slot",
+    "legs": "Legs-slot",
+    "gloves": "Hand-slot",
+    "boots": "Feet-slot",
+    "cape": "Cape-slot",
+    "hand": "Weapon or shield-slot",
+    "quiver": "Quiver-slot",
+    "earring": "Earring-slot",
+    "ring": "Ring-slot",
+    "bracelet": "Bracelet-slot",
+    "neck": "Neck-slot",
+    "belt": "Belt-slot",
+    "slotTotal": "Trait total from items",
+    "powerTotal": "Trait total from powers",
+    "traitTotal": "Trait total from events"
   }
 }

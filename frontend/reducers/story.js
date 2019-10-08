@@ -1,6 +1,7 @@
-import constants from '../constants';
+import { constants } from '../constants';
+import { isYes } from '../helpers';
 
-const reducer = (state, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case constants.actions.addStory:
     case constants.actions.updateStory:
@@ -28,3 +29,8 @@ const reducer = (state, action) => {
 };
 
 export default reducer;
+
+export const hasAuthorDescription = (store, storyId) => {
+  const value = store[storyId];
+  return isYes(value.withAuthorDescription);
+};

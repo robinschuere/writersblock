@@ -7,14 +7,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { updateUser } from '../actions/user';
-import constants from '../constants';
 import { getLanguages } from '../helpers';
 import Icon from './generic/icon';
-import StoryBoardBar from './storyBoardBar';
 
 const NavBar = (props) => {
   const {
-    userStore, dispatch, language, i18n, changeLanguage, computedMatch, storyStore, mobile,
+    userStore, dispatch, language, i18n, changeLanguage, mobile,
   } = props;
   const user = userStore.loggedInUser;
 
@@ -56,8 +54,6 @@ const NavBar = (props) => {
     ));
     return languages;
   };
-
-  const showStoryBoard = constants.routesWithStoryBoard.includes(computedMatch.path);
 
   return (
     <Fragment>
@@ -122,13 +118,6 @@ const NavBar = (props) => {
           </div>
 
         </nav>
-        {showStoryBoard && (
-          <StoryBoardBar
-            computedMatch={computedMatch}
-            storyStore={storyStore}
-            i18n={i18n}
-          />
-        )}
       </div>
     </Fragment>
   );
@@ -140,8 +129,6 @@ NavBar.propTypes = {
   language: PropTypes.string.isRequired,
   i18n: PropTypes.object.isRequired,
   changeLanguage: PropTypes.func.isRequired,
-  computedMatch: PropTypes.object.isRequired,
-  storyStore: PropTypes.object.isRequired,
   mobile: PropTypes.bool.isRequired,
 };
 

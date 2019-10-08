@@ -9,7 +9,7 @@ import StorySettingLabel from '../../components/storySettingLabel';
 
 const Place = (props) => {
   const {
-    computedMatch, placeStore, storySettingStore, history, i18n, mobile,
+    computedMatch, withAuthorDescription, placeStore, history, i18n, mobile,
   } = props;
   const { storyId, placeId } = computedMatch.params;
   const place = placeStore[placeId];
@@ -31,12 +31,14 @@ const Place = (props) => {
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <form className="form-horizontal">
-          <h5>Character information</h5>
+          <h5>{i18n.t('place.view.header')}</h5>
           <LabelAndText type="text" label={i18n.t('generic.name')} value={place.name} />
-          <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={place.authorDescription} />
-          <StorySettingLabel storyId={storyId} type="placeType" i18n={i18n} storySettingStore={storySettingStore} value={place.type} />
+          {withAuthorDescription && (
+            <LabelAndText type="textarea" label={i18n.t('generic.authorDescription')} value={place.authorDescription} />
+          )}
+          <StorySettingLabel {...props} storyId={storyId} type="placeType" value={place.type} />
           <LabelAndText type="textarea" label={i18n.t('generic.description')} value={place.description} />
         </form>
       </div>
@@ -46,6 +48,7 @@ const Place = (props) => {
 
 Place.propTypes = {
   computedMatch: PropTypes.object.isRequired,
+  withAuthorDescription: PropTypes.bool.isRequired,
   placeStore: PropTypes.object.isRequired,
   storySettingStore: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

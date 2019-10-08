@@ -44,6 +44,13 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: path.join(__dirname, './frontend/app/favicon/favicon.ico'), to: path.join(__dirname, './bundled/favicon.ico') },
       { from: path.join(__dirname, './frontend/releaseNotes'), to: path.join(__dirname, './bundled/releaseNotes') },
+      { from: path.join(__dirname, './node_modules/react-svg-radar-chart/build/css/index.css'), to: path.join(__dirname, './bundled/radar.css') },
+      { from: path.join(__dirname, './frontend/svg'), to: path.join(__dirname, './bundled/svg') },
     ]),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 };

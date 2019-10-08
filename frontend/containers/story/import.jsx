@@ -25,7 +25,7 @@ const Import = ({ i18n, importFromJson, mobile }) => {
 
   if (importing) {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('generic.import.importing')}</h4>
       </div>
     );
@@ -39,7 +39,7 @@ const Import = ({ i18n, importFromJson, mobile }) => {
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('generic.import.title')}</h4>
         <p>{i18n.t('generic.import.message')}</p>
         <LabelAndField type="file" fileTypes=".wbson" label={i18n.t('generic.import.file')} onChange={setFile} />

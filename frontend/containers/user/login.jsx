@@ -58,7 +58,7 @@ const Login = ({
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h4>{i18n.t('credentials.login')}</h4>
       {showAlert && <Alert message={i18n.t('credentials.error')} level="error" onClose={() => setAlert(false)} />}
       <Form button={{ color: 'green', text: i18n.t('credentials.login') }} secondaryButton={<Button color="blue" linkTo="/register">{i18n.t('credentials.register')}</Button>} onClick={handleOnClick}>

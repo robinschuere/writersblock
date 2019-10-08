@@ -8,24 +8,32 @@ import Alert from '../../components/generic/alert';
 import LabelAndField from '../../components/generic/labelAndField';
 import BackAndSaveBar from '../../components/backAndSaveBar';
 import WithNavBar from '../../components/hoc/withNavBar';
-import { getStoryStatusOptions } from '../../helpers';
+import {
+  getStoryStatusOptions, getYesNoOptions, useField,
+} from '../../helpers';
+import { constants } from '../../constants';
 
 const StoryEdit = ({
   computedMatch, storyStore, dispatch, userStore, i18n, mobile,
 }) => {
   const { storyId } = computedMatch.params;
-  const story = !storyId ? {} : storyStore[storyId];
+  const story = !storyId
+    ? {
+      traitMaximum: 100,
+      withMarkdown: constants.yesNo.no,
+      withAuthorDescription: constants.yesNo.no,
+    }
+    : storyStore[storyId];
   const userId = userStore.loggedInUser.id;
 
-  const [title, setTitle] = useState(story.title);
-  const [status, setStatus] = useState(story.status);
-  const [description, setDescription] = useState(story.description);
+  const [updatedStory, setStoryProps] = useField(story);
+
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  const validateStory = () => {
-    if ([title].filter(x => x).length !== 1) {
+  const validate = () => {
+    if ([updatedStory.title].filter(x => x).length !== 1) {
       return false;
     }
     return true;
@@ -33,12 +41,7 @@ const StoryEdit = ({
 
   const addOrUpdate = async () => {
     setValidatedOnce(true);
-    if (validateStory()) {
-      const updatedStory = {
-        ...story,
-        title,
-        description,
-      };
+    if (validate()) {
       if (updatedStory.id) {
         await updateStory(updatedStory, dispatch);
       } else {
@@ -62,14 +65,17 @@ const StoryEdit = ({
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('story.edit.header')}</h4>
         {showAlert && <Alert message={i18n.t('story.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
           <h5>{i18n.t('story.edit.subHeader')}</h5>
-          <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.title')} placeholder={i18n.t('generic.placeholders.title')} onChange={setTitle} value={title} />
-          <LabelAndField validatedOnce={validatedOnce} required type="select" options={getStoryStatusOptions(i18n)} label={i18n.t('generic.status')} placeholder={i18n.t('generic.placeholders.status')} onChange={setStatus} value={status} />
-          <LabelAndField validatedOnce={validatedOnce} required type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
+          <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.title')} placeholder={i18n.t('generic.placeholders.title')} {...setStoryProps('title')} />
+          <LabelAndField validatedOnce={validatedOnce} type="select" options={getStoryStatusOptions(i18n)} label={i18n.t('generic.status')} placeholder={i18n.t('generic.placeholders.status')} {...setStoryProps('status')} />
+          <LabelAndField validatedOnce={validatedOnce} type="toggle" name="markdown" options={getYesNoOptions(i18n)} label={i18n.t('generic.withMarkdown')} {...setStoryProps('withMarkdown')} />
+          <LabelAndField validatedOnce={validatedOnce} type="toggle" name="author" options={getYesNoOptions(i18n)} label={i18n.t('generic.withAuthorDescription')} {...setStoryProps('withAuthorDescription')} />
+          <LabelAndField validatedOnce={validatedOnce} type="number" max={100000} label={i18n.t('generic.traitMaximum')} placeholder={i18n.t('generic.placeholders.traitMaximum')} {...setStoryProps('traitMaximum')} />
+          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} {...setStoryProps('description')} />
         </form>
       </div>
     </Fragment>

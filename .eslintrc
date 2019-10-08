@@ -10,13 +10,15 @@
     "btoa": true,
     "atob": true,
     "FileReader": true,
-    "XMLHttpRequest": true
+    "XMLHttpRequest": true,
+    "DOMParser": true
   },
   "env": {
     "jest": true
   },
   "rules": {
     "react/forbid-prop-types": "off",
-    "jsx-a11y/label-has-for": "off"
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }

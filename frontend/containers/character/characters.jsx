@@ -8,9 +8,8 @@ const Characters = (props) => {
   const { i18n } = props;
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h4>{i18n.t('character.list.header')}</h4>
-      <p>{i18n.t('character.list.message')}</p>
       <CharacterList {...props} />
     </div>
   );

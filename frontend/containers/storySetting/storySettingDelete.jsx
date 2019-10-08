@@ -20,6 +20,7 @@ const StorySettingDelete = ({
 
   const handleDelete = async () => {
     await removeStorySetting(storySetting, dispatch);
+    setCompleted(true);
   };
 
   if (completed || !storySetting) {
@@ -29,7 +30,7 @@ const StorySettingDelete = ({
   return (
     <Fragment>
       <BackAndDeleteBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('storySetting.delete.header', { title: storySetting.name })}</h4>
         <p>{i18n.t('storySetting.delete.message')}</p>
       </div>

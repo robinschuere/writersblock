@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Redirect } from 'react-router-dom';
+import dropper from '../../helpers/pouch/dropper';
 
 import Button from '../../components/generic/button';
 import WithNavBar from '../../components/hoc/withNavBar';
@@ -20,6 +21,10 @@ const User = ({
 
   const handleChangePassword = () => {
     history.push('/user/changepassword');
+  };
+
+  const handleDrop = async () => {
+    await dropper();
   };
 
   const handleRemove = () => {
@@ -42,7 +47,7 @@ const User = ({
         onClose={handleClose}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         <Button color="green" toRight onClick={handleChangePassword}>{i18n.t('credentials.passwordEdit.action')}</Button>
         <form className="form-horizontal">
           <h5>{i18n.t('credentials.header')}</h5>
@@ -53,7 +58,7 @@ const User = ({
           <LabelAndText type="text" label={i18n.t('user.firstname')} value={user.firstName} />
           <LabelAndText type="text" label={i18n.t('user.lastname')} value={user.lastName} />
           <LabelAndText type="date" label={i18n.t('user.dateOfBirth')} value={user.dateOfBirth} />
-          <LabelAndText type="select" options={getYesNoOptions(i18n)} label={i18n.t('user.persistLogin')} value={user.persistLogin} />
+          <LabelAndText type="toggle" name="persist" options={getYesNoOptions(i18n)} label={i18n.t('user.persistLogin')} value={user.persistLogin} />
           <h5>{i18n.t('user.edit.addressSubHeader')}</h5>
           <LabelAndText type="text" label={i18n.t('user.country')} value={user.country} />
           <LabelAndText type="text" label={i18n.t('user.city')} value={user.city} />
@@ -65,6 +70,7 @@ const User = ({
           <h5>{i18n.t('user.edit.descriptionSubHeader')}</h5>
           <LabelAndText type="textarea" label={i18n.t('user.synopsis')} value={user.synopsis} />
           <Button color="red" onClick={handleRemove}>{i18n.t('credentials.passwordEdit.remove')}</Button>
+          <Button color="red" onClick={handleDrop}>{i18n.t('credentials.passwordEdit.remove')}</Button>
           <br />
         </form>
       </div>

@@ -9,6 +9,8 @@ const BackAndEditBar = props => (
     {...props}
     acceptText={props.i18n.t('generic.edit')}
     acceptIcon="pencil-alt"
+    closeIcon="arrow-circle-left"
+    closeText={props.i18n.t('generic.back')}
   />
 );
 

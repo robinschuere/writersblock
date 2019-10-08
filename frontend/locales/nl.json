@@ -1,14 +1,17 @@
 {
   "generic": {
     "app": "Writersblock",
+    "total": "Totaal",
+    "active": "Actief",
+    "passive": "Passief",
     "underDevelopment": "Zoals u kan zien is deze pagina nog onder constructie. Aarzel daarom niet om de functionaliteiten eens te proberen.",
     "edit": "Wijzig",
     "delete": "Verwijder",
     "view": "Bekijk",
     "add": "Voeg toe",
     "back": "Terug",
+    "cancel": "Annuleren",
     "save": "Opslaan",
-    "title": "Titel",
     "authorDescription": "Auteursbeschrijving",
     "description": "Beschrijving",
     "name": "Naam",
@@ -17,16 +20,25 @@
     "subType": "Subtype",
     "createdAt": "Aangemaakt op",
     "updatedAt": "laatst geüpdated",
+    "trait": "Kenmerk",
+    "traitMaximum": "Maximum level kenmerken",
+    "withMarkdown": "Met markdown",
+    "withAuthorDescription": "Met auteursomschrijving",
+    "unique": "Uniek",
+    "parent": "Hoofd personage",
     "placeholders": {
+      "slot": "Selecteer een plaats",
       "title": "Geef de titel",
+      "type": "Selecteer het type",
       "status": "Selecteer de status",
-      "authorDescription": "Geef de auteursbeschrijving",
+      "authorDescription": "Geef de auteursomschrijving",
       "description": "Geef de beschrijving",
       "name": "Geef een naam",
       "chapter": "Selecteer een hoofdstuk",
       "character": "Selecteer een personage",
-      "relation": "Geef de relatie",
-      "reverseRelation": "Geef de wederzijdse relatie"
+      "traitMaximum": "Geef het maximum",
+      "withAuthorDescription": "Selecteer Ja of Nee",
+      "event": "Selecteer evenement"
     },
     "storyStatus": {
       "draft": "Opzet",
@@ -35,17 +47,51 @@
     },
     "status": "Status",
     "markdown": "Markdown",
+    "statType": "Actief of passief",
+    "powerType": "Type",
+    "targetType": "Doel",
+    "self": "Eigen",
+    "other": "Ander",
+    "percentage": "%",
+    "amount": "#",
+    "damage": "Schade",
+    "recover": "Opknappen",
+    "damageType": "SCH / OPK",
+    "calcType": "% / #",
+    "damagePropType": "op",
+    "health": "HP",
+    "stamina": "ST",
+    "skillPoints": "SP",
+    "magicPoints": "MP",
+    "basedOnTrait": "Kenmerk",
+    "affectedTrait": "aangetast",
+    "isEffect": "Effect",
+    "duration": "Duur",
+    "found": "Gevonden",
+    "lost": "Verloren",
+    "acquired": "Verkregen",
+    "removed": "Verwijderd",
+    "learnt": "Geleerd",
+    "forgotten": "Vergeten",
     "yes": "Ja",
     "no": "Neen",
     "true": "Waar",
     "false": "Onwaar",
+    "event": "Evenement",
     "events": "Evenementen",
     "chapter": "Hoofdstuk",
+    "chapters": "Hoofdstukken",
     "character": "Personage",
-    "level": "Niveau",
-    "relationParent": "Relatie-eigenaar",
+    "characters": "Personages",
+    "power": "Kracht",
+    "powers": "Krachten",
+    "title": "Titel",
+    "titles": "Titels",
+    "item": "Voorwerp",
+    "items": "Voorwerpen",
     "relation": "Relatie",
-    "reverseRelation": "Wederzijdse relatie",
+    "relations": "Relaties",
+    "level": "Niveau",
     "export": {
       "wbson": "Exporteer"
     },
@@ -56,14 +102,33 @@
       "file": "Selecteer document (.wbson)",
       "message": "Bent u zeker dat u het onderstaande document wil importeren?"
     },
+    "list": "Lijst",
+    "radar": "Grafiek",
     "search": "Zoeken"
+  },
+  "home": {
+    "p1": "Welkom bij WritersBlock. Schrijf je eigen verhaal. In blokjes.",
+    "p2": "Heb je ooit al eens gedacht: 'Ik zou graag een verhaal schrijven, maar ik weet geen manier om mijn personages te omschrijven?'",
+    "p3": "Dan kan je nu Writersblock gebruiken om dit vanaf nu wel te doen.",
+    "p4": "WritersBlock werd ontwikkeld met het oog om personages beter te omschrijven, hen met evenementen te koppelen aan hoofdstukken en dan zo de voortgang van een personage op te volgen. Geen last meer met boekjes en schriftjes die alle data ongeordend bijhouden, maar eenvoudige weergaven van hoe je personage groeit doorheen je verhaal.",
+    "p5": "Kort:",
+    "p6": " - maak een nieuw verhaal aan",
+    "p7": " - voeg onder dit verhaal een personage toe",
+    "p8": " - breidt je personage uit met evenementen die hij / zij meemaakt.",
+    "p9": " - Voeg je eerste hoofdstuk toe",
+    "p10": " - en schrijven maar",
+    "p11": "Wat heeft writersblock nog meer te bieden?",
+    "p12": " - voeg je eigen definities van voorwerpen, plaatsen en krachten toe.",
+    "p13": " - bekijk je evenementen en zie hoe je personage groeit",
+    "p14": " - geef je personages tijdens evenementen voorwerpen of krachten",
+    "p15": " - zie wat je personage draagt en wat de invloed hiervan is"
   },
   "version": {
     "title": "Versies Writersblock"
   },
   "about": {
     "dev": "Robin Schuerewegen",
-    "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React.",
+    "synopsis": "Ik ben een consultant frontend developer werkzaam in verschillende sectoren. Deze app ontsproot uit een wederkerend idee. Geschreven in React en data bewaring op basis van PouchDB.",
     "tipsAndTricks": {
       "title": "Tips and hints",
       "data": {
@@ -79,8 +144,8 @@
       "story": {
         "title": "Hoe maak ik verhalen?",
         "startStory": "Na het registreren kan je een verhaal aanmaken door op de menuknop Verhalen te drukken. Hierna navigeer je naar het overzicht van jou verhalen.",
-        "startChapter": "De eerste stap om een verhaal te starten is een titel te bedenken. Dit kan eenvoudig door er [DRAFT] te zetten zodat je nog rustig kan nadenken over hoe de titel van het verhaal moet zijn. Je kan het veld auteursbeschrijving al invullen om voor jezelf een beknopte uitleg van je verhaal neer te pennen.",
-        "authorDescription": "Het veld auteursbeschrijving is een veld dat specifiek gericht is naar de auteur om extra informatie neer te pennen die enkel voor de auteur dient. In de toekomst is het de bedoeling om een export van je verhaal te voorzien met de optie op een bibliografie zodat alle gegevens waaraan je gewerkt hebt ook zochtbaar worden."
+        "startChapter": "De eerste stap om een verhaal te starten is een titel te bedenken. Dit kan eenvoudig door er [DRAFT] te zetten zodat je nog rustig kan nadenken over hoe de titel van het verhaal moet zijn. Je kan het veld auteursomschrijving al invullen om voor jezelf een beknopte uitleg van je verhaal neer te pennen.",
+        "authorDescription": "Het veld auteursomschrijving is een veld dat specifiek gericht is naar de auteur om extra informatie neer te pennen die enkel voor de auteur dient. In de toekomst is het de bedoeling om een export van je verhaal te voorzien met de optie op een bibliografie zodat alle gegevens waaraan je gewerkt hebt ook zochtbaar worden."
       },
       "events": {
         "title": "Evenementen",
@@ -88,10 +153,6 @@
         "two": " - een evenement dat gedurende een hoofdstuk voorkwam",
         "three": " - een evenement dat voorkwam (zonder hoofdstuk)",
         "four": "Op dit moment ondersteunt WritersBlock enkel een omschrijving van het evenement. Het is wel de bedoeling om karaktertrekken ook hier te plaatsen zodat de groei van een personage daadwerkelijk kan bijgehouden worden."
-      },
-      "relations": {
-        "title": "Relaties",
-        "description": "Relaties worden gebruikt om de relatie tussen personages te beschrijven. Een relatie bevat altijd 2 personages, een relatie en een wederwijdse relatie. Meerdere relaties tussen 2 personages kunnen zo gedefinieerd worden."
       },
       "markdown": {
         "title": "Hoe gebruik ik MarkDown",
@@ -130,7 +191,6 @@
     "passwordEdit": {
       "action": "Pas wachtwoord gegevens aan",
       "remove": "Verwijder gebruiker",
-      "drop": "ONOMKEERBARE ACTIE: DB WORD VERWIJDERD",
       "header": "Welkom {{user}}",
       "alert": "Er dient nog informatie ingegeven te worden alvorens het registreren kan voltooid worden.",
       "alertUserName": "Deze gebruikersnaam is alreeds in gebruik.",
@@ -249,7 +309,14 @@
     },
     "view": {
       "header": "Evenement {{title}}",
-      "message": "Deze pagina bevat alle evenement informatie"
+      "tabs": {
+        "personal": "Persoonlijke kenmerken",
+        "statistic": "Statistische kenmerken",
+        "items": "Voorwerpen",
+        "powers": "Krachten",
+        "titles": "Titels",
+        "relations": "Relaties"
+      }
     },
     "delete": {
       "header": "Verwijder evenement {{title}}",
@@ -257,26 +324,90 @@
     },
     "edit": {
       "header": "Evenement informatie",
-      "alert": "Er dient nog informatie ingegeven te worden alvorens het evenement kan opgeslagen worden."
+      "alert": "Er dient nog informatie ingegeven te worden alvorens het evenement kan opgeslagen worden.",
+      "tabs": {
+        "personal": "Persoonlijke kenmerken",
+        "statistic": "Statistische kenmerken"
+      }
     }
   },
-  "relation": {
-    "parent": "Hoofd personage",
+  "eventTitle": {
     "list": {
-      "header": "Relaties",
-      "message": "Deze lijst bevat alle relaties die u tot nog toe geschreven hebt"
+      "header": "Evenement titels"
     },
     "view": {
-      "header": "Relatie {{title}}",
-      "message": "Deze pagina bevat alle relatie informatie"
+      "header": "Evenement titel"
     },
     "delete": {
-      "header": "Verwijder relatie tussen {{personA}} and {{personB}}",
-      "message": "Ben je zeker dat je deze relatie wil verwijderen?"
+      "header": "Verwijder evenement titel {{title}}",
+      "message": "Ben je zeker dat je deze evenement titel wil verwijderen?"
     },
     "edit": {
-      "header": "Relatie informatie",
-      "alert": "Er dient nog informatie ingegeven te worden alvorens de relatie kan opgeslagen worden."
+      "header": "Evenement titel informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens deze evenement titel kan opgeslagen worden."
+    }
+  },
+  "eventPower": {
+    "list": {
+      "header": "Evenement krachten"
+    },
+    "view": {
+      "header": "Evenement kracht"
+    },
+    "delete": {
+      "header": "Verwijder evenement kracht {{title}}",
+      "message": "Ben je zeker dat je deze evenement kracht wil verwijderen?"
+    },
+    "edit": {
+      "header": "Evenement kracht informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens deze evenement kracht kan opgeslagen worden."
+    }
+  },
+  "eventItem": {
+    "list": {
+      "header": "Evenement voorwerpen"
+    },
+    "view": {
+      "header": "Evenement voorwerp"
+    },
+    "delete": {
+      "header": "Verwijder evenement voorwerp {{title}}",
+      "message": "Ben je zeker dat je deze evenement voorwerp wil verwijderen?"
+    },
+    "edit": {
+      "header": "Evenement voorwerp informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens dit evenement voorwerp kan opgeslagen worden."
+    }
+  },
+  "eventRelation": {
+    "list": {
+      "header": "Evenement relaties"
+    },
+    "view": {
+      "header": "Evenement relatie"
+    },
+    "delete": {
+      "header": "Verwijder evenement relatie {{title}}",
+      "message": "Ben je zeker dat je deze evenement relatie wil verwijderen?"
+    },
+    "edit": {
+      "header": "Evenement relatie informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens dit evenement relatie kan opgeslagen worden."
+    }
+  },
+  "growth": {
+    "withItems": "Met voorwerpen",
+    "placeholders": {
+      "withItems": "Selecteer een voorwerp"
+    },
+    "tabs": {
+      "personal": "Persoonlijke kenmerken",
+      "statistic": "Statistische kenmerken",
+      "items": "Voorwerpen",
+      "powers": "Krachten",
+      "titles": "Titels",
+      "relations": "Relaties",
+      "setup": "Setup"
     }
   },
   "character": {
@@ -291,14 +422,10 @@
       "message": "Deze lijst bevat alle personages die u tot nog toe beschreven hebt"
     },
     "view": {
-      "header": "Personage {{title}}",
-      "message": "Deze pagina bevat alle personage informatie",
-      "tabs": {
-        "personal": "Persoonlijke kenmerken",
-        "statistic": "Statistische kenmerken",
-        "events": "Evenementen",
-        "relations": "Relaties"
-      }
+      "growth": {
+        "statistic": "Bekijk groei"
+      },
+      "header": "Personage {{title}}"
     },
     "delete": {
       "header": "Verwijder personage {{title}}",
@@ -310,13 +437,13 @@
     }
   },
   "item": {
+    "missing": "Er werden nog geen voorwerpen gedefinieerd",
     "list": {
       "header": "Voorwerpen",
       "message": "Deze lijst bevat alle voorwerpen die u tot nog toe beschreven hebt"
     },
     "view": {
       "header": "Voorwerp {{title}}",
-      "message": "Deze pagina bevat alle voorwerp informatie",
       "tabs": {
         "requiredStatistic": "Benodigde statistische kenmerken",
         "statistic": "Statistische kenmerken"
@@ -349,15 +476,73 @@
       "alert": "Er dient nog informatie ingegeven te worden alvorens de plaats kan opgeslagen worden."
     }
   },
-  "storySetting": {
+  "power": {
     "list": {
-      "header": "Verhaal specifieke instellingen",
-      "message": "Deze lijst bevat alle verhaal specifieke instellingen die u tot nog toe beschreven hebt",
-      "default": "Voeg een standaard lijst toe gegenereerd door de applicatie."
+      "header": "Krachten"
     },
     "view": {
-      "header": "Verhaal instelling {{title}}",
-      "message": "Deze pagina bevat alle verhaal instelling informatie"
+      "header": "Kracht {{title}}",
+      "tabs": {
+        "statistic": "Statistische kenmerken",
+        "requiredStatistic": "Benodigde statistische kenmerken",
+        "appliers": "Kracht eigenschappen"
+      }
+    },
+    "delete": {
+      "header": "Verwijder kracht {{title}}",
+      "message": "Ben je zeker dat je deze kracht wil verwijderen?"
+    },
+    "edit": {
+      "header": "Kracht informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens de kracht kan opgeslagen worden.",
+      "tabs": {
+        "statistic": "Statistische kenmerken",
+        "requiredStatistic": "Benodigde statistische kenmerken"
+      }
+    }
+  },
+  "powerApplier": {
+    "targetType": "Type doel",
+    "damageType": "Type schade",
+    "damagePropType": "Eigenschap te beschadigen",
+    "calcType": "Type van berekening",
+    "basedOnTrait": "Percentage gebaseerd op eigenschap",
+    "amount": "Hoeveelheid",
+    "affectedTrait": "Betrokken eigenschap",
+    "isEffect": "Met effect",
+    "duration": "Effect tijd (rondes)",
+    "placeholders": {
+      "targetType": "Selecteer het doel type",
+      "damageType": "Selecteer het schade type",
+      "damagePropType": "Selecteer de te beschadigen eigenschap",
+      "calcType": "Selecteer het type berekening",
+      "basedOnTrait": "Selecteer een eigenschap",
+      "amount": "Geef een hoeveelheid",
+      "affectedTrait": "Selecteer een eigenschap",
+      "isEffect": "Ja of Neen",
+      "duration": "Geef een duur"
+    },
+    "list": {
+      "header": "Kracht eigenschappen"
+    },
+    "view": {
+      "header": "Kracht eigenschap informatie"
+    },
+    "delete": {
+      "header": "Remove kracht eigenschap",
+      "message": "Ben je zeker dat je deze kracht eigenschap wil verwijderen?"
+    },
+    "edit": {
+      "header": "Kracht eigenschap informatie",
+      "alert": "Er dient nog informatie ingegeven te worden alvorens de kracht eigenschap kan opgeslagen worden."
+    }
+  },
+  "storySetting": {
+    "list": {
+      "header": "Verklarende woordenlijst"
+    },
+    "view": {
+      "header": "Verhaal instelling {{title}}"
     },
     "edit": {
       "header": "Verhaal instelling informatie",
@@ -372,35 +557,16 @@
         "title": "Voorwerp",
         "missing": "Er werden nog geen voorwerpen gedefinieerd",
         "type": "Type voorwerp",
+        "placeholder": "Selecteer een type voorwerp",
         "description": "Een voorwerp beschrijft een object dat kan gedragen of opgenomen worden.",
         "subTypes": {
-          "clothing": {
-            "title": "Kledij",
-            "description": "Dit zijn objecten om te dragen"
-          },
-          "armor": {
-            "title": "Uitrusting",
-            "description": "Dit zijn objecten die gebruikt worden om een persoon te bepantseren."
-          },
-          "weapon": {
-            "title": "Wapen",
-            "description": "Dit zijn objecten die gebruikt worden om oorlog te voeren"
-          },
-          "trinket": {
-            "title": "Sieraad",
-            "description": "Dit zijn objecten die gedragen kunnen worden als accessoire."
+          "wearable": {
+            "title": "Te dragen",
+            "description": "Een voorwerp dat bijkomend een plaats op het lichaam heeft."
           },
           "tool": {
             "title": "Gebruiksvoorwerp",
-            "description": "Dit zijn objecten die gebruikt worden in het dagdagelijkse leven"
-          },
-          "food": {
-            "title": "Voedsel",
-            "description": "Dit zijn objecten die gebruikt worden in het dagdagelijkse leven om te nuttigen"
-          },
-          "resource": {
-            "title": "Bron",
-            "description": "Dit zijn objecten die gebruikt worden als bron om voorwerpen mee te bouwen"
+            "description": "een voorwerp dat dient voor alledaags gebruik."
           }
         }
       },
@@ -408,6 +574,7 @@
         "title": "Karaktertrek",
         "missing": "Er werden nog geen karaktertrekken gedefinieerd",
         "type": "Karaktertrek",
+        "placeholder": "Selecteer een karaktrek",
         "description": "Een karaktertrek is iets dat aan een personage wordt gegeven om het personage 'zichzelf' te laten zijn.",
         "subTypes": {
           "personal": {
@@ -424,44 +591,52 @@
         "title": "Titel",
         "missing": "Er werden nog geen titels gedefinieerd",
         "type": "Titel",
+        "placeholder": "Selecteer een titel",
         "description": "Een aanduiding van waardigheid, eer, onderscheiding of voorrang.",
         "subTypes": {
-          "artisan": {
-            "title": "Vakman",
-            "description": "Een aanduiding die aan een persoon of familie wordt toegekend op grond van functie of prestatie."
+          "item": {
+            "title": "Voorwerp",
+            "description": "Een titel met als doel om aan voorwerpen te geven."
           },
-          "heroic": {
-            "title": "Heroisch",
-            "description": "Een aanduiding die aan een persoon wordt toegekend op grond van een heroische prestatie."
-          },
-          "malicious": {
-            "title": "Kwaadwillig",
-            "description": "Een aanduiding die aan een persoon of familie of voorwerp wordt toegekend op grond van een kwaadwillige prestatie of functie."
+          "character": {
+            "title": "Personage",
+            "description": "Een titel met als doel om aan personages te geven."
           }
         }
+      },
+      "resourceType": {
+        "title": "Bron",
+        "missing": "Er werde nog geen bronnen gedefinieerd.",
+        "type": "Bron",
+        "placeholder": "Selecteer een bron",
+        "description": "Beschrijft een soort van voorwerpen die met terug kan vinden in landen."
       },
       "race": {
         "title": "Ras & ethniciteit",
         "missing": "Er werden nog geen rassen gedefinieerd",
         "type": "Ras",
+        "placeholder": "Selecteer een ras",
         "description": "Beschrijft de ethnische origine van een individueel"
       },
       "gender": {
         "title": "Geslacht",
         "missing": "Er werden nog geen geslachten gedefinieerd",
         "type": "Geslacht",
+        "placeholder": "Selecteer een geslacht",
         "description": "Beschrijft de sexe van een individueel."
       },
       "status": {
         "title": "Status",
         "missing": "Er werden nog geen statussen gedefinieerd",
         "type": "Status",
+        "placeholder": "Selecteer een status",
         "description": "Beschrijft een abnormale status die een voorwerp of persoon met zich meedraagt (omwille van een evenement of beperkt in tijd)"
       },
       "placeType": {
         "title": "Plaats type",
         "missing": "Er werden nog geen plaats types gedefinieerd",
         "type": "Type plaats",
+        "placeholder": "Selecteer een plaats",
         "description": "Een plaatstype beschrijft een generieke plaatsbeschrijving. Bijvoorbeeld een dorp."
       },
       "notes": {
@@ -474,208 +649,15 @@
         "title": "Kracht",
         "missing": "Er werden nog geen krachten gedefinieerd",
         "type": "Kracht",
-        "description": "Beschijft mogelijke krachten die een personage of voorwerp draagt.",
-        "subTypes": {
-          "innate": {
-            "title": "Aangeboren",
-            "description": "Een aangeboren kracht is steeds aanwezig vanaf de geboorte van het voorwerp of personage."
-          },
-          "slumbering": {
-            "title": "Sluimerend",
-            "description": "Een aangeboren kracht die vanaf een bepaald moment pas actief wordt."
-          },
-          "taught": {
-            "title": "Aangeleerd",
-            "description": "Een aangeleerde kracht wordt pas actief vanaf het moment dat een personage dit leert van een instructeur."
-          }
-        }
-      }
-    },
-    "defaultSettings": {
-      "creation": "Aangemaakt door WritersBlock",
-      "human": {
-        "name": "Mens",
-        "description": "Een op machts beluste onderdaan van de wereld."
+        "placeholder": "Selecteer een kracht",
+        "description": "Beschijft mogelijke krachten die een personage of voorwerp draagt."
       },
-      "elf": {
-        "name": "Elf",
-        "description": "Een mystiek onderdaan van de wereld."
-      },
-      "dwarf": {
-        "name": "Dwarf",
-        "description": "Een klein, doch gekend om zijn vakmanschap onderdaan van de wereld."
-      },
-      "centaur": {
-        "name": "Centaur",
-        "description": "Een mythisch onderdaan van de wereld."
-      },
-      "orc": {
-        "name": "Ork",
-        "description": "Een kwaadwillig wezen van de onderwereld."
-      },
-      "troll": {
-        "name": "Trol",
-        "description": "Een groot en kwaadwillig wezen van de onderwereld."
-      },
-      "demon": {
-        "name": "Demoon",
-        "description": "Een mystiek en kwaadwillig wezen van de onderwereld."
-      },
-      "male": {
-        "name": "Man",
-        "description": "Het mannelijke geslacht."
-      },
-      "female": {
-        "name": "Vrouw",
-        "description": "Het vrouwelijke geslacht."
-      },
-      "sword": {
-        "name": "Zwaard",
-        "description": "Een wapen met een lang metalen blad en een handvat met een handbescherming, gebruikt om te duwen of te slaan.."
-      },
-      "staff": {
-        "name": "Staf",
-        "description": "Een wapen dat zich het meest onderscheidt door zijn lange vorm. Meestal gebruikt door tovenaars."
-      },
-      "bow": {
-        "name": "Boog",
-        "description": "Een wapen voor het schieten van pijlen, meestal gemaakt van een gebogen stuk hout, aan beide uiteinden verbonden door een strak touwtje."
-      },
-      "dagger": {
-        "name": "Dolk",
-        "description": "Een kort mes met een puntig en scherp lemmet, gebruikt als wapen."
-      },
-      "wand": {
-        "name": "Toverstok",
-        "description": "Een slanke staaf die gebruikt wordt door goochelaars en tovenaars."
-      },
-      "crossbow": {
-        "name": "Kruisboog",
-        "description": "Een boog van een soort die over een houten steun is bevestigd en een groef heeft voor de bout en een mechanisme voor het trekken en losmaken van de snaar."
-      },
-      "cloak": {
-        "name": "Mantel",
-        "description": "Een mouwloos overjasje dat losjes aan de schouders hangt."
-      },
-      "hat": {
-        "name": "Hoed",
-        "description": "Een gevormde bekleding voor het hoofd gedragen voor de warmte, als mode-item of als onderdeel van een uniform."
-      },
-      "gloves": {
-        "name": "Handschoenen",
-        "description": "Een bekleding voor de hand die gedragen wordt ter bescherming tegen kou of vuil en die meestal bestaat uit afzonderlijke delen voor elke vinger en duim."
-      },
-      "tunic": {
-        "name": "Tuniek",
-        "description": "Een los kledingstuk, typisch mouwloos en tot op de knieën reikend."
-      },
-      "shirt": {
-        "name": "Overhemd",
-        "description": "Een los kledingstuk, meestal met mouwen voor elke arm en tot aan de knieën."
-      },
-      "trousers": {
-        "name": "Broek",
-        "description": "Een kledingstuk die het lichaam van de taille tot aan de enkels bedekt, met een apart deel voor elk been."
-      },
-      "helmet": {
-        "name": "Helm",
-        "description": "Een harde of gewatteerde beschermhoed."
-      },
-      "platebody": {
-        "name": "Borstplaat",
-        "description": "Een stalen plaat dat dient ter bescherming van de drager zijn borst."
-      },
-      "platelegs": {
-        "name": "Beenplaat",
-        "description": "Een stalen plaat dat dient ter bescherming van de drager zijn benen."
-      },
-      "shield": {
-        "name": "Schild",
-        "description": "Een breed stuk metaal of een ander geschikt materiaal, vastgehouden door riemen of een handvat aan één zijde, gebruikt als bescherming tegen slagen of projectielen."
-      },
-      "knife": {
-        "name": "Mes",
-        "description": "Een instrument bestaande uit een mes dat in een handvat is bevestigd, gebruikt voor het snijden of als wapen."
-      },
-      "hammer": {
-        "name": "Hamer",
-        "description": "Een hamer is een gereedschap dat bestaat uit een zwaar stuk metaal aan het uiteinde van een handvat. Het wordt bijvoorbeeld gebruikt om spijkers in een stuk hout of een muur te slaan, of om dingen in stukken te breken."
-      },
-      "necklace": {
-        "name": "Halsketting",
-        "description": "Een sierketting of koord van kralen, juwelen of schakels die om de hals worden gedragen."
-      },
-      "amulet": {
-        "name": "Amulet",
-        "description": "Een bedeltje (zoals een ornament) vaak gegraveerd met een magische bezwering of symbool om de drager te helpen of te beschermen tegen het kwaad."
-      },
-      "ring": {
-        "name": "Ring",
-        "description": "Een typische cirkelvormige band van metaal of ander duurzaam materiaal, met name een band van goud of ander edelmetaal, vaak bezet met edelstenen, voor het dragen van de vinger als sieraad."
-      },
-      "strength": {
-        "name": "Kracht",
-        "description": "Een maatstaf voor hoe fysiek sterk een karakter is. Kracht beheerst vaak het maximale gewicht dat het personage kan dragen, fysieke attack en/of schade, en soms ook trefzekerheid. Uitrusting en wapens kunnen ook een sterkte-eis hebben."
-      },
-      "constitution": {
-        "name": "Gezondheidstoestand",
-        "description": "Een maatstaf voor hoe stevig een karakter is. De gezondheidstoestand heeft vaak invloed op het aantal trefpunten, weerstanden voor speciale soorten schade (gif, ziekte, hitte etc.) en vermoeidheid."
-      },
-      "defence": {
-        "name": "Defensie",
-        "description": "Een maatstaf voor de veerkracht van een personage. Defensie verlaagt de opgelopen schade meestal met een percentage of een vast bedrag per treffer. Wordt soms gecombineerd met de gezondheidstoestand."
-      },
-      "dexterity": {
-        "name": "Behendigheid",
-        "description": "Een maatstaf voor hoe wendbaar een personage is. Behendigheid bepaalt de aanvals- en bewegingssnelheid en nauwkeurigheid alsook het ontwijken van de aanval van een tegenstander."
-      },
-      "intelligence": {
-        "name": "Intelligentie",
-        "description": "Een maatstaf voor het probleemoplossend vermogen van een personage. Intelligentie bepaalt vaak het vermogen van een personage om vreemde talen en magie te begrijpen. Intelligentie kan ook bepalen hoe snel een personage kan groeien."
-      },
-      "charisma": {
-        "name": "Charisma",
-        "description": "Een maatstaf voor de sociale vaardigheden van een personage, en soms ook voor zijn of haar fysieke verschijning."
-      },
-      "wisdom": {
-        "name": "Wijsheid",
-        "description": "Een maatstaf voor het gezonde verstand en/of de spiritualiteit van een personage. Wijsheid bepaalt vaak het vermogen van een personage om bepaalde spreuken uit te spreken, te communiceren met mystieke entiteiten, of de motieven of gevoelens van een ander personage te onderscheiden."
-      },
-      "willpower": {
-        "name": "Wilskracht",
-        "description": "Een maatstaf voor de mentale weerstand van het personage (tegen pijn, angst, enz.) bij het slachtoffer worden van geestverruimende magie, marteling of krankzinnigheid."
-      },
-      "perception": {
-        "name": "Perception",
-        "description": "Een maat voor de openheid van een personage voor zijn omgeving. Waarneming bepaalt de kans om vitale aanwijzingen op te sporen, vijanden te vangen of te verbergen, en kan de gevechtsvolgorde of de nauwkeurigheid van de verschillende aanvallen beïnvloeden."
-      },
-      "luck": {
-        "name": "Geluk",
-        "description": "Een maatstaf voor het geluk van een personage. Geluk kan van invloed zijn op alles."
-      },
-      "woodland": {
-        "name": "Bos",
-        "description": "Land bedekt met bomen en begroeiing."
-      },
-      "forest": {
-        "name": "Woud",
-        "description": "Een groot stuk land eveneens bedekt met bomen en begroeiing."
-      },
-      "village": {
-        "name": "Dorp",
-        "description": "Een kleine gemeenschap of groep huizen in een landelijke omgeving, groter dan een gehucht en meestal kleiner dan een stad."
-      },
-      "town": {
-        "name": "Stad",
-        "description": "Een dichtbevolkt gebied, meestal kleiner dan een gemeente en groter dan een dorp, met vaste grenzen en bepaalde lokale overheden."
-      },
-      "city": {
-        "name": "Gemeente",
-        "description": "Een gemeente, meestal bestuurd door een burgemeester en een raad van wethouders of raadsleden..."
-      },
-      "citadel": {
-        "name": "Fort",
-        "description": "Een fort dat een stad bestuurt en gebruikt wordt in de controle van de inwoners en als verdediging tijdens een aanval of belegering."
+      "relationType": {
+        "title": "Relatie type",
+        "missing": "Er werden nog geen relatie types gedefinieerd.",
+        "placeholder": "Selecteer een relatie type",
+        "type": "Relatie type",
+        "description": "beschrijft een relatie tussen 2 personages."
       }
     }
   },
@@ -692,12 +674,13 @@
     "login": "Aanmelden",
     "import": "Importeer verhaal",
     "version": "Release notes",
+    "powers": "Krachten",
     "breadCrumbs": {
       "storyOverview": "Verhalen overzicht",
       "chapterOverview": "Hoofdstukken overzicht",
       "characterOverview": "Personages overzicht",
       "itemOverview": "Voorwerpen overzicht",
-      "storySettingOverview": "Verhaal instellingen overzicht",
+      "storySettingOverview": "Woordenlijst overzicht",
       "chapterView": "Hoofdstuk",
       "characterView": "Personage",
       "itemView": "Voorwerp",
@@ -709,5 +692,24 @@
     "notfound": "404 - Deze pagina is verdwenen...",
     "message": "De opgevraagde pagina bestaat niet, of bestaat niet meer ...",
     "return": "Home"
+  },
+  "slot": {
+    "name": "Plaats",
+    "helm": "Hoofd plaats",
+    "body": "Lichaam plaats",
+    "legs": "Benen plaats",
+    "gloves": "Hand plaats",
+    "boots": "Voet plaats",
+    "cape": "Mantel plaats",
+    "hand": "Wapen of schild plaats",
+    "quiver": "Pijlenkoker plaats",
+    "earring": "Oorbel plaats",
+    "ring": "Ring plaats",
+    "bracelet": "Armband plaats",
+    "neck": "Hals plaats",
+    "belt": "Riem plaats",
+    "slotTotal": "Kenmerken totaal uit voorwerpen",
+    "powerTotal": "Kenmerken totaal uit krachten",
+    "traitTotal": "Kenmerken totaal uit evenementen"
   }
 }

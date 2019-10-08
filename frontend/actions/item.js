@@ -1,52 +1,25 @@
+import actionBuilder from './actionBuilder';
 import itemDb from '../helpers/pouch/item';
-import constants from '../constants';
 
-export const addItem = async (item, dispatch) => {
-  const newSetting = await itemDb.insert(item);
-  dispatch({
-    type: constants.actions.addItem,
-    value: newSetting,
-  });
-};
+const actions = actionBuilder(itemDb, 'Item');
 
-export const updateItem = async (item, dispatch) => {
-  const updatedItem = await itemDb.update(item);
-  dispatch({
-    type: constants.actions.updateItem,
-    value: updatedItem,
-  });
-};
+export const addItem = async (
+  item, dispatch) => actions.add(item, dispatch);
 
-export const importItem = async (item, dispatch) => {
-  const imported = await itemDb.importData(item);
-  dispatch({
-    type: constants.actions.updateItem,
-    value: imported,
-  });
-};
+export const updateItem = async (
+  item, dispatch) => actions.update(item, dispatch);
 
-export const removeItem = async (item, dispatch) => {
-  await itemDb.remove(item);
-  dispatch({ type: constants.actions.removeItem, value: item });
-};
+export const importItem = async (
+  item, dispatch) => actions.importData(item, dispatch);
 
-export const getItems = async (storyId, dispatch) => {
-  const items = await itemDb.getAll(storyId);
-  dispatch({
-    type: constants.actions.setItems,
-    value: items,
-  });
-};
+export const removeItem = async (
+  item, dispatch) => actions.remove(item, dispatch);
 
-export const getItemsByStories = async (stories, dispatch) => {
-  await Promise.all(stories.map(s => getItems(s.id, dispatch)));
-};
+export const getItems = async (
+  storyId, dispatch) => actions.getAllByStoryId(storyId, dispatch);
 
-export const removeItemsFromStory = async (storyId, dispatch) => {
-  const items = await itemDb.getAll(storyId);
-  await Promise.all(items.map(c => itemDb.remove(c)));
-  dispatch({
-    type: constants.actions.removeItems,
-    value: items,
-  });
-};
+export const getItemsByStories = async (
+  stories, dispatch) => actions.getAllByStories(stories, dispatch);
+
+export const removeItemsFromStory = async (
+  storyId, dispatch) => actions.removeFromStory(storyId, dispatch);

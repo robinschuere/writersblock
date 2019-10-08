@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 import { addPlace, updatePlace } from '../../actions/place';
+import { useField } from '../../helpers';
 
 import Alert from '../../components/generic/alert';
 import LabelAndField from '../../components/generic/labelAndField';
@@ -12,21 +13,19 @@ import StorySettingSelect from '../../components/storySettingSelect';
 
 const PlaceEdit = (props) => {
   const {
-    computedMatch, placeStore, storySettingStore, dispatch, i18n, mobile,
+    computedMatch, withAuthorDescription, placeStore, dispatch, i18n, mobile,
   } = props;
   const { storyId, placeId } = computedMatch.params;
   const place = !placeId ? {} : placeStore[placeId];
 
-  const [name, setName] = useState(place.name);
-  const [authorDescription, setAuthorDescription] = useState(place.authorDescription);
-  const [description, setDescription] = useState(place.description);
-  const [type, setType] = useState(place.type);
+  const [updatedPlace, setPlaceProps] = useField(place);
+
   const [validatedOnce, setValidatedOnce] = useState(false);
   const [showAlert, setAlert] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  const validatePlace = () => {
-    if ([name].filter(x => x).length !== 1) {
+  const validate = () => {
+    if ([updatedPlace.name].filter(x => x).length !== 1) {
       return false;
     }
     return true;
@@ -34,14 +33,7 @@ const PlaceEdit = (props) => {
 
   const addOrUpdate = async () => {
     setValidatedOnce(true);
-    if (validatePlace()) {
-      const updatedPlace = {
-        ...place,
-        name,
-        authorDescription,
-        type,
-        description,
-      };
+    if (validate()) {
       if (updatedPlace.id) {
         await updatePlace(updatedPlace, dispatch);
       } else {
@@ -54,7 +46,7 @@ const PlaceEdit = (props) => {
   };
 
   if (completed) {
-    return <Redirect to={placeId ? `/stories/${storyId}/places/${placeId}` : `/stories/${storyId}/places`} />;
+    return <Redirect to={`/stories/${storyId}/places`} />;
   }
 
   return (
@@ -65,14 +57,16 @@ const PlaceEdit = (props) => {
         onClose={() => setCompleted(true)}
         i18n={i18n}
       />
-      <div className="container">
+      <div className="container-fluid">
         {showAlert && <Alert message={i18n.t('place.edit.alert')} level="error" onClose={setAlert(false)} />}
         <form className="form-horizontal">
           <h5>{i18n.t('place.edit.header')}</h5>
-          <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.name')} placeholder={i18n.t('generic.placeholders.name')} onChange={setName} value={name} />
-          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} onChange={setAuthorDescription} value={authorDescription} />
-          <StorySettingSelect validatedOnce={validatedOnce} storyId={storyId} type="placeType" i18n={i18n} storySettingStore={storySettingStore} onChange={setType} value={type} />
-          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} onChange={setDescription} value={description} />
+          <LabelAndField validatedOnce={validatedOnce} required type="text" label={i18n.t('generic.name')} placeholder={i18n.t('generic.placeholders.name')} {...setPlaceProps('name')} />
+          {withAuthorDescription && (
+            <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.authorDescription')} placeholder={i18n.t('generic.placeholders.authorDescription')} {...setPlaceProps('authorDescription')} />
+          )}
+          <StorySettingSelect {...props} validatedOnce={validatedOnce} storyId={storyId} type="placeType" {...setPlaceProps('type')} />
+          <LabelAndField validatedOnce={validatedOnce} type="textarea" label={i18n.t('generic.description')} placeholder={i18n.t('generic.placeholders.description')} {...setPlaceProps('description')} />
         </form>
       </div>
     </Fragment>
@@ -81,6 +75,7 @@ const PlaceEdit = (props) => {
 
 PlaceEdit.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  withAuthorDescription: PropTypes.bool.isRequired,
   placeStore: PropTypes.object.isRequired,
   storySettingStore: PropTypes.object.isRequired,
   computedMatch: PropTypes.object.isRequired,

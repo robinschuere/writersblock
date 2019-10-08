@@ -38,7 +38,7 @@ TextArea.defaultProps = {
   value: undefined,
   onBlur: undefined,
   placeholder: 'Insert some text',
-  amountOfRows: 5,
+  amountOfRows: 10,
   readOnly: false,
 };
 

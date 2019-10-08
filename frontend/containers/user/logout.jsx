@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import constants from '../../constants';
-
 import Button from '../../components/generic/button';
 import WithNavBar from '../../components/hoc/withNavBar';
+import { logoutUser } from '../../actions/user';
 
 const Logout = ({
-  dispatch, i18n,
+  userStore, dispatch, i18n,
 }) => {
   const [completed, setCompleted] = useState(false);
-  const handleLogout = () => {
-    dispatch({ type: constants.actions.logoutUser });
-    dispatch({ type: constants.actions.emptyStories });
-    dispatch({ type: constants.actions.emptyChapters });
-    dispatch({ type: constants.actions.emptyStorySettings });
+  const handleLogout = async () => {
+    await logoutUser(userStore.loggedInUser, dispatch);
     setCompleted(true);
   };
 
@@ -24,7 +20,7 @@ const Logout = ({
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h4>{i18n.t('logout.header')}</h4>
       <p>{i18n.t('logout.message')}</p>
       <Button onClick={handleLogout}>
@@ -35,6 +31,7 @@ const Logout = ({
 };
 
 Logout.propTypes = {
+  userStore: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   i18n: PropTypes.object.isRequired,
 };

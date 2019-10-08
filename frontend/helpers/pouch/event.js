@@ -1,5 +1,5 @@
 import modelBuilder from './modelBuilder';
-import constants from '../../constants';
+import { constants } from '../../constants';
 
 const events = modelBuilder(constants.eventDb);
 

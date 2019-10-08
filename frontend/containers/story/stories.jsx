@@ -12,10 +12,11 @@ import { formatDate } from '../../helpers';
 import List from '../../components/generic/list';
 import WithNavBar from '../../components/hoc/withNavBar';
 
-const Stories = ({
-  mobile, history, i18n, exportToJSON,
-  storyStore, chapterStore, characterStore, itemStore, placeStore, storySettingStore,
-}) => {
+const Stories = (props) => {
+  const {
+    history, i18n, exportToJSON,
+    storyStore, chapterStore, characterStore, itemStore, placeStore, storySettingStore,
+  } = props;
   const stories = Object.keys(storyStore).map(key => ({
     ...storyStore[key],
     chapters: getChaptersByStory(chapterStore, key).length,
@@ -34,14 +35,13 @@ const Stories = ({
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h4>{i18n.t('story.list.header')}</h4>
       <p>{i18n.t('story.list.message')}</p>
       <List
-        i18n={i18n}
+        {...props}
         onAdd={handleAdd}
         onRemove={handleStartRemove}
-        mobile={mobile}
         linkToPath="stories"
         columns={[
           { columnName: i18n.t('generic.title'), fieldName: 'title' },
@@ -78,6 +78,7 @@ Stories.propTypes = {
   history: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   exportToJSON: PropTypes.func.isRequired,
+  computedMatch: PropTypes.object.isRequired,
 };
 
 export default WithNavBar(withRouter(Stories));

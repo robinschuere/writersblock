@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatChapter, formatCharacter } from '../helpers';
+import {
+  formatChapter, formatCharacter, counterSort, formatAmount,
+} from '../helpers';
 
 import List from './generic/list';
-import constants from '../constants';
+import { constants } from '../constants';
 
-const EventList = ({
-  i18n, events, history, computedMatch, mobile, chapterStore, characterStore, storyRoute, parentId,
-}) => {
+const EventList = (props) => {
+  const {
+    i18n, events, history, computedMatch, chapterStore,
+    characterStore, storyRoute, parentId,
+  } = props;
   const { storyId } = computedMatch.params;
 
   const getParent = () => {
@@ -42,17 +46,21 @@ const EventList = ({
 
   return (
     <List
-      i18n={i18n}
+      {...props}
       onAdd={handleAdd}
       onRemove={handleRemove}
-      mobile={mobile}
       linkToPath={`${parentId}/events`}
       columns={[
         { columnName: i18n.t('generic.name'), fieldName: 'name' },
+        { columnName: i18n.t('generic.counter'), fieldName: 'counter' },
         parent,
+        { columnName: i18n.t('generic.items'), fieldName: 'items', format: formatAmount },
+        { columnName: i18n.t('generic.powers'), fieldName: 'powers', format: formatAmount },
+        { columnName: i18n.t('generic.titles'), fieldName: 'titles', format: formatAmount },
+        { columnName: i18n.t('generic.relations'), fieldName: 'relations', format: formatAmount },
         { columnName: i18n.t('generic.description'), fieldName: 'description' },
       ]}
-      items={events}
+      items={events.sort(counterSort)}
     />
   );
 };
@@ -64,7 +72,7 @@ EventList.propTypes = {
     chapterId: PropTypes.string,
     characterId: PropTypes.string,
     notes: PropTypes.string,
-    statisticalTraits: PropTypes.arrayOf(PropTypes.object),
+    statisticTraits: PropTypes.arrayOf(PropTypes.object),
   })).isRequired,
   computedMatch: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

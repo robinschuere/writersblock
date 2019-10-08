@@ -20,6 +20,7 @@ const CharacterDelete = ({
 
   const handleDelete = async () => {
     await removeCharacter(character, dispatch);
+    setCompleted(true);
   };
 
   if (completed || !character) {
@@ -29,7 +30,7 @@ const CharacterDelete = ({
   return (
     <Fragment>
       <BackAndDeleteBar mobile={mobile} onAccept={handleDelete} onClose={handleClose} i18n={i18n} />
-      <div className="container">
+      <div className="container-fluid">
         <h4>{i18n.t('character.delete.header', { title: `${character.firstName} ${character.lastName}` })}</h4>
         <p>{i18n.t('character.delete.message')}</p>
       </div>

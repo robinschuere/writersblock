@@ -1,6 +1,6 @@
-import constants from '../constants';
+import { constants } from '../constants';
 
-const reducer = (state, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case constants.actions.addUser:
       return { loggedInUser: action.value };

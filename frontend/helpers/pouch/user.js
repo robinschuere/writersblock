@@ -1,5 +1,6 @@
 import modelBuilder from './modelBuilder';
-import constants from '../../constants';
+import { constants } from '../../constants';
+import { isYes } from '..';
 
 const users = modelBuilder(constants.userDb);
 
@@ -19,7 +20,7 @@ const login = async (userName, password) => {
 
 const getPersistentUser = async () => {
   const existingUsers = await users.getAll();
-  if (existingUsers.length === 1 && existingUsers[0].persistLogin === 'yes') {
+  if (existingUsers.length === 1 && isYes(existingUsers[0].persistLogin)) {
     return existingUsers[0];
   }
   return null;

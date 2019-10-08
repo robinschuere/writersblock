@@ -7,9 +7,8 @@ import WithNavBar from '../../components/hoc/withNavBar';
 const StorySettings = (props) => {
   const { i18n } = props;
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h4>{i18n.t('storySetting.list.header')}</h4>
-      <p>{i18n.t('storySetting.list.message')}</p>
       <StorySettingList {...props} />
     </div>
   );

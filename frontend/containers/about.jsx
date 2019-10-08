@@ -5,7 +5,7 @@ import WithNavBar from '../components/hoc/withNavBar';
 import AboutGenerator from '../components/about/aboutGenerator';
 
 const About = ({ i18n }) => (
-  <div className="container">
+  <div className="container-fluid">
     <h4>{i18n.t('about.dev')}</h4>
     <p>{i18n.t('about.synopsis')}</p>
     <br />

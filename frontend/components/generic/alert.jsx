@@ -20,15 +20,13 @@ const Alert = ({ level, message, onClose }) => {
   };
 
   return (
-    <div style={{ position: 'sticky', top: 60, zIndex: 999 }}>
-      <div className={getAlertClass()} role="alert">
-        {message}
-        {onClose && (
-          <button type="button" className="close" onClick={onClose} data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        )}
-      </div>
+    <div className={getAlertClass()} role="alert">
+      {message}
+      {onClose && (
+        <button type="button" className="close" onClick={onClose} data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      )}
     </div>
   );
 };

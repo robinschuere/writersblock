@@ -1,17 +1,38 @@
 import chapterDb from '../helpers/pouch/chapter';
-import constants from '../constants';
+import { constants } from '../constants';
 import { removeEventsFromChapter } from './event';
 
-const updateExistingChaptersCounterForStory = async (chapter, amount, dispatch) => {
-  const existingChapters = await chapterDb.getAll(chapter.storyId);
-  const chaptersToUpdate = existingChapters
-    .filter(f => f.id !== chapter.id && f.counter >= chapter.counter)
-    .map(f => ({ ...f, counter: f.counter + amount }));
-  await Promise.all(chaptersToUpdate.map(u => chapterDb.update(u)));
-  dispatch({
-    type: constants.actions.setChapters,
-    value: chaptersToUpdate,
-  });
+const updateExistingChaptersCounterForAddedStory = async (chapter, dispatch) => {
+  const existingChapters = await chapterDb.getAllByStoryId(chapter.storyId);
+  const existingChaptersToUpdate = existingChapters.filter(e => e.counter >= chapter.counter);
+
+  await Promise.all(existingChaptersToUpdate.map(async (e) => {
+    e.counter += 1;
+    const updatedChapter = await chapterDb.update(e);
+    dispatch({
+      type: constants.actions.updateChapter,
+      value: updatedChapter,
+    });
+  }));
+};
+
+const updateExistingChaptersCounterForStory = async (chapter, originalCounter, dispatch) => {
+  const existingChapters = await chapterDb.getAllByStoryId(chapter.storyId);
+  const change = originalCounter > chapter.counter ? 1 : -1;
+  const bigCounter = originalCounter > chapter.counter ? originalCounter : chapter.counter;
+  const smallCounter = originalCounter > chapter.counter ? chapter.counter : originalCounter;
+
+  const existingChaptersToUpdate = existingChapters
+    .filter(e => e.id !== chapter.id && e.counter >= smallCounter && e.counter <= bigCounter);
+
+  await Promise.all(existingChaptersToUpdate.map(async (e) => {
+    e.counter += change;
+    const updatedChapter = await chapterDb.update(e);
+    dispatch({
+      type: constants.actions.updateChapter,
+      value: updatedChapter,
+    });
+  }));
 };
 
 const getCounter = async (storyId) => {
@@ -22,7 +43,9 @@ const getCounter = async (storyId) => {
 export const addChapter = async (chapter, dispatch) => {
   const latestCounter = await getCounter(chapter.storyId);
   const chapterWithCounter = { ...chapter, counter: chapter.counter || latestCounter + 1 };
-  await updateExistingChaptersCounterForStory(chapterWithCounter, 1, dispatch);
+  if (chapterWithCounter !== latestCounter + 1) {
+    await updateExistingChaptersCounterForAddedStory(chapterWithCounter, dispatch);
+  }
   const newChapter = await chapterDb.insert(chapterWithCounter);
   dispatch({
     type: constants.actions.addChapter,
@@ -31,10 +54,11 @@ export const addChapter = async (chapter, dispatch) => {
 };
 
 export const updateChapter = async (chapter, dispatch) => {
-  const latestCounter = await getCounter(chapter.storyId);
-  const chapterWithCounter = { ...chapter, counter: chapter.counter || latestCounter + 1 };
-  await updateExistingChaptersCounterForStory(chapterWithCounter, 1, dispatch);
-  const updatedChapter = await chapterDb.update(chapterWithCounter);
+  const originalChapter = await chapterDb.getById(chapter.id);
+  if (originalChapter.counter !== chapter.counter) {
+    await updateExistingChaptersCounterForStory(chapter, originalChapter.counter, dispatch);
+  }
+  const updatedChapter = await chapterDb.update(chapter);
   dispatch({
     type: constants.actions.updateChapter,
     value: updatedChapter,
@@ -56,8 +80,8 @@ export const removeChapter = async (chapter, dispatch) => {
   await removeEventsFromChapter(chapter.id, dispatch);
 };
 
-export const getChapters = async (chapterId, dispatch) => {
-  const chapters = await chapterDb.getAll(chapterId);
+export const getChapters = async (storyId, dispatch) => {
+  const chapters = await chapterDb.getAll(storyId);
   dispatch({
     type: constants.actions.setChapters,
     value: chapters,
@@ -73,6 +97,6 @@ export const removeChaptersFromStory = async (storyId, dispatch) => {
   await Promise.all(chapters.map(c => chapterDb.remove(c)));
   dispatch({
     type: constants.actions.removeChapters,
-    value: chapters,
+    values: chapters,
   });
 };

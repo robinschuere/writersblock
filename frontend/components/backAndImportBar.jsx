@@ -9,6 +9,8 @@ const BackAndImportBar = props => (
     {...props}
     acceptText={props.i18n.t('generic.import.action')}
     acceptIcon="file-import"
+    closeIcon="arrow-circle-left"
+    closeText={props.i18n.t('generic.back')}
   />
 );
 

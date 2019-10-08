@@ -9,6 +9,8 @@ const BackAndDeleteBar = props => (
     {...props}
     acceptText={props.i18n.t('generic.delete')}
     acceptIcon="trash"
+    closeIcon="times"
+    closeText={props.i18n.t('generic.cancel')}
   />
 );
 
